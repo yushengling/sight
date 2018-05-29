@@ -14,12 +14,13 @@
 }
 
 .logo {
-    background-image: url(./../../../public/logo.jpeg);
+    background-image: url(http://47.98.231.165/logo.png);
     background-size: 100%;
-    width: 100px;
+    width: 60px;
     height: 60px;
-    background-position-y: -8px;
+    background-position-y: 4px;
     cursor: pointer;
+    background-repeat: no-repeat;
 }
 
 .icon {
@@ -34,12 +35,4 @@
 
 .cardDiv {
     text-align: center;
-}
-
-a:link {
-    color: yellow;
-}
-
-a:visited {
-    color: red;
 }

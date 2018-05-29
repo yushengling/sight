@@ -15,14 +15,6 @@
     background-color: #fff;
 }
 
-.name {
-    margin-top: 10px;
-    font-size: 30px;
-    color: #40a9ff;
-    display: flex;
-    justify-content: center;
-}
-
 .footerButton {
     position: absolute;
     bottom: 0px;
@@ -32,4 +24,15 @@
     background-color: #f6f6f6;
     border-top: 1px solid #ebebeb;
     line-height: 50px;
+}
+
+.logo-div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.login-logo {
+    width: 60px;
+    height: 60px;
 }

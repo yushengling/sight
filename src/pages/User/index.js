@@ -56,7 +56,9 @@ class Index extends Component {
     return (
       <div className="content">
         <div className="user-div">
-          <h2 className="name">视线</h2>
+          <div className="logo-div">
+            <img alt="src" src="http://47.98.231.165/logo.png" className="login-logo" />
+          </div>
           {this.renderContent()}
           <div className="footerButton">{ isLogin === 1 ? '没有账号' : '已有账号' }？<a onClick={this.goRegister}>{ isLogin === 1 ? '注册' : '登录' }</a>
           </div>
