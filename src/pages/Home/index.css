@@ -13,13 +13,8 @@
   align-items: center;
 }
 
-.home-logo {
-  display: flex;
-  justify-content: center;
-}
-
 .logo {
-  background-image: url(http://47.98.231.165/logo.png);
+  background-image: url(http://47.98.231.165/favicon.png);
   background-size: 100%;
   width: 54px;
   height: 54px;
@@ -34,6 +29,8 @@
 }
 
 .user {
+  display: flex;
+  align-items: center;
   float: right;
   cursor: pointer;
   height: 54px;

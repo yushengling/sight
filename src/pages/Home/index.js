@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 import { getData } from './../../actions/HomeAction';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
-import { Menu, Icon, List, Spin, Affix, Row, Col, Layout } from 'antd';
+import { Menu, Icon, List, Spin, Affix, Row, Col, Layout, Avatar } from 'antd';
 import ItemCard from './../../components/ItemCard/ItemCard.js';
 import PropTypes from 'prop-types';
 import './index.css';
@@ -61,7 +61,7 @@ class Index extends Component {
   }
   render() {
     const { loading, data } = this.state;
-    const { listData, count } = this.props.homeRedu;
+    const { listData, count, userName, avatar } = this.props.homeRedu.homeData;
     return (
       <div>
         <Affix>
@@ -72,7 +72,7 @@ class Index extends Component {
               </Col>
               <Col span={12}>
                 <div className="user">
-                  <Icon type="user" className="icon" onClick={this.clickUser.bind(this)} />
+                  { userName ? <Avatar src={avatar} icon="user" style={{ height: 28, width: 28 }} /> : <Icon type="user" className="icon" onClick={this.clickUser.bind(this)} /> }
                 </div>
               </Col>
             </Row>

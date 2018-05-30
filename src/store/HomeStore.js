@@ -1,3 +1,8 @@
 export const initialState = {
-  listData:[],
+  homeData:{
+    count: 0,
+    listData: [],
+    userName: false,
+    avatar: false
+  },
 }

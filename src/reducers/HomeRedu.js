@@ -5,7 +5,7 @@ import "babel-polyfill";
 const homeRedu = (state = initialState, action) => {
   switch(action.type) {
     case 'GETDATA':
-      return Object.assign({},state,action);
+      return Object.assign({}, state, action);
     break;
     default:
       return state;
