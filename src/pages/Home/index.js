@@ -65,14 +65,14 @@ class Index extends Component {
     return (
       <div>
         <Affix>
-          <Header style={{ background: '#fff', borderBottom: '1px solid #e1e1e1', height: 54}}>
+          <Header style={{ background: '#fff', borderBottom: '1px solid #e1e1e1', height: 54 }}>
             <Row className="row" style={{ height: 54 }}>
               <Col span={12}>
                 <div className="logo" onClick={this.clickLogo.bind(this)} />
               </Col>
               <Col span={12}>
                 <div className="user">
-                  <Icon type="user" className="icon" onClick={this.clickUser.bind(this)}/>
+                  <Icon type="user" className="icon" onClick={this.clickUser.bind(this)} />
                 </div>
               </Col>
             </Row>
@@ -90,7 +90,7 @@ class Index extends Component {
           <div className="cardDiv">
             {this.renderList(listData)}
           </div>
-          {this.state.loading && <Spin style={{marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center'}}/>}
+          {this.state.loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} />}
           </InfiniteScroll>
         </Content>
       </div>
