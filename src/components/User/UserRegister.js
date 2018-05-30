@@ -10,6 +10,12 @@ import * as styles from './UserRegister.css';
 import { register, clear } from './../../actions/UserAction';
 const FormItem = Form.Item;
 
+message.config({
+  top: 24,
+  duration: 1,
+  maxCount: 3,
+});
+
 class UserRegister extends React.Component {
   state = {
     confirmDirty: false,
@@ -19,12 +25,13 @@ class UserRegister extends React.Component {
     const { dispatch } = this.props;
     if(userRedu.data.code != undefined) {
       if(userRedu.data.code === 400) {
-        message.warning(userRedu.data.message, 1);
+        message.warning(userRedu.data.message);
       } else {
-        message.success('注册成功，页面将会自动跳转！', 1);
+        message.success('注册成功，页面将会自动跳转！');
         setTimeout(() => {
-
-        },700);
+          console.log(this.props);
+          this.props.history.push('/');
+        },1100);
       }
       clear(dispatch);
     }

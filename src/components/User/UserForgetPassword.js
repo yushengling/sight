@@ -9,7 +9,11 @@ import { Form, Input, Button, message } from 'antd';
 import * as styles from './UserForgetPassword.css';
 import { updatePassword, clear } from './../../actions/UserAction';
 const FormItem = Form.Item;
-
+message.config({
+  top: 24,
+  duration: 1,
+  maxCount: 3,
+});
 class UserForgetPassword extends React.Component {
   state = {
     confirmDirty: false,
@@ -19,9 +23,12 @@ class UserForgetPassword extends React.Component {
     const { dispatch } = this.props;
     if(userRedu.data.code != undefined) {
       if(userRedu.data.code === 400) {
-        message.error(userRedu.data.message, 1);
+        message.error(userRedu.data.message);
       } else {
-        message.success('密码修改成功', 1);
+        message.success('密码修改成功');
+        setTimeout(() => {
+          this.props.history.push('/');
+        },1100);
       }
       clear(dispatch);
     }

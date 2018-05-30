@@ -39,15 +39,15 @@ class Index extends Component {
     switch(isLogin) {
       case 1:
         return (
-          <UserLogin forgetPassword={this.forgetPassword} />
+          <UserLogin forgetPassword={this.forgetPassword} history={this.props.history} />
         );
       case 2:
         return (
-          <UserRegister />
+          <UserRegister history={this.props.history} />
         );
       case 3:
         return (
-          <UserForgetPassword />
+          <UserForgetPassword history={this.props.history} />
         );
     }
   }

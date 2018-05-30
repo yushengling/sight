@@ -65,8 +65,8 @@ class Index extends Component {
     return (
       <div>
         <Affix>
-          <Header style={{background: '#fff',borderBottom: '1px solid #e1e1e1'}}>
-            <Row className="row">
+          <Header style={{ background: '#fff', borderBottom: '1px solid #e1e1e1', height: 54}}>
+            <Row className="row" style={{ height: 54 }}>
               <Col span={12}>
                 <div className="logo" onClick={this.clickLogo.bind(this)} />
               </Col>
