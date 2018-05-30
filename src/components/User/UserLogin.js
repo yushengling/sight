@@ -23,7 +23,7 @@ class UserLogin extends Component {
       } else {
         message.success('登录成功', 1);
         setTimeout(() => {
-
+          this.props.history.push('/');
         },700);
       }
       clear(dispatch);

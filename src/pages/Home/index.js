@@ -26,7 +26,7 @@ class Index extends Component {
     });
     setTimeout(() => {
       const { dispatch } = this.props;
-      const { count } = this.props.homeRedu;
+      const { count } = this.props.homeRedu.homeData;
       getData(dispatch,count + 24);
     },500);
     setTimeout(() => {
