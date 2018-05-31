@@ -32,6 +32,7 @@ function requestPost({ method, options, callback }) {
   options.headers = {
     'Content-Type': 'application/json'
   };
+  options.credentials = 'include';
   options.body = JSON.stringify(options.body);
   return fetch(getApi + method, options )
     .then(checkStatus)
