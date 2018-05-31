@@ -23,13 +23,12 @@ class UserRegister extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { userRedu } = nextProps;
     const { dispatch } = this.props;
-    if(userRedu.data.code != undefined) {
-      if(userRedu.data.code === 400) {
-        message.warning(userRedu.data.message);
+    if(userRedu.code != undefined) {
+      if(userRedu.code === 400) {
+        message.warning(userRedu.message);
       } else {
         message.success('注册成功，页面将会自动跳转！');
         setTimeout(() => {
-          console.log(this.props);
           this.props.history.push('/');
         },1100);
       }

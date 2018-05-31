@@ -21,9 +21,9 @@ class UserForgetPassword extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { userRedu } = nextProps;
     const { dispatch } = this.props;
-    if(userRedu.data.code != undefined) {
-      if(userRedu.data.code === 400) {
-        message.error(userRedu.data.message);
+    if(userRedu.code != undefined) {
+      if(userRedu.code === 400) {
+        message.error(userRedu.message);
       } else {
         message.success('密码修改成功');
         setTimeout(() => {

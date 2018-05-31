@@ -7,4 +7,25 @@ const getData = (dispatch,count) => {
   });
 }
 
-export { getData };
+const collection = (dispatch) => {
+  dispatch({
+    type: 'COLLECTION_SAGA',
+  });
+}
+
+const like = (dispatch) => {
+  dispatch({
+    type: 'LIKE_SAGA',
+  });
+}
+
+const clear = (dispatch, homeData) => {
+  homeData.code = 0;
+  homeData.message = '';
+  dispatch({
+    type: 'CLEARREDU',
+    homeData
+  });
+}
+
+export { getData, collection, like, clear };

@@ -10,3 +10,25 @@ export function fetchData(params) {
     }
   });
 }
+
+export function fetchCollection(params) {
+  return requestPost({
+    method: 'collection',
+    options: {
+      body: {
+        params: params
+      }
+    }
+  });
+}
+
+export function fetchLike(params) {
+  return requestPost({
+    method: 'like',
+    options: {
+      body: {
+        params: params
+      }
+    }
+  });
+}

@@ -17,9 +17,9 @@ class UserLogin extends Component {
   componentWillReceiveProps(nextProps) {
     const { userRedu } = nextProps;
     const { dispatch } = this.props;
-    if(userRedu.data.code != undefined) {
-      if(userRedu.data.code === 400) {
-        message.warning(userRedu.data.message, 1);
+    if(userRedu.code != undefined) {
+      if(userRedu.code === 400) {
+        message.warning(userRedu.message, 1);
       } else {
         message.success('登录成功', 1);
         setTimeout(() => {

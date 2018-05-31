@@ -3,36 +3,33 @@ import { connect } from 'react-redux';
 import { Icon, Avatar, Card, Col } from 'antd';
 import './ItemCard.css';
 const { Meta } = Card;
-
-const IconText = ({ type, text }) => (
-  <span>
-    <Icon type={type} style={{ marginRight: 8 }} />
-    {text}
-  </span>
-);
 class ItemCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
   }
   render() {
-    const { index, list } = this.props;
-    let image;
-    image = 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png';
+    const { index, list, collection, like } = this.props;
     return (
       <div className="card">
         <Card
           key={"card" + index}
           hoverable
-          cover={<img alt="src" src={image} className="image" />}
-          actions={[<IconText type="star" text={list.star} />, <IconText type="like" text={list.like} />]}
+          cover={<img alt="src" src={list.src} className="image" />}
+          actions={[
+            <div onClick={collection}>
+              <Icon type='star' style={{ marginRight: 8 }} />
+              {list.collection}
+            </div>,
+            <div onClick={like}>
+              <Icon type='like' style={{ marginRight: 8 }} />
+              {list.like}
+            </div>
+          ]}
         >
           <Meta
             avatar={<Avatar src={list.avatar} />}
-            title={list.title}
-            description={list.description}
+            title={list.userName}
+            description={list.desc}
           />
         </Card>
       </div>
