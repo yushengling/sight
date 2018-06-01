@@ -20,13 +20,14 @@ class UserLogin extends Component {
     if(userRedu.code != undefined) {
       if(userRedu.code === 400) {
         message.warning(userRedu.message, 1);
-      } else {
+        clear(dispatch);
+      } else if(userRedu.code === 200) {
         message.success('登录成功', 1);
         setTimeout(() => {
           this.props.history.push('/');
         },700);
+        clear(dispatch);
       }
-      clear(dispatch);
     }
   }
   handleSubmit = (e) => {

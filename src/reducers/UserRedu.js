@@ -7,8 +7,8 @@ const userRedu = (state = initialState, action) => {
     case 'REGISTERREDU':
       return Object.assign({}, state, action.data);
     break;
-    case 'CLEARREDU': 
-      return Object.assign(state, {});
+    case 'CLEARREDU':
+      return Object.assign({}, state, initialState);
     default:
       return state;
   }
