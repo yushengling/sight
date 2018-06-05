@@ -7,16 +7,19 @@ const getData = (dispatch,count) => {
   });
 }
 
-const collection = (dispatch) => {
+const collection = (dispatch, data, id) => {
   dispatch({
     type: 'COLLECTION_SAGA',
+    data,
+    id
   });
 }
 
-const like = (dispatch, data) => {
+const like = (dispatch, data, id) => {
   dispatch({
     type: 'LIKE_SAGA',
-    data
+    data,
+    id
   });
 }
 

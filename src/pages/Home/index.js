@@ -52,8 +52,9 @@ class Index extends Component {
   };
   renderList(listData) {
     const listArray = listData.map((list,index) => {
+      const { id } = list;
       return (
-        <ItemCard list={list} key={"card" + index} index={index} collection={this.clickCollection} like={this.clickLike} />
+        <ItemCard list={list} key={"card" + index} index={index} collection={this.clickCollection.bind(this, id)} like={this.clickLike.bind(this, id)} />
       );
     });
     return listArray;
@@ -79,18 +80,18 @@ class Index extends Component {
    * @author  Jiang
    * @return {[type]} [description]
    */
-  clickCollection = () => {
+  clickCollection(id) {
     const { dispatch } = this.props;
-    collection(dispatch, this.props.homeRedu);
+    collection(dispatch, this.props.homeRedu, id);
   };
   /**
    * [like 用户点赞]
    * @author  Jiang
    * @return {[type]} [description]
    */
-  clickLike = () => {
+  clickLike(id) {
     const { dispatch } = this.props;
-    like(dispatch, this.props.homeRedu);
+    like(dispatch, this.props.homeRedu, id);
   }
   render() {
     const { loading, data } = this.state;

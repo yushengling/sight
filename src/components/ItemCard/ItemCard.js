@@ -17,12 +17,12 @@ class ItemCard extends Component {
           cover={<img alt="src" src={list.src} className="image" />}
           actions={[
             <div onClick={collection}>
-              <Icon type='star' style={{ marginRight: 8 }} />
+              { list.userCollection ? <Icon type='star' style={{ marginRight: 8, color: 'red' }} /> : <Icon type='star' style={{ marginRight: 8 }} /> }
               {list.collection}
             </div>,
             <div onClick={like}>
-              <Icon type='like' style={{ marginRight: 8 }} />
-              {list.like}
+              { list.userLikes ? <Icon type='like' style={{ marginRight: 8, color: 'yellow' }} /> : <Icon type='like' style={{ marginRight: 8 }} /> }
+              {list.likes}
             </div>
           ]}
         >

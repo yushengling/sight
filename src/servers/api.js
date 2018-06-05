@@ -28,3 +28,13 @@ export function fetchLike(params) {
     }
   });
 }
+
+export function addLike(params) {
+  return request({
+    method: 'addLike',
+    options: {
+      method: 'PUT',
+      body: params
+    }
+  }); 
+}
