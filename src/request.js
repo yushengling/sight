@@ -31,10 +31,9 @@ function request({ method, options, callback }) {
     'Content-Type': 'application/json'
   };
   options.credentials = 'include';
-  if(!options.method === 'GET') {
+  if(!(options.method === 'GET')) {
     options.body = JSON.stringify(options.body);
   }
-  console.log(options, getApi + method);
   return fetch(getApi + method, options )
     .then(checkStatus)
     .then(parseJSON)
