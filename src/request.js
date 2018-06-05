@@ -4,8 +4,7 @@
  */
 import { message } from 'antd';
 //生产环境还是开发环境
-const getApi = process.env.NODE_ENV === 'production' ? 'http://47.98.231.165:9000/' : 'http://localhost:9000/';
-
+const getApi = process.env.NODE_ENV === 'production' ? 'http://47.98.231.165:9000/api/v1/' : 'http://localhost:9000/api/v1/';
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -19,21 +18,23 @@ function parseJSON(response) {
   return response.json();
 }
 /**
- * [requestPost post请求]
+ * [request 请求]
  * @author  Jiang
  * @param  {[type]} options.method   [方法名]
  * @param  {[type]} options.options  [选项]
  * @param  {[type]} options.callback [回调]
  * @return {[type]}                  [description]
  */
-function requestPost({ method, options, callback }) {
+function request({ method, options, callback }) {
   options.mode = "cors";
-  options.method = 'POST';
   options.headers = {
     'Content-Type': 'application/json'
   };
   options.credentials = 'include';
-  options.body = JSON.stringify(options.body);
+  if(!options.method === 'GET') {
+    options.body = JSON.stringify(options.body);
+  }
+  console.log(options, getApi + method);
   return fetch(getApi + method, options )
     .then(checkStatus)
     .then(parseJSON)
@@ -45,4 +46,4 @@ function requestPost({ method, options, callback }) {
     });
 }
 
-export { requestPost };
+export { request };

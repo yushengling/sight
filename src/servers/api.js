@@ -1,34 +1,30 @@
-import { requestPost } from '../request';
+import { request } from '../request';
 
 export function fetchData(params) {
-  return requestPost({
-    method: 'home',
+  return request({
+    method: `home?count=${params.count}`,
     options: {
-      body: {
-        count: params.count
-      }
+      method: 'GET'
     }
   });
 }
 
 export function fetchCollection(params) {
-  return requestPost({
+  return request({
     method: 'collection',
     options: {
-      body: {
-        params: params
-      }
+      body: params,
+      method: 'PUT'
     }
   });
 }
 
 export function fetchLike(params) {
-  return requestPost({
+  return request({
     method: 'like',
     options: {
-      body: {
-        params: params
-      }
+      method: 'PUT',
+      body: params
     }
   });
 }

@@ -19,11 +19,21 @@ function* fetchCollectionFun(action) {
 }
 
 function* fetchLikeFun(action) {
+  //判断用户是否已登录
   const datas = yield call(fetchLike, action);
-  yield put({
+  const { code } = datas;
+  if(code === 200) {
+    
+  } else {
+    yield put({
+      type: "GETDATA",
+      homeData: datas
+    }); 
+  }
+  /*yield put({
     type: "GETDATA",
     homeData: datas
-  });
+  });*/
 }
 
 function* homeSaga() {

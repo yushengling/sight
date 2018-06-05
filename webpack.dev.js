@@ -9,7 +9,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   devtool: 'source-map',
   mode: 'development',
-  entry: ['./src/index.js', 'whatwg-fetch'],
+  entry: ['babel-polyfill', './src/index.js', 'whatwg-fetch'],
   output: {
     filename: '[name].js',
     hashDigestLength: 7,

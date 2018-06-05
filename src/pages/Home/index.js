@@ -17,6 +17,11 @@ class Index extends Component {
     };
   }
   componentWillReceiveProps(nextProps) {
+    message .config({
+      top: 24,
+      duration: 2,
+      maxCount: 3,
+    });
     const { dispatch } = this.props;
     const { code, message } = nextProps.homeRedu;
     if(code === 400) {
@@ -62,7 +67,7 @@ class Index extends Component {
     location.reload();
   };
   /**
-   * [clickIcon 用户点击]
+   * [clickIcon 用户登录]
    * @author  Jiang
    * @return {[type]} [description]
    */

@@ -13,9 +13,10 @@ const collection = (dispatch) => {
   });
 }
 
-const like = (dispatch) => {
+const like = (dispatch, data) => {
   dispatch({
     type: 'LIKE_SAGA',
+    data
   });
 }
 

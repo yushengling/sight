@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { initialState } from './../store/HomeStore';
-import "babel-polyfill";
 
 const homeRedu = (state = initialState, action) => {
   switch(action.type) {

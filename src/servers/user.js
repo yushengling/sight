@@ -1,34 +1,42 @@
-import { requestPost } from '../request';
+import { request } from '../request';
 
 export function fetchRegister(params) {
-  return requestPost({
+  return request({
     method: 'register',
     options: {
-      body: {
-        params: params.values
-      }
+      body: params.values,
+      method: 'POST'
     }
   });
 }
 
 export function fetchUpdatePassword(params) {
-  return requestPost({
-    method: 'updatePassword',
+  /*const { userName, password, confirm } = params.values;
+  return request({
+    //userName, password, confirm
+    method: `updatePassword?userName=${userName}&password=${password}&confirm=${confirm}`,
     options: {
       body: {
-        params: params.values
-      }
+        params: params.values,
+      },
+      method: 'PUT'
+    }
+  });*/
+  return request({
+    method: 'updatePassword',
+    options: {
+      method: 'PUT',
+      body: params.values
     }
   });
 }
 
 export function fetchLogin(params) {
-  return requestPost({
-    method: 'login',
+  const { userName, password, confirm } = params.values;
+  return request({
+    method: `login?userName=${userName}&password=${password}&confirm=${confirm}`,
     options: {
-      body: {
-        params: params.values
-      }
+      method: 'GET'
     }
   });
 }

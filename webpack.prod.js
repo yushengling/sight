@@ -8,9 +8,10 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   devtool: 'hidden-source-map',
   mode: 'production',
-  entry: {
+  entry: ['babel-polyfill', './src/index.js'],
+  /*entry: {
     index: './src/index.js'
-  },
+  },*/
   output: {
     filename: '[name].[hash].js',
     hashDigestLength: 7,
