@@ -7,19 +7,12 @@ const getData = (dispatch,count) => {
   });
 }
 
-const collection = (dispatch, data, id) => {
+const userClick = (dispatch, data, id, num) => {
   dispatch({
-    type: 'COLLECTION_SAGA',
+    type: 'CLICK_SAGA',
     data,
-    id
-  });
-}
-
-const like = (dispatch, data, id) => {
-  dispatch({
-    type: 'LIKE_SAGA',
-    data,
-    id
+    id,
+    num
   });
 }
 
@@ -32,4 +25,4 @@ const clear = (dispatch, homeData) => {
   });
 }
 
-export { getData, collection, like, clear };
+export { getData, userClick, clear };

@@ -5,7 +5,7 @@ import { Menu, Icon, List, Spin, Affix, Row, Col, Layout, Avatar, message } from
 import ItemCard from './../../components/ItemCard/ItemCard.js';
 import PropTypes from 'prop-types';
 import './index.css';
-import { getData, collection, like, clear } from './../../actions/HomeAction';
+import { getData, userClick, clear } from './../../actions/HomeAction';
 const { Header, Footer, Sider, Content } = Layout;
 
 class Index extends Component {
@@ -82,7 +82,7 @@ class Index extends Component {
    */
   clickCollection(id) {
     const { dispatch } = this.props;
-    collection(dispatch, this.props.homeRedu, id);
+    userClick(dispatch, this.props.homeRedu, id, 1);
   };
   /**
    * [like 用户点赞]
@@ -91,7 +91,7 @@ class Index extends Component {
    */
   clickLike(id) {
     const { dispatch } = this.props;
-    like(dispatch, this.props.homeRedu, id);
+    userClick(dispatch, this.props.homeRedu, id, 2);
   }
   render() {
     const { loading, data } = this.state;

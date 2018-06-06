@@ -9,29 +9,18 @@ export function fetchData(params) {
   });
 }
 
-export function fetchCollection(params) {
+export function fetchIsLogin(params) {
   return request({
-    method: 'collection',
+    method: 'isLogin',
     options: {
-      body: params,
-      method: 'PUT'
+      method: 'GET'
     }
   });
 }
 
-export function fetchLike(params) {
+export function fetchClick(params) {
   return request({
-    method: 'like',
-    options: {
-      method: 'PUT',
-      body: params
-    }
-  });
-}
-
-export function addLike(params) {
-  return request({
-    method: 'addLike',
+    method: 'fetchClick',
     options: {
       method: 'PUT',
       body: params
