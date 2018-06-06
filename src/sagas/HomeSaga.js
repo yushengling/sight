@@ -23,19 +23,25 @@ function* fetchLikeFun(action) {
   let datas;
   datas = yield call(fetchLike, action);
   const { code } = datas;
-  const { id, data } = action;
-  const listData = data.listData;
-  let json = {};
-  for(let i in listData) {
-    if(listData[i].id === id) {
-      json.likes = listData[i].likes;
-      json.id = id;
-      break;
-    }
-  }
   if(code === 200) {
+    const { id, data } = action;
+    const listData = data.listData;
+    let json = {};
+    for(let i in listData) {
+      if(listData[i].id === id) {
+        json.userLikes = listData[i].userLikes;
+        json.likes = listData[i].likes;
+        json.id = id;
+        json.listData = listData;
+        break;
+      }
+    }
     datas = yield call(addLike, json);
-    // const datas = yield call(fetchLike, action);
+    console.log(datas);
+    yield put({
+      type: "GETDATA",
+      homeData: datas
+    });
   } else if(code === 400) {
     yield put({
       type: "GETDATA",
