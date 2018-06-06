@@ -16,11 +16,11 @@ class ItemCard extends Component {
           hoverable
           cover={<img alt="src" src={list.src} className="image" />}
           actions={[
-            <div onClick={collection} style={{ cursor: 'pointer' }}>
+            <div onClick={collection} className="icon-div" >
               { list.userCollection ? <Icon type='star' style={{ marginRight: 8, color: 'red' }} /> : <Icon type='star' style={{ marginRight: 8 }} /> }
               {list.collection}
             </div>,
-            <div onClick={like} style={{ cursor: 'pointer' }}>
+            <div onClick={like} className="icon-div" >
               { list.userLikes ? <Icon type='like' style={{ marginRight: 8, color: '#eb7350' }} /> : <Icon type='like' style={{ marginRight: 8 }} /> }
               {list.likes}
             </div>
