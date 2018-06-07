@@ -54,7 +54,7 @@ class Index extends Component {
     const listArray = listData.map((list,index) => {
       const { id } = list;
       return (
-        <ItemCard list={list} key={"card" + index} index={index} collection={this.clickCollection.bind(this, id)} like={this.clickLike.bind(this, id)} />
+        <ItemCard list={list} key={"card" + index} index={index} collection={this.clickCollection.bind(this, id)} like={this.clickLike.bind(this, id)} cardClick={this.cardClick} />
       );
     });
     return listArray;
@@ -92,6 +92,9 @@ class Index extends Component {
   clickLike(id) {
     const { dispatch } = this.props;
     userClick(dispatch, this.props.homeRedu, id, 2);
+  }
+  cardClick = () => {
+    this.props.history.push('/details');
   }
   render() {
     const { loading, data } = this.state;

@@ -8,12 +8,13 @@ class ItemCard extends Component {
     super(props);
   }
   render() {
-    const { index, list, collection, like } = this.props;
+    const { index, list, collection, like, cardClick } = this.props;
     return (
       <div className="card">
         <Card
           key={"card" + index}
           hoverable
+          onClick={cardClick}
           cover={<img alt="src" src={list.src} className="image" />}
           actions={[
             <div onClick={collection} className="icon-div" >
