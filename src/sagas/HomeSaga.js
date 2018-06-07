@@ -11,11 +11,22 @@ function* fetchDataFun(action) {
 }
 
 function* clicksagaFun(action) {
-  let datas;
-  datas = yield call(fetchIsLogin, action);
-  const { code } = datas;
+  let datas, month, day, code;
+  const time = new Date();
+  month = time.getMonth() + 1;
+  day = time.getDate();
+  const loginTime = localStorage.getItem('loginTime', month + day);
+  //判断失效时间
+  if(loginTime != month + day) {
+    datas = yield call(fetchIsLogin, action);
+    code = datas.code;
+  } else {
+    code = 200;
+  }
   //判断用户是否已登录
   if(code === 200) {
+    //记录下登录时间
+    localStorage.setItem('loginTime', month + day);
     const { id, data, num } = action;
     const listData = data.listData;
     let json = {};
