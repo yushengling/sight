@@ -14,8 +14,7 @@ class ItemCard extends Component {
         <Card
           key={"card" + index}
           hoverable
-          onClick={cardClick}
-          cover={<img alt="src" src={list.src} className="image" />}
+          cover={<img alt="src" src={list.src} onClick={cardClick} className="image" />}
           actions={[
             <div onClick={collection} className="icon-div" >
               { list.userCollection ? <Icon type='star' style={{ marginRight: 8, color: 'red' }} /> : <Icon type='star' style={{ marginRight: 8 }} /> }
