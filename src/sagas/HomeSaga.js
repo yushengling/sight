@@ -15,7 +15,7 @@ function* clicksagaFun(action) {
   const time = new Date();
   month = time.getMonth() + 1;
   day = time.getDate();
-  const loginTime = localStorage.getItem('loginTime', month + day);
+  const loginTime = localStorage.getItem('loginTime');
   //判断失效时间
   if(loginTime != month + day) {
     datas = yield call(fetchIsLogin, action);
