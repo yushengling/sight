@@ -36,18 +36,19 @@ class Index extends Component {
   }
   renderContent() {
     const { isLogin } = this.state;
+    const { history } = this.props;
     switch(isLogin) {
       case 1:
         return (
-          <UserLogin forgetPassword={this.forgetPassword} history={this.props.history} />
+          <UserLogin forgetPassword={this.forgetPassword} history={history} />
         );
       case 2:
         return (
-          <UserRegister history={this.props.history} />
+          <UserRegister history={history} />
         );
       case 3:
         return (
-          <UserForgetPassword history={this.props.history} />
+          <UserForgetPassword history={history} />
         );
     }
   }

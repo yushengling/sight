@@ -17,7 +17,7 @@ class Index extends Component {
     };
   }
   componentWillReceiveProps(nextProps) {
-    message .config({
+    message.config({
       top: 24,
       duration: 2,
       maxCount: 3,
@@ -135,7 +135,11 @@ class Index extends Component {
   }
 }
 Index.propTypes = {
-  clickUser: PropTypes.string
+  listData: PropTypes.array,
+  count: PropTypes.number,
+  userName: PropTypes.string,
+  avatar: PropTypes.string
+
 };
 function mapStateToProps(state,oWnprops) {
   return state;

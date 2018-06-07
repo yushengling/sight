@@ -17,6 +17,11 @@ class UserLogin extends Component {
   componentWillReceiveProps(nextProps) {
     const { userRedu } = nextProps;
     const { dispatch } = this.props;
+    message.config({
+      top: 24,
+      duration: 1,
+      maxCount: 3,
+    });
     if(userRedu.code != undefined) {
       if(userRedu.code === 400) {
         message.warning(userRedu.message, 1);

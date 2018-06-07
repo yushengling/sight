@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Icon, Avatar, Card, Col } from 'antd';
+import PropTypes from 'prop-types';
 import './ItemCard.css';
 const { Meta } = Card;
 class ItemCard extends Component {
@@ -35,6 +36,13 @@ class ItemCard extends Component {
       </div>
     );
   }
+}
+ItemCard.proptypes = {
+  index: PropTypes.number,
+  list: PropTypes.object,
+  collection: PropTypes.func,
+  like: PropTypes.func,
+  cardClick: PropTypes.func
 }
 function mapStateToProps(state,oWnprops) {
   return state;

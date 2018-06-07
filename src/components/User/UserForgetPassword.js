@@ -9,11 +9,6 @@ import { Form, Input, Button, message } from 'antd';
 import * as styles from './UserForgetPassword.css';
 import { updatePassword, clear } from './../../actions/UserAction';
 const FormItem = Form.Item;
-message.config({
-  top: 24,
-  duration: 1,
-  maxCount: 3,
-});
 class UserForgetPassword extends React.Component {
   state = {
     confirmDirty: false,
@@ -21,6 +16,11 @@ class UserForgetPassword extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { userRedu } = nextProps;
     const { dispatch } = this.props;
+    message.config({
+      top: 24,
+      duration: 1,
+      maxCount: 3,
+    });
     if(userRedu.code != undefined) {
       if(userRedu.code === 400) {
         message.error(userRedu.message);
