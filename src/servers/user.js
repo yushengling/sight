@@ -11,17 +11,6 @@ export function fetchRegister(params) {
 }
 
 export function fetchUpdatePassword(params) {
-  /*const { userName, password, confirm } = params.values;
-  return request({
-    //userName, password, confirm
-    method: `updatePassword?userName=${userName}&password=${password}&confirm=${confirm}`,
-    options: {
-      body: {
-        params: params.values,
-      },
-      method: 'PUT'
-    }
-  });*/
   return request({
     method: 'updatePassword',
     options: {
