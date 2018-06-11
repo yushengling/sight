@@ -1,13 +1,8 @@
-/**
- * 注册组件
- * @author  Jiang
- */
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import ReactDOM from 'react-dom';
 import { Form, Input, Button, message } from 'antd';
-import * as styles from './UserRegister.css';
 import { register, clear } from './../../actions/UserAction';
+import * as styles from './UserRegister.css';
 const FormItem = Form.Item;
 class UserRegister extends React.Component {
   state = {

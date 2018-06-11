@@ -1,10 +1,9 @@
 import React,{ Component } from 'react';
-import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import * as styles from './index.css';
 import UserLogin from './../../components/User/UserLogin.js';
 import UserRegister from './../../components/User/UserRegister.js';
 import UserForgetPassword from './../../components/User/UserForgetPassword.js';
+import * as styles from './index.css';
 class Index extends Component {
   constructor(props) {
     super(props);

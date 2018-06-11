@@ -1,13 +1,8 @@
-/**
- * 修改密码组件
- * @author  Jiang
- */
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import ReactDOM from 'react-dom';
 import { Form, Input, Button, message } from 'antd';
-import * as styles from './UserForgetPassword.css';
 import { updatePassword, clear } from './../../actions/UserAction';
+import * as styles from './UserForgetPassword.css';
 const FormItem = Form.Item;
 class UserForgetPassword extends React.Component {
   state = {

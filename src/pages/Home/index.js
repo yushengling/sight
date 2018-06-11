@@ -1,12 +1,12 @@
 import React,{ Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
-import { Menu, Icon, List, Spin, Affix, Row, Col, Layout, Avatar, message } from 'antd';
+import { Icon, Spin, Affix, Row, Col, Layout, Avatar, message } from 'antd';
 import ItemCard from './../../components/ItemCard/ItemCard.js';
 import PropTypes from 'prop-types';
-import './index.css';
 import { getData, userClick, clear } from './../../actions/HomeAction';
-const { Header, Footer, Sider, Content } = Layout;
+import './index.css';
+const { Header, Content } = Layout;
 
 class Index extends Component {
   constructor(props) {

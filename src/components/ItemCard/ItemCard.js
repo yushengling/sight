@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Icon, Avatar, Card, Col } from 'antd';
+import { Icon, Avatar, Card } from 'antd';
 import PropTypes from 'prop-types';
 import './ItemCard.css';
 const { Meta } = Card;

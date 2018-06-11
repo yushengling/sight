@@ -1,14 +1,9 @@
-/**
- * 登录组件
- * @author  Jiang
- */
 import React,{ Component } from 'react';
-import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
-import * as styles from './UserLogin.css';
 import { login, clear } from './../../actions/UserAction';
+import * as styles from './UserLogin.css';
 const FormItem = Form.Item;
 class UserLogin extends Component {
   constructor(props) {

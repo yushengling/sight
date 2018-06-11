@@ -1,7 +1,3 @@
-/**
- * 封装Fetch API
- * @author  Jiang
- */
 import { message } from 'antd';
 //生产环境还是开发环境
 const getApi = process.env.NODE_ENV === 'production' ? 'http://47.98.231.165:9000/api/v1/' : 'http://localhost:9000/api/v1/';
