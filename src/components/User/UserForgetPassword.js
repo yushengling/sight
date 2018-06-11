@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button, message } from 'antd';
 import { updatePassword, clear } from './../../actions/UserAction';
+import { tips } from './../../util.js'; 
 import * as styles from './UserForgetPassword.css';
 const FormItem = Form.Item;
 class UserForgetPassword extends React.Component {
@@ -10,24 +11,13 @@ class UserForgetPassword extends React.Component {
   };
   componentWillReceiveProps(nextProps) {
     const { userRedu } = nextProps;
-    const { dispatch } = this.props;
-    message.config({
-      top: 24,
-      duration: 1,
-      maxCount: 3,
-    });
-    if(userRedu.code != undefined) {
-      if(userRedu.code === 400) {
-        message.error(userRedu.message);
-        clear(dispatch);
-      } else if(userRedu.code === 200) {
-        message.success('密码修改成功');
-        setTimeout(() => {
-          this.props.history.push('/');
-        },1100);
-        clear(dispatch);
-      }
-    }
+    const { dispatch, history } = this.props;
+    let datas = {};
+    datas.userRedu = userRedu;
+    datas.dispatch = dispatch;
+    datas.clear = clear;
+    datas.history = history;
+    tips.alertMessage.call(datas);
   }
   handleSubmit = (e) => {
     e.preventDefault();
