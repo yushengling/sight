@@ -6,36 +6,6 @@
   align-items: center;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.logo {
-  background-image: url(http://47.98.231.165/favicon.png);
-  background-size: 100%;
-  width: 54px;
-  height: 54px;
-  background-position-y: 5px;
-  cursor: pointer;
-  background-repeat: no-repeat;
-}
-
-.icon {
-  font-size: 28px;
-  color: #3089DC;
-}
-
-.user {
-  display: flex;
-  align-items: center;
-  float: right;
-  cursor: pointer;
-  height: 54px;
-}
-
 .cardDiv {
   text-align: center;
 }

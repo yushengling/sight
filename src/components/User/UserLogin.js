@@ -30,8 +30,8 @@ class UserLogin extends Component {
     });
   };
   render() {
-    const { getFieldDecorator } = this.props.form;
-    const { forgetPassword } = this.props;
+    const { forgetPassword, form } = this.props;
+    const { getFieldDecorator } = form;
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>

@@ -1,0 +1,45 @@
+.personal {
+  width: 100%;
+  height: 100%;
+  background-color: #fafafa;
+}
+
+.personal-header {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.personal-left {
+  width: 152px;
+  height: 152px;
+}
+
+.personal-button {
+  width: 152px;
+  height: 152px;
+  border-radius: 100%;
+  position: relative;
+  border: 0px solid transparent;
+}
+
+.personal-button::after {
+  border: 1px solid rgba(0,0,0,.0975);
+  border-radius: 50%;
+  bottom: 0;
+  content: "";
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.user-image {
+  width: 152px;
+  height: 152px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 100%;
+}

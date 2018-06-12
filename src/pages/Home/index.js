@@ -1,12 +1,13 @@
 import React,{ Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
-import { Icon, Spin, Affix, Row, Col, Layout, Avatar, message } from 'antd';
+import { Spin, Affix, Layout, message } from 'antd';
 import ItemCard from './../../components/ItemCard/ItemCard.js';
+import LayoutHead from './../../components/Layout/LayoutHead.js';
 import PropTypes from 'prop-types';
 import { getData, userClick, clear } from './../../actions/HomeAction';
 import './index.css';
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 class Index extends Component {
   constructor(props) {
@@ -34,8 +35,8 @@ class Index extends Component {
     getData(dispatch,24);
   }
   handleInfiniteOnLoad = (page) => {
-    const { count, total } = this.props.homeRedu;
-    const { dispatch } = this.props;
+    const { dispatch, homeRedu } = this.props;
+    const { count, total } = homeRedu;
     if(total[0]['count(*)'] > count) {
       this.setState({
         loading: true,
@@ -60,29 +61,13 @@ class Index extends Component {
     return listArray;
   }
   /**
-   * [clickLogo logo点击]
-   * @author  Jiang
-   * @return {[type]} [description]
-   */
-  clickLogo = () => {
-    location.reload();
-  };
-  /**
-   * [clickIcon 用户登录]
-   * @author  Jiang
-   * @return {[type]} [description]
-   */
-  clickUser = () => {
-    this.props.history.push('/user');
-  };
-  /**
    * [collection 用户收藏]
    * @author  Jiang
    * @return {[type]} [description]
    */
   clickCollection(id) {
-    const { dispatch } = this.props;
-    userClick(dispatch, this.props.homeRedu, id, 1);
+    const { dispatch, homeRedu } = this.props;
+    userClick(dispatch, homeRedu, id, 1);
   };
   /**
    * [like 用户点赞]
@@ -90,30 +75,25 @@ class Index extends Component {
    * @return {[type]} [description]
    */
   clickLike(id) {
-    const { dispatch } = this.props;
-    userClick(dispatch, this.props.homeRedu, id, 2);
+    const { dispatch, homeRedu } = this.props;
+    userClick(dispatch, homeRedu, id, 2);
   }
   cardClick = () => {
-    this.props.history.push('/details');
+    const { history } = this.props;
+    history.push('/details');
   }
   render() {
     const { loading, data } = this.state;
-    const { listData, count, userName, avatar } = this.props.homeRedu;
+    const { history, homeRedu } = this.props;
+    const { listData, count, userName, avatar } = homeRedu;
     return (
       <div>
         <Affix>
-          <Header style={{ background: '#fff', borderBottom: '1px solid #e1e1e1', height: 54 }}>
-            <Row className="row" style={{ height: 54 }}>
-              <Col span={12}>
-                <div className="logo" onClick={this.clickLogo} />
-              </Col>
-              <Col span={12}>
-                <div className="user">
-                  { userName ? <Avatar src={avatar} icon="user" style={{ height: 28, width: 28 }} /> : <Icon type="user" className="icon" onClick={this.clickUser} /> }
-                </div>
-              </Col>
-            </Row>
-          </Header>
+          <LayoutHead 
+            userName={userName}
+            avatar={avatar}
+            history={history}
+          />
         </Affix>
         <Content>
           <InfiniteScroll
