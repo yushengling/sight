@@ -4,6 +4,43 @@
   background-color: #fafafa;
 }
 
+.ant-modal-body {
+  padding: 0px;
+}
+
+.personal-modal {
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.personal-modal-content {
+  display: flex;
+  width: 400px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: rgb(4,4,4);
+  line-height: 48px;
+  border-bottom: 1px solid #efefef;
+  cursor: pointer;
+}
+
+.personal-modal-cancel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: rgb(4,4,4);
+  line-height: 48px;
+  cursor: pointer;
+}
+
 .personal-header {
   display: flex;
   justify-content: center;
@@ -13,6 +50,10 @@
 .personal-left {
   width: 152px;
   height: 152px;
+}
+
+.personal-right {
+  margin-left: 30px;
 }
 
 .personal-button {
@@ -35,6 +76,22 @@
   top: 0;
 }
 
+.personal-name {
+  font-size: 32px;
+  margin-bottom: 0px;
+  font-weight: 200;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 300px;
+}
+
+.personal-one {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .user-image {
   width: 152px;
   height: 152px;
@@ -42,4 +99,240 @@
   left: 0;
   top: 0;
   border-radius: 100%;
+}
+
+.personal-main {
+  padding: 60px 20px 0px;
+  box-sizing: content-box;
+}
+
+.personal-setting {
+  color: '#262626';
+  flex: 1;
+}
+
+
+@media only screen and (max-width: 320px) {
+  .personal-header {
+    display: flex;
+    justify-content: normal;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .personal-modal-content {
+    width: 260px;
+  }
+
+  .personal-left {
+    width: 77px;
+    height: 77px;
+  }
+
+  .personal-right {
+    margin-left: 28px;
+    flex: 1;
+  }
+
+  .personal-button {
+    width: 77px;
+    height: 77px;
+    border-radius: 100%;
+    position: relative;
+    border: 0px solid transparent;
+  }
+
+  .personal-button::after {
+    border: 1px solid rgba(0,0,0,.0975);
+    border-radius: 50%;
+    bottom: 0;
+    content: "";
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .personal-name {
+    font-size: 22px;
+    margin-bottom: 0px;
+    font-weight: 200;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 123px;
+  }
+
+  .personal-one {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .user-image {
+    width: 77px;
+    height: 77px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 100%;
+  }
+
+  .personal-main {
+    padding: 0px 0px 0px;
+    box-sizing: content-box;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .personal-header {
+    display: flex;
+    justify-content: normal;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .personal-modal-content {
+    width: 260px;
+  }
+
+  .personal-left {
+    width: 77px;
+    height: 77px;
+  }
+
+  .personal-right {
+    margin-left: 28px;
+    flex: 1;
+  }
+
+  .personal-button {
+    width: 77px;
+    height: 77px;
+    border-radius: 100%;
+    position: relative;
+    border: 0px solid transparent;
+  }
+
+  .personal-button::after {
+    border: 1px solid rgba(0,0,0,.0975);
+    border-radius: 50%;
+    bottom: 0;
+    content: "";
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .personal-name {
+    font-size: 22px;
+    margin-bottom: 0px;
+    font-weight: 200;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 123px;
+  }
+
+  .personal-one {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .user-image {
+    width: 77px;
+    height: 77px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 100%;
+  }
+
+  .personal-main {
+    padding: 0px 0px 0px;
+    box-sizing: content-box;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .personal-header {
+    display: flex;
+    justify-content: normal;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .personal-modal-content {
+    width: 260px;
+  }
+
+  .personal-left {
+    width: 77px;
+    height: 77px;
+  }
+
+  .personal-right {
+    margin-left: 28px;
+    flex: 1;
+  }
+
+  .personal-button {
+    width: 77px;
+    height: 77px;
+    border-radius: 100%;
+    position: relative;
+    border: 0px solid transparent;
+  }
+
+  .personal-button::after {
+    border: 1px solid rgba(0,0,0,.0975);
+    border-radius: 50%;
+    bottom: 0;
+    content: "";
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .personal-name {
+    font-size: 22px;
+    margin-bottom: 0px;
+    font-weight: 200;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 123px;
+  }
+
+  .personal-one {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .user-image {
+    width: 77px;
+    height: 77px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 100%;
+  }
+
+  .personal-main {
+    padding: 0px 0px 0px;
+    box-sizing: content-box;
+  }
 }

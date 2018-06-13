@@ -4,14 +4,11 @@ const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   devtool: 'hidden-source-map',
   mode: 'production',
   entry: ['babel-polyfill', './src/index.js'],
-  /*entry: {
-    index: './src/index.js'
-  },*/
   output: {
     filename: '[name].[hash].js',
     hashDigestLength: 7,
@@ -36,10 +33,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader"
+        ]
       },
       {
         test: /\.(png|svg|jpg|gif|jpeg)$/,
@@ -61,12 +58,15 @@ module.exports = {
       title: 'sight',
       template: 'public/index.html'
     }),
-    new ExtractTextPlugin({
-      filename: '[name].[hash].css'
+    new MiniCssExtractPlugin({
+      filename: "[name].[hash].css",
+      chunkFilename: "[id].css"
     }),
     new UglifyJSPlugin({
       test: /(\.jsx|\.js)$/,
       extractComments: true,
+      parallel: true,
+      cache: true
     })
   ],
   devServer: {

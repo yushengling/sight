@@ -1,8 +1,6 @@
-const GETDATA = 'GETDATA';
-import { call, put } from 'redux-saga/effects';
-const getData = (dispatch,count) => {
+const getData = (dispatch, count) => {
   dispatch({
-    type:'GETDATA_ASYNC',
+    type:'GETDATA_SAGA',
     count
   });
 }

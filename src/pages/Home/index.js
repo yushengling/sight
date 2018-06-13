@@ -55,7 +55,7 @@ class Index extends Component {
     const listArray = listData.map((list,index) => {
       const { id } = list;
       return (
-        <ItemCard list={list} key={"card" + index} index={index} collection={this.clickCollection.bind(this, id)} like={this.clickLike.bind(this, id)} cardClick={this.cardClick} />
+        <ItemCard list={list} key={"card" + index} index={index} collection={this.clickCollection.bind(this, id)} like={this.clickLike.bind(this, id)} cardClick={this.cardClick.bind(this, id)} />
       );
     });
     return listArray;
@@ -78,9 +78,10 @@ class Index extends Component {
     const { dispatch, homeRedu } = this.props;
     userClick(dispatch, homeRedu, id, 2);
   }
-  cardClick = () => {
+  cardClick(id) {
     const { history } = this.props;
-    history.push('/details');
+    sessionStorage.setItem('id', id);
+    history.push(`/details`);
   }
   render() {
     const { loading, data } = this.state;
@@ -104,10 +105,10 @@ class Index extends Component {
             useWindow={true}
             threshold={10}
           >
-          <div className="cardDiv">
+          <div className="cardDiv" >
             {this.renderList(listData)}
           </div>
-          {this.state.loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} />}
+          { this.state.loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
           </InfiniteScroll>
         </Content>
       </div>

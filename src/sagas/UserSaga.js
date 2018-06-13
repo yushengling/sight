@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 
 import { fetchRegister, fetchUpdatePassword, fetchLogin } from '../servers/user';
 
@@ -27,9 +27,9 @@ function* login(action) {
 }
 
 function* userSaga() {
-  yield takeEvery('REGISTER', registerUser);
-  yield takeEvery('UPDATEPASSWORD', updatePassword);
-  yield takeEvery('LOGIN', login);
+  yield takeEvery('REGISTER_SAGA', registerUser);
+  yield takeEvery('UPDATEPASSWORD_SAGA', updatePassword);
+  yield takeEvery('LOGIN_SAGA', login);
 }
 
 export default userSaga;

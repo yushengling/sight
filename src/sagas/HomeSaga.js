@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 
 import { fetchData, fetchIsLogin, fetchClick } from '../servers/api';
 
@@ -51,7 +51,7 @@ function* clicksagaFun(action) {
 }
 
 function* homeSaga() {
-  yield takeEvery("GETDATA_ASYNC", fetchDataFun);
+  yield takeEvery("GETDATA_SAGA", fetchDataFun);
   yield takeEvery("CLICK_SAGA", clicksagaFun);
 }
 

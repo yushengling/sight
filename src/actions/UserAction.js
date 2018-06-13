@@ -1,8 +1,6 @@
-import { call, put } from 'redux-saga/effects';
-
 const register = (dispatch, values) => {
   dispatch({
-    type:'REGISTER',
+    type:'REGISTER_SAGA',
     values
   });
 }
@@ -15,14 +13,14 @@ const clear = (dispatch) => {
 
 const updatePassword = (dispatch, values) => {
   dispatch({
-    type:'UPDATEPASSWORD',
+    type:'UPDATEPASSWORD_SAGA',
     values
   });
 }
 
 const login = (dispatch, values) => {
   dispatch({
-    type:'LOGIN',
+    type:'LOGIN_SAGA',
     values
   });
 }

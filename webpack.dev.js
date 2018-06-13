@@ -1,11 +1,9 @@
 //开发环境
-
-//"start": "webpack-dev-server --open --config webpack.dev.js",
 const path = require('path');
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   devtool: 'source-map',
   mode: 'development',
@@ -30,10 +28,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader"
+        ]
       },
       {
         test: /\.(png|svg|jpg|gif|jpeg)$/,
@@ -54,8 +52,9 @@ module.exports = {
       title: 'sight',
       template: 'public/index.html'
     }),
-    new ExtractTextPlugin({
-      filename: '[name].css'
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
     }),
     new webpack.NamedModulesPlugin()
     // new webpack.HotModuleReplacementPlugin()

@@ -6,6 +6,9 @@ class Index extends Component {
   constructor(props) {
     super(props);
   }
+  componentWillMount() {
+    const id = sessionStorage.getItem('id');
+  }
   render() {
     return (
       <div className="details-content">
