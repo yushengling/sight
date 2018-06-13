@@ -29,6 +29,10 @@ class Index extends Component {
       });
     }
   }
+  upload(e) {
+    var formData = new FormData();
+    formData.append(this.refs.import.files[0].name, this.refs.import.files[0]);
+  }
   render() {
     const { history, personalRedu } = this.props;
     const { userName, avatar } = personalRedu;
@@ -45,17 +49,40 @@ class Index extends Component {
         <main className="personal-main">
           <header className="personal-header">
             <section className="personal-left">
-              <button className="personal-button">
+              <input
+                id="upload-file"
+                className="personal-avatar-input"
+                accept="image/*"
+                type="file"
+                ref="import"
+                hidden="hidden"
+                onChange={this.upload.bind(this, true)}
+              />
+              <label className="personal-label" htmlFor="upload-file" >
                 <img className="user-image" src="http://47.98.231.165/user.png" />
-              </button>
+              </label>
             </section>
             <section className="personal-right">
               <div className="personal-one">
                 <h1 className="personal-name">测试测试测试测试测试测试测试</h1>
                 <Button className="personal-setting" onClick={this.setting.bind(this)} >设置</Button>
               </div>
+              <section className="personal-two">
+                <input
+                id="upload-images-file"
+                className="personal-images-input"
+                accept="image/*"
+                type="file"
+                hidden="hidden"
+                onChange={this.upload.bind(this, false)}
+              />
+                <label className="personal-upload" htmlFor="upload-images-file">上传图片</label>
+              </section>
             </section>
           </header>
+          <div className="personal-content">
+            图片
+          </div>
           <Modal
             visible={visible}
             className="personal-modal"

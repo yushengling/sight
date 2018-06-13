@@ -17,6 +17,26 @@
   width: 100%;
 }
 
+.personal-two {
+  width: 82px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.personal-upload {
+  cursor: pointer;
+  width: 88px;
+  height: 32px;
+  position: relative;
+  border-radius: 5px;
+  background-color: #3089DC;
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .personal-modal-content {
   display: flex;
   width: 400px;
@@ -43,8 +63,22 @@
 
 .personal-header {
   display: flex;
-  justify-content: center;
   flex-direction: row;
+  justify-content: center;
+  margin-bottom: 44px;
+}
+
+.personal-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #262626;
+  font-size: 12px;
+  font-weight: 600;
+  height: 54px;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
 }
 
 .personal-left {
@@ -56,7 +90,31 @@
   margin-left: 30px;
 }
 
-.personal-button {
+.personal-avatar-input {
+  cursor: pointer;
+  width: 152px;
+  height: 152px;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  font-size: 0px;
+}
+
+.personal-avatar-input:hover {
+  text-decoration: none;
+}
+
+.personal-images-input {
+  cursor: pointer;
+  width: 88px;
+  height: 32px;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+}
+
+.personal-label {
+  cursor: pointer;
   width: 152px;
   height: 152px;
   border-radius: 100%;
@@ -64,7 +122,7 @@
   border: 0px solid transparent;
 }
 
-.personal-button::after {
+.personal-label::after {
   border: 1px solid rgba(0,0,0,.0975);
   border-radius: 50%;
   bottom: 0;
@@ -90,6 +148,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .user-image {
@@ -131,12 +190,21 @@
     height: 77px;
   }
 
+  .personal-avatar-input {
+    cursor: pointer;
+    width: 77px;
+    height: 77px;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+  }
+
   .personal-right {
     margin-left: 28px;
     flex: 1;
   }
 
-  .personal-button {
+  .personal-label {
     width: 77px;
     height: 77px;
     border-radius: 100%;
@@ -144,7 +212,7 @@
     border: 0px solid transparent;
   }
 
-  .personal-button::after {
+  .personal-label::after {
     border: 1px solid rgba(0,0,0,.0975);
     border-radius: 50%;
     bottom: 0;
@@ -170,6 +238,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 6px;
   }
 
   .user-image {
@@ -201,6 +270,15 @@
     width: 260px;
   }
 
+  .personal-avatar-input {
+    cursor: pointer;
+    width: 77px;
+    height: 77px;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+  }
+
   .personal-left {
     width: 77px;
     height: 77px;
@@ -211,7 +289,7 @@
     flex: 1;
   }
 
-  .personal-button {
+  .personal-label {
     width: 77px;
     height: 77px;
     border-radius: 100%;
@@ -219,7 +297,7 @@
     border: 0px solid transparent;
   }
 
-  .personal-button::after {
+  .personal-label::after {
     border: 1px solid rgba(0,0,0,.0975);
     border-radius: 50%;
     bottom: 0;
@@ -245,6 +323,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 6px;
   }
 
   .user-image {
@@ -272,6 +351,15 @@
     margin-right: 16px;
   }
 
+  .personal-avatar-input {
+    cursor: pointer;
+    width: 77px;
+    height: 77px;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+  }
+
   .personal-modal-content {
     width: 260px;
   }
@@ -286,7 +374,7 @@
     flex: 1;
   }
 
-  .personal-button {
+  .personal-label {
     width: 77px;
     height: 77px;
     border-radius: 100%;
@@ -294,7 +382,7 @@
     border: 0px solid transparent;
   }
 
-  .personal-button::after {
+  .personal-label::after {
     border: 1px solid rgba(0,0,0,.0975);
     border-radius: 50%;
     bottom: 0;
@@ -320,6 +408,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 6px;
   }
 
   .user-image {
