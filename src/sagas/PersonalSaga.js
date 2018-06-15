@@ -1,8 +1,8 @@
 import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
 
-import { fetchAvatar } from '../servers/personal';
+import { fetchAvatar, fetchImages } from '../servers/personal';
 
-function* fetchAvatarFun () {
+function* fetchAvatarFun() {
   const data = yield call(fetchAvatar);
   yield put({
     type: 'PERSONALREDU',
@@ -10,8 +10,13 @@ function* fetchAvatarFun () {
   });
 }
 
+function* fetchImagesFun(action) {
+  const data = yield call(fetchImages, action);
+}
+
 function* personalSaga() {
   yield takeLatest('GETAVATAR_SAGA', fetchAvatarFun);
+  yield takeLatest('UPLOADIMAGES_SAGA', fetchImagesFun);
 }
 
 export default personalSaga;

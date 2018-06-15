@@ -4,4 +4,11 @@ const getAvatar = (dispatch) => {
   });
 }
 
-export { getAvatar };
+const uploadImages = (dispatch, formData) => {
+  dispatch({
+    type: 'UPLOADIMAGES_SAGA',
+    formData
+  });
+}
+
+export { getAvatar, uploadImages };

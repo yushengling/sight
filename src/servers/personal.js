@@ -8,3 +8,14 @@ export function fetchAvatar() {
     }
   });
 }
+
+export function fetchImages(params) {
+  return request({
+    method: 'uploadImages',
+    options: {
+      method: 'PUT',
+      body: params.formData,
+      sign: true
+    }
+  });
+}

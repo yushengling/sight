@@ -23,13 +23,15 @@ function parseJSON(response) {
  */
 function request({ method, options, callback }) {
   options.mode = "cors";
-  options.headers = {
-    'Content-Type': 'application/json'
-  };
-  options.credentials = 'include';
-  if(!(options.method === 'GET')) {
-    options.body = JSON.stringify(options.body);
+  if(!options.sign) {
+    options.headers = {
+      'Content-Type': 'application/json'
+    };
+    if(!(options.method === 'GET')) {
+      options.body = JSON.stringify(options.body);
+    }
   }
+  options.credentials = 'include';
   return fetch(getApi + method, options )
     .then(checkStatus)
     .then(parseJSON)
