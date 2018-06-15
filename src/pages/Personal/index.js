@@ -8,9 +8,7 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ModalText: 'Content of the modal',
       visible: false,
-      confirmLoading: false,
     }
   }
   componentWillMount() {
@@ -44,7 +42,6 @@ class Index extends Component {
     }
     let formData = new FormData();
     for (let i = 0; i < count; i++) {
-      files[i].mode = type;
       files[i].thumb = URL.createObjectURL(files[i]);
       formData.append('filedata', files[i]);
     }
@@ -53,7 +50,7 @@ class Index extends Component {
   render() {
     const { history, personalRedu } = this.props;
     const { userName, avatar } = personalRedu;
-    const { visible, confirmLoading, ModalText } = this.state;
+    const { visible } = this.state;
     return (
       <div className="personal">
         <Affix>
@@ -113,7 +110,7 @@ class Index extends Component {
             className="personal-modal"
             closable={false}
             footer={null}
-            confirmLoading={confirmLoading}
+            confirmLoading={false}
           >
             <div className="personal-modal-content">
               更改密码

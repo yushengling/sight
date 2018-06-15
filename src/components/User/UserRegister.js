@@ -28,24 +28,10 @@ class UserRegister extends React.Component {
       }
     });
   }
-  /**
-   * [密码保存]
-   * @author  Jiang
-   * @param  {[type]} e [description]
-   * @return {[type]}   [description]
-   */
   handleConfirmBlur = (e) => {
     const value = e.target.value;
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
   }
-  /**
-   * [确认密码]
-   * @author  Jiang
-   * @param  {[type]}   rule     [description]
-   * @param  {[type]}   value    [description]
-   * @param  {Function} callback [description]
-   * @return {[type]}            [description]
-   */
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
@@ -54,14 +40,6 @@ class UserRegister extends React.Component {
       callback();
     }
   };
-  /**
-   * 验证用户名
-   * @author  Jiang
-   * @param  {[type]}   rule     [description]
-   * @param  {[type]}   value    [description]
-   * @param  {Function} callback [description]
-   * @return {[type]}            [description]
-   */
   validateToNextName = (rule, value , callback) => {
     const form = this.props.form;
     const namePattern = /^\d/;
@@ -75,14 +53,6 @@ class UserRegister extends React.Component {
       callback();
     }
   }
-  /**
-   * [正则验证密码]
-   * @author  Jiang
-   * @param  {[type]}   rule     [description]
-   * @param  {[type]}   value    [description]
-   * @param  {Function} callback [description]
-   * @return {[type]}            [description]
-   */
   validateToNextPassword = (rule, value, callback) => {
     const form = this.props.form;
     const passWordPattern = /^(?=.*\d)(?=.*[a-z]).{6,20}$/;

@@ -13,14 +13,6 @@ function checkStatus(response) {
 function parseJSON(response) {
   return response.json();
 }
-/**
- * [request 请求]
- * @author  Jiang
- * @param  {[type]} options.method   [方法名]
- * @param  {[type]} options.options  [选项]
- * @param  {[type]} options.callback [回调]
- * @return {[type]}                  [description]
- */
 function request({ method, options, callback }) {
   options.mode = "cors";
   if(!options.sign) {

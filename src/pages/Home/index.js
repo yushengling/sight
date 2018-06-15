@@ -60,20 +60,10 @@ class Index extends Component {
     });
     return listArray;
   }
-  /**
-   * [collection 用户收藏]
-   * @author  Jiang
-   * @return {[type]} [description]
-   */
   clickCollection(id) {
     const { dispatch, homeRedu } = this.props;
     userClick(dispatch, homeRedu, id, 1);
   };
-  /**
-   * [like 用户点赞]
-   * @author  Jiang
-   * @return {[type]} [description]
-   */
   clickLike(id) {
     const { dispatch, homeRedu } = this.props;
     userClick(dispatch, homeRedu, id, 2);
