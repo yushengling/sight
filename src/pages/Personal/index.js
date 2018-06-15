@@ -103,6 +103,11 @@ class Index extends Component {
           <div className="personal-content">
             图片
           </div>
+          <section className="personal-content-section">
+            <img className="all-image" src="http://47.98.231.165/user.png" />
+            <img className="all-image" src="http://47.98.231.165/user.png" />
+            <img className="all-image" src="http://47.98.231.165/user.png" />
+          </section>
           <Modal
             visible={visible}
             className="personal-modal"
