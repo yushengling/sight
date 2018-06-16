@@ -19,3 +19,14 @@ export function fetchImages(params) {
     }
   });
 }
+
+export function fetchUploadAvatar(params) {
+  return request({
+    method: 'uploadAvatar',
+    options: {
+      method: 'PUT',
+      body: params.formData,
+      sign: true
+    }
+  });
+}

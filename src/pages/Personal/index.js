@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Affix, Button, Modal, message } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
-import { getAvatar, uploadImages } from './../../actions/PersonalAction.js';
+import { getAvatarA, uploadImagesA, uploadAvatarA } from './../../actions/PersonalAction.js';
 import * as styles from './index.css';
 class Index extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class Index extends Component {
   }
   componentWillMount() {
     const { dispatch } = this.props;
-    getAvatar(dispatch);
+    getAvatarA(dispatch);
   }
   setting() {
     const { visible } = this.state;
@@ -27,29 +27,38 @@ class Index extends Component {
       });
     }
   }
-  upload(type) {
-    let files;
-    const { dispatch } = this.props;
-    if(type === 1) {
-      files = this.refs.avatar.files
-    } else {
-      files = this.refs.images.files;
-    }
+  uploadAvatar(e) {
+    let files = this.refs.avatar.files;
     let count = files.length;
-    if(count === 0) {
-      message.error('请上传少于50张图片');
-      return;
-    }
+    const { dispatch } = this.props;
+    const formData = this.getFormData(files, count);
+    uploadAvatarA(dispatch, formData);
+    e.target.value = '';
+  }
+  getFormData(files, count) {
     let formData = new FormData();
     for (let i = 0; i < count; i++) {
       files[i].thumb = URL.createObjectURL(files[i]);
       formData.append('filedata', files[i]);
     }
-    uploadImages(dispatch, formData);
+    return formData;
+  }
+  uploadImages(e) {
+    let files = this.refs.images.files;
+    let count = files.length;
+    const { dispatch } = this.props;
+    if(count === 0) {
+      message.error('请上传少于50张图片');
+      return;
+    }
+    const formData = this.getFormData(files, count);
+    uploadImagesA(dispatch, formData);
+    e.target.value = '';
   }
   render() {
     const { history, personalRedu } = this.props;
     const { userName, avatar } = personalRedu;
+    console.log(personalRedu);
     const { visible } = this.state;
     return (
       <div className="personal">
@@ -70,7 +79,7 @@ class Index extends Component {
                 type="file"
                 ref="avatar"
                 hidden="hidden"
-                onChange={this.upload.bind(this, 1)}
+                onChange={this.uploadAvatar.bind(this)}
               />
               <label className="personal-label" htmlFor="upload-file" >
                 <img className="user-image" src="http://47.98.231.165/user.png" />
@@ -91,7 +100,7 @@ class Index extends Component {
                   ref="images"
                   type="file"
                   hidden="hidden"
-                  onChange={this.upload.bind(this, 2)}
+                  onChange={this.uploadImages.bind(this)}
                 />
                 <label className="personal-upload" htmlFor="upload-images-file">上传图片</label>
               </section>
