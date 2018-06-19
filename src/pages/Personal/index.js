@@ -87,7 +87,7 @@ class Index extends Component {
   }
   render() {
     const { history, personalRedu } = this.props;
-    const { userName, avatar, listData, count } = personalRedu;
+    const { userName, avatar, listData } = personalRedu;
     const { visible, loading, hasMore } = this.state;
     return (
       <div className="personal">
