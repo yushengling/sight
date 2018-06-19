@@ -1,6 +1,6 @@
 import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
 
-import { fetchAvatar, fetchUploadImages, fetchUploadAvatar, fetchImages } from '../servers/personal';
+import { fetchAvatar, fetchUploadImages, fetchUploadAvatar, fetchImages, fetchSignOut } from '../servers/personal';
 
 function* fetchAvatarFun(action) {
   let data = yield call(fetchAvatar);
@@ -51,11 +51,21 @@ function* fetchImagesFun(action) {
   });
 }
 
+function* fetchSignOutFun() {
+  let data = yield call(fetchSignOut);
+  data = JSON.parse(data);
+  yield put({
+    type: 'CLEARREDU',
+    data,
+  });
+}
+
 function* personalSaga() {
   yield takeLatest('GETAVATAR_SAGA', fetchAvatarFun);
   yield takeLatest('UPLOADIMAGES_SAGA', fetchUploadImagesFun);
   yield takeLatest('UPLOADAVATAR_SAGA', fetchUploadAvatarFun);
   yield takeLatest('GETIMAGES_SAGA', fetchImagesFun);
+  yield takeLatest('SIGNOUT_SAGA', fetchSignOutFun);
 }
 
 export default personalSaga;

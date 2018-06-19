@@ -26,4 +26,10 @@ const getImagesA = (dispatch, count) => {
     count
   });
 }
-export { getAvatarA, uploadImagesA, uploadAvatarA, getImagesA };
+
+const signOutA = (dispatch) => {
+  dispatch({
+    type: 'SIGNOUT_SAGA'
+  }); 
+}
+export { getAvatarA, uploadImagesA, uploadAvatarA, getImagesA, signOutA };

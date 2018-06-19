@@ -39,3 +39,12 @@ export function fetchImages(params) {
     }
   });
 }
+
+export function fetchSignOut() {
+  return request({
+    method: 'signOut',
+    options: {
+      method: 'DELETE'
+    }
+  });
+}

@@ -6,6 +6,8 @@ const userRedu = (state = initialState, action) => {
     case 'PERSONALREDU':
       return Object.assign({}, state, action.data);
     break;
+    case 'CLEARREDU':
+      return Object.assign({}, state, action.data);
     default:
       return state;
   }

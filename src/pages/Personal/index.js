@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Affix, Button, Modal, message, Spin } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
-import { getAvatarA, uploadImagesA, uploadAvatarA, getImagesA } from './../../actions/PersonalAction.js';
+import { getAvatarA, uploadImagesA, uploadAvatarA, getImagesA, signOutA } from './../../actions/PersonalAction.js';
 import * as styles from './index.css';
 class Index extends Component {
   constructor(props) {
@@ -17,6 +17,13 @@ class Index extends Component {
   componentWillMount() {
     const { dispatch } = this.props;
     getAvatarA(dispatch, 24);
+  }
+  componentWillReceiveProps(nextProps) {
+    const { history } = this.props;
+    const { userName } = nextProps.personalRedu;
+    if(!userName) {
+      history.push('/');
+    }
   }
   setting() {
     const { visible } = this.state;
@@ -85,6 +92,10 @@ class Index extends Component {
     }
     return listArray;
   }
+  signOut() {
+    const { dispatch } = this.props;
+    signOutA(dispatch);
+  }
   render() {
     const { history, personalRedu } = this.props;
     const { userName, avatar, listData } = personalRedu;
@@ -139,7 +150,8 @@ class Index extends Component {
             图片
           </div>
           <section>
-            <InfiniteScroll
+            {
+              listData[0] ? <InfiniteScroll
               initialLoad={false}
               pageStart={0}
               loadMore={this.handleInfiniteOnLoad}
@@ -151,7 +163,8 @@ class Index extends Component {
                 {this.renderList(listData)}
               </div>
               { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
-            </InfiniteScroll>
+            </InfiniteScroll> : <h1 className="personal-clear">您暂时没有图片</h1>
+            }
           </section>
           <Modal
             visible={visible}
@@ -163,8 +176,8 @@ class Index extends Component {
             <div className="personal-modal-content">
               更改密码
             </div>
-            <div className="personal-modal-content">
-              退出
+            <div className="personal-modal-content" onClick={this.signOut.bind(this)}>
+              登出
             </div>
             <div className="personal-modal-cancel" onClick={this.setting.bind(this)}>
               取消

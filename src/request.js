@@ -19,7 +19,7 @@ function request({ method, options, callback }) {
     options.headers = {
       'Content-Type': 'application/json'
     };
-    if(!(options.method === 'GET')) {
+    if(!(options.method === 'GET' || options.method === 'DELETE')) {
       options.body = JSON.stringify(options.body);
     }
   }
