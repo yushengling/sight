@@ -177,11 +177,20 @@
   flex: 1;
   width: 387px;
   height: 257px;
-  margin: 20px 20px;
+  margin: 0px 20px;
+  margin-bottom: 20px;
 }
 
 
 @media only screen and (max-width: 320px) {
+  .all-image {
+    flex: 1;
+    width: 320px;
+    height: 213px;
+    margin: 0px 0px;
+    margin-bottom: 20px;
+  }
+
   .personal-header {
     display: flex;
     justify-content: normal;
@@ -267,6 +276,14 @@
 }
 
 @media only screen and (max-width: 375px) {
+  .all-image {
+    flex: 1;
+    width: 375px;
+    height: 250px;
+    margin: 0px 0px;
+    margin-bottom: 20px;
+  }
+
   .personal-header {
     display: flex;
     justify-content: normal;
@@ -352,6 +369,14 @@
 }
 
 @media only screen and (max-width: 414px) {
+  .all-image {
+    flex: 1;
+    width: 414px;
+    height: 276px;
+    margin: 0px 0px;
+    margin-bottom: 20px;
+  }
+  
   .personal-header {
     display: flex;
     justify-content: normal;
