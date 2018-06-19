@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Layout, Row, Col, Icon, Avatar } from 'antd';
+import { Layout, Row, Col, Icon } from 'antd';
 import * as styles from './LayoutHead.css';
 const { Header } = Layout;
 function LayoutHead(props) {
@@ -13,7 +13,7 @@ function LayoutHead(props) {
         </Col>
         <Col span={12}>
           <div className="user">
-            { userName ? <Avatar src={avatar} icon="user" style={{ height: 28, width: 28 }} onClick={() => history.push('/personal')} /> : <Icon type="user" className="icon" onClick={() => history.push('/user')} /> }
+            { userName ? <img src={avatar} className="images" onClick={() => history.push('/personal')} /> : <Icon type="user" className="icon" onClick={() => history.push('/user')} /> }
           </div>
         </Col>
       </Row>

@@ -11,6 +11,12 @@
   height: 54px;
 }
 
+.images {
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+}
+
 .logo {
   background-image: url(http://47.98.231.165/favicon.png);
   background-size: 100%;
