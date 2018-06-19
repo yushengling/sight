@@ -111,12 +111,12 @@ class Index extends Component {
                 onChange={this.uploadAvatar.bind(this)}
               />
               <label className="personal-label" htmlFor="upload-file" >
-                <img className="user-image" src="http://47.98.231.165/user.png" />
+                <img className="user-image" src={avatar} />
               </label>
             </section>
             <section className="personal-right">
               <div className="personal-one">
-                <h1 className="personal-name">测试测试测试测试测试测试测试</h1>
+                <h1 className="personal-name">{userName}</h1>
                 <Button className="personal-setting" onClick={this.setting.bind(this)} >设置</Button>
               </div>
               <section className="personal-two">

@@ -167,6 +167,7 @@
 .personal-setting {
   color: '#262626';
   flex: 1;
+  margin-left: 20px;
 }
 
 .personal-content-div {

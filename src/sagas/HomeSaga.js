@@ -19,7 +19,6 @@ function* clicksagaFun(action) {
   //判断失效时间
   if(loginTime != month + day) {
     datas = yield call(fetchIsLogin, action);
-    datas = JSON.parse(datas);
     code = datas.code;
   } else {
     code = 200;
