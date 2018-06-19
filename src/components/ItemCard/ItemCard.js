@@ -27,12 +27,6 @@ class ItemCard extends Component {
             </div>
           ]}
         >
-          <Meta
-            avatar={<Avatar src={list.avatar} />}
-            title={list.userName}
-            description={list.desc}
-            onClick={cardClick}
-          />
         </Card>
       </div>
     );

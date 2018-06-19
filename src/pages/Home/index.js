@@ -74,7 +74,7 @@ class Index extends Component {
     history.push(`/details`);
   }
   render() {
-    const { loading, data } = this.state;
+    const { loading, data, hasMore } = this.state;
     const { history, homeRedu } = this.props;
     const { listData, count, userName, avatar } = homeRedu;
     return (
@@ -91,14 +91,14 @@ class Index extends Component {
             initialLoad={false}
             pageStart={0}
             loadMore={this.handleInfiniteOnLoad}
-            hasMore={!this.state.loading && this.state.hasMore}
+            hasMore={!loading && hasMore}
             useWindow={true}
             threshold={10}
           >
-          <div className="cardDiv" >
-            {this.renderList(listData)}
-          </div>
-          { this.state.loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
+            <div className="cardDiv" >
+              {this.renderList(listData)}
+            </div>
+            { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
           </InfiniteScroll>
         </Content>
       </div>

@@ -169,15 +169,15 @@
   flex: 1;
 }
 
-.personal-content-section {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
+.personal-content-div {
+  text-align: center;
 }
 
 .all-image {
   flex: 1;
-  margin: 0px 20px;
+  width: 387px;
+  height: 257px;
+  margin: 20px 20px;
 }
 
 

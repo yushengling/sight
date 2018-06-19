@@ -9,7 +9,7 @@ export function fetchAvatar() {
   });
 }
 
-export function fetchImages(params) {
+export function fetchUploadImages(params) {
   return request({
     method: 'uploadImages',
     options: {
@@ -27,6 +27,15 @@ export function fetchUploadAvatar(params) {
       method: 'PUT',
       body: params.formData,
       sign: true
+    }
+  });
+}
+
+export function fetchImages(params) {
+  return request({
+    method: `getImages?count=${params.count}`,
+    options: {
+      method: 'GET'
     }
   });
 }

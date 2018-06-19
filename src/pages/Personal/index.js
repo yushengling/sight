@@ -1,19 +1,22 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Affix, Button, Modal, message } from 'antd';
+import { Affix, Button, Modal, message, Spin } from 'antd';
+import InfiniteScroll from 'react-infinite-scroller';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
-import { getAvatarA, uploadImagesA, uploadAvatarA } from './../../actions/PersonalAction.js';
+import { getAvatarA, uploadImagesA, uploadAvatarA, getImagesA } from './../../actions/PersonalAction.js';
 import * as styles from './index.css';
 class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
       visible: false,
-    }
+      loading: false,
+      hasMore: true
+    };
   }
   componentWillMount() {
     const { dispatch } = this.props;
-    getAvatarA(dispatch);
+    getAvatarA(dispatch, 24);
   }
   setting() {
     const { visible } = this.state;
@@ -29,15 +32,15 @@ class Index extends Component {
   }
   uploadAvatar(e) {
     let files = this.refs.avatar.files;
-    let count = files.length;
+    let num = files.length;
     const { dispatch } = this.props;
-    const formData = this.getFormData(files, count);
+    const formData = this.getFormData(files, num);
     uploadAvatarA(dispatch, formData);
     e.target.value = '';
   }
-  getFormData(files, count) {
+  getFormData(files, num) {
     let formData = new FormData();
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < num; i++) {
       files[i].thumb = URL.createObjectURL(files[i]);
       formData.append('filedata', files[i]);
     }
@@ -45,21 +48,47 @@ class Index extends Component {
   }
   uploadImages(e) {
     let files = this.refs.images.files;
-    let count = files.length;
-    const { dispatch } = this.props;
-    if(count === 0) {
+    let num = files.length;
+    const { dispatch, personalRedu } = this.props;
+    const { count } = personalRedu;
+    if(num === 0) {
       message.error('请上传少于50张图片');
       return;
     }
-    const formData = this.getFormData(files, count);
-    uploadImagesA(dispatch, formData);
+    const formData = this.getFormData(files, num);
+    uploadImagesA(dispatch, formData, count);
     e.target.value = '';
+  }
+  handleInfiniteOnLoad = (page) => {
+    const { dispatch, personalRedu } = this.props;
+    const { count, total } = personalRedu;
+    if(total[0]['count(*)'] > count) {
+      this.setState({
+        loading: true,
+      });
+      setTimeout(() => {
+        getImagesA(dispatch,count + 24);
+      },500);
+      setTimeout(() => {
+        this.setState({
+          loading: false,
+        });
+      },700);
+    }
+  };
+  renderList(listData) {
+    let listArray = [];
+    let count = 0;
+    for(let i in listData) {
+      let list = listData[i];
+      listArray.push(<img key={count++} className="all-image" src={list} />);
+    }
+    return listArray;
   }
   render() {
     const { history, personalRedu } = this.props;
-    const { userName, avatar } = personalRedu;
-    console.log(personalRedu);
-    const { visible } = this.state;
+    const { userName, avatar, listData, count } = personalRedu;
+    const { visible, loading, hasMore } = this.state;
     return (
       <div className="personal">
         <Affix>
@@ -109,10 +138,20 @@ class Index extends Component {
           <div className="personal-content">
             图片
           </div>
-          <section className="personal-content-section">
-            <img className="all-image" src="http://47.98.231.165/user.png" />
-            <img className="all-image" src="http://47.98.231.165/user.png" />
-            <img className="all-image" src="http://47.98.231.165/user.png" />
+          <section>
+            <InfiniteScroll
+              initialLoad={false}
+              pageStart={0}
+              loadMore={this.handleInfiniteOnLoad}
+              hasMore={!loading && hasMore}
+              useWindow={true}
+              threshold={10}
+            >
+              <div className="personal-content-div">
+                {this.renderList(listData)}
+              </div>
+              { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
+            </InfiniteScroll>
           </section>
           <Modal
             visible={visible}
