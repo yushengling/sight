@@ -5,7 +5,7 @@ export function fetchPasswordChange(params) {
     method: 'passwordChange',
     options: {
       body: params.values,
-      method: 'POST'
+      method: 'PUT'
     }
   });
 }

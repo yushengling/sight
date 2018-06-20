@@ -11,4 +11,4 @@ export const initialState = {
 export const changeState = {
   code: 0,
   message: ''
-}
+};

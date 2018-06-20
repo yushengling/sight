@@ -1,11 +1,11 @@
 import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
 
-import { fetchPasswordChange, fetchAvatar } from '../servers/personal';
+import { fetchPasswordChange, fetchAvatar } from '../servers/setting';
 
-function* fetchPasswordChangeFun() {
-  let data = yield call(fetchPasswordChange);
+function* fetchPasswordChangeFun(action) {
+  const data = yield call(fetchPasswordChange, action);
   yield put({
-    type: 'CLEARREDU',
+    type: 'SETTINGREDU',
     data
   });
 }

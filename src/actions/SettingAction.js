@@ -1,7 +1,7 @@
-const passwordChangeA = (dispatch, count) => {
+const passwordChangeA = (dispatch, values) => {
   dispatch({
     type:'PASSWORDCHANGE_SAGA',
-    count
+    values
   });
 }
 
@@ -10,4 +10,10 @@ const getAvatarA = (dispatch) => {
     type: 'GETSETTINGAVATAR_SAGA'
   });
 }
-export { passwordChangeA, getAvatarA };
+
+const clear = (dispatch) => {
+  dispatch({
+    type:'CLEARREDU'
+  });
+}
+export { passwordChangeA, getAvatarA, clear };

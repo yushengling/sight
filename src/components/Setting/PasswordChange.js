@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button } from 'antd';
 import { passwordChangeA, clear } from './../../actions/SettingAction';
+import { tips } from './../../util.js';
 import * as styles from './PasswordChange.css';
 const FormItem = Form.Item;
 class PasswordChange extends React.Component {
@@ -11,6 +12,12 @@ class PasswordChange extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { settingRedu } = nextProps;
     const { dispatch, history } = this.props;
+    let datas = {};
+    datas.userRedu = settingRedu;
+    datas.dispatch = dispatch;
+    datas.clear = clear;
+    datas.history = history;
+    tips.alertMessage.call(datas);
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -53,13 +60,6 @@ class PasswordChange extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <Form onSubmit={this.handleSubmit} className="passwordchange-login-form">
-        <FormItem>
-          {getFieldDecorator('userName', {
-            rules: [{ required: true, message: '请输入旧密码', whitespace: true }],
-          })(
-            <Input  className="input-one" placeholder="请输入旧密码" />
-          )}
-        </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
             rules: [{

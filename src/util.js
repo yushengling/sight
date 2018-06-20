@@ -10,15 +10,17 @@ const tips = {
       duration: 1,
       maxCount: 3,
     });
-    const { code, message } = this.userRedu;
+    const { code, message, isgo } = this.userRedu;
     if(code === 400) {
       message.error(message);
       this.clear(this.dispatch);
     } else if(code === 200) {
       message.success(message);
-      setTimeout(() => {
-        this.history.push('/');
-      },1100);
+      if(!isgo) {
+        setTimeout(() => {
+          this.history.push('/');
+        },1100);
+      }
       this.clear(this.dispatch);
     }
   }
