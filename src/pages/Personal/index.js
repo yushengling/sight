@@ -98,7 +98,12 @@ class Index extends Component {
   }
   setting() {
     const { history } = this.props;
-    history.push('/setting');
+    const appVersion = navigator.appVersion;
+    if(appVersion.indexOf('Android') || appVersion.indexOf('iPhone')) {
+      history.push('/passwordchange');
+    } else {
+      history.push('/setting');
+    }
   }
   render() {
     const { history, personalRedu } = this.props;

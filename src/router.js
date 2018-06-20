@@ -4,6 +4,7 @@ import User from './pages/User/index';
 import Details from './pages/Details/index';
 import Personal from './pages/Personal/index';
 import Setting from './pages/Setting/index';
+import PhonePasswordChange from './components/Setting/PhonePasswordChange';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const routes = [
   {
@@ -26,6 +27,10 @@ const routes = [
     path: "/setting",
     component: Setting
   },
+  {
+    path: "/passwordchange",
+    component: PhonePasswordChange
+  }
 ]
 
 const RouteWithSubRoutes = route => (
