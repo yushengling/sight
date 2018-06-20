@@ -14,12 +14,11 @@ const userClick = (dispatch, data, id, num) => {
   });
 }
 
-const clear = (dispatch, homeData) => {
-  homeData.code = 0;
-  homeData.message = '';
+const clear = (dispatch) => {
+  // homeData.code = 0;
+  // homeData.message = '';
   dispatch({
-    type: 'CLEARREDU',
-    homeData
+    type: 'CLEARREDU'
   });
 }
 

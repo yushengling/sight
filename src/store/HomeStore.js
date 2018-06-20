@@ -7,3 +7,8 @@ export const initialState = {
   code: 0,
   message: ''
 };
+
+export const changeState = {
+  code: 0,
+  message: ''
+}

@@ -25,7 +25,7 @@ class Index extends Component {
       history.push('/');
     }
   }
-  setting() {
+  settingBtn() {
     const { visible } = this.state;
     if(visible) {
       this.setState({
@@ -96,6 +96,10 @@ class Index extends Component {
     const { dispatch } = this.props;
     signOutA(dispatch);
   }
+  setting() {
+    const { history } = this.props;
+    history.push('/setting');
+  }
   render() {
     const { history, personalRedu } = this.props;
     const { userName, avatar, listData } = personalRedu;
@@ -128,7 +132,7 @@ class Index extends Component {
             <section className="personal-right">
               <div className="personal-one">
                 <h1 className="personal-name">{userName}</h1>
-                <Button className="personal-setting" onClick={this.setting.bind(this)} >设置</Button>
+                <Button className="personal-setting" onClick={this.settingBtn.bind(this)} >设置</Button>
               </div>
               <section className="personal-two">
                 <input
@@ -173,13 +177,13 @@ class Index extends Component {
             footer={null}
             confirmLoading={false}
           >
-            <div className="personal-modal-content">
+            <div className="personal-modal-content" onClick={this.setting.bind(this)}>
               更改密码
             </div>
             <div className="personal-modal-content" onClick={this.signOut.bind(this)}>
               登出
             </div>
-            <div className="personal-modal-cancel" onClick={this.setting.bind(this)}>
+            <div className="personal-modal-cancel" onClick={this.settingBtn.bind(this)}>
               取消
             </div>
           </Modal>

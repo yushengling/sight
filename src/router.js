@@ -3,6 +3,7 @@ import Home from './pages/Home/index';
 import User from './pages/User/index';
 import Details from './pages/Details/index';
 import Personal from './pages/Personal/index';
+import Setting from './pages/Setting/index';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
   {
     path: "/personal",
     component: Personal
+  },
+  {
+    path: "/setting",
+    component: Setting
   },
 ]
 

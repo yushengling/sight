@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { initialState } from './../store/HomeStore';
+import { initialState, changeState } from './../store/HomeStore';
 
 const homeRedu = (state = initialState, action) => {
   switch(action.type) {
@@ -7,7 +7,7 @@ const homeRedu = (state = initialState, action) => {
       return Object.assign({}, state, action.homeData);
     break;
     case 'CLEARREDU':
-      return Object.assign({}, state, action.homeData);
+      return Object.assign({}, state, changeState);
     default:
       return state;
   }
