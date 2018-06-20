@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Affix, Button, Modal, message, Spin } from 'antd';
+import { Affix, Button, Modal, message, Spin, Icon } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import { getAvatarA, uploadImagesA, uploadAvatarA, getImagesA, signOutA } from './../../actions/PersonalAction.js';
@@ -10,8 +10,11 @@ class Index extends Component {
     super(props);
     this.state = {
       visible: false,
+      viewVisible: false,
       loading: false,
-      hasMore: true
+      hasMore: true,
+      src: '',
+      id: 0
     };
   }
   componentWillMount() {
@@ -88,9 +91,54 @@ class Index extends Component {
     let count = 0;
     for(let i in listData) {
       let list = listData[i];
-      listArray.push(<img key={count++} className="all-image" src={list} />);
+      listArray.push(<img key={count++} className="all-image" src={list} onClick={this.view.bind(this, count++)} />);
     }
     return listArray;
+  }
+  view(id) {
+    const appVersion = navigator.appVersion;
+    if(appVersion.indexOf('Android') > 0 || appVersion.indexOf('iPhone') > 0) {
+      return;
+    }
+    const { personalRedu } = this.props;
+    const { listData } = personalRedu;
+    const src = listData[id];
+    this.setState({
+      src,
+      id,
+      viewVisible: true
+    });
+  }
+  viewClick(type) {
+    let { id } = this.state;
+    const { personalRedu } = this.props;
+    const { listData } = personalRedu;
+    message.config({
+      duration: 2,
+    });
+    if(type) {
+      if(id === listData.length - 1) {
+        message.info('到底啦！');
+        return;
+      }
+      id += 1;
+    } else {
+      if(id === 0) {
+        message.info('到头啦！');
+        return;
+      }
+      id -= 1;
+    }
+    const src = listData[id];
+    this.setState({
+      id,
+      src
+    });
+  }
+  close() {
+    this.setState({
+      viewVisible: false
+    });
   }
   signOut() {
     const { dispatch } = this.props;
@@ -99,7 +147,7 @@ class Index extends Component {
   setting() {
     const { history } = this.props;
     const appVersion = navigator.appVersion;
-    if(appVersion.indexOf('Android') || appVersion.indexOf('iPhone')) {
+    if(appVersion.indexOf('Android') > 0 || appVersion.indexOf('iPhone') > 0) {
       history.push('/passwordchange');
     } else {
       history.push('/setting');
@@ -108,7 +156,7 @@ class Index extends Component {
   render() {
     const { history, personalRedu } = this.props;
     const { userName, avatar, listData } = personalRedu;
-    const { visible, loading, hasMore } = this.state;
+    const { visible, loading, hasMore, viewVisible, src } = this.state;
     return (
       <div className="personal">
         <Affix>
@@ -190,6 +238,26 @@ class Index extends Component {
             </div>
             <div className="personal-modal-cancel" onClick={this.settingBtn.bind(this)}>
               取消
+            </div>
+          </Modal>
+          <Modal
+            visible={viewVisible}
+            className="personal-modal"
+            closable={false}
+            footer={null}
+            confirmLoading={false}
+          >
+            <div>
+              <img className="personal-viewimg" src={src} />
+              <div className="personal-right-div" onClick={this.viewClick.bind(this, true)}>
+                <Icon className="personal-icon" type="right" />
+              </div>
+              <div className="personal-left-div" onClick={this.viewClick.bind(this, false)}>
+                <Icon className="personal-icon" type="left" />
+              </div>
+              <div className="personal-close-div" onClick={this.close.bind(this)}>
+                <Icon type="close" style={{ fontSize: 24, color: '#fff' }} />
+              </div>
             </div>
           </Modal>
         </main>

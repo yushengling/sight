@@ -9,12 +9,50 @@
 }
 
 .personal-modal {
+  position: relative;
   top: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
+}
+
+.personal-viewimg {
+  height: 400px;
+  width: auto;
+}
+
+.personal-left-div {
+  position: absolute;
+  top: 0px;
+  width: 4%;
+  height: 100%;
+  left: -24px;
+  cursor: pointer;
+}
+
+.personal-right-div {
+  position: absolute;
+  width: 4%;
+  height: 100%;
+  top: 0px;
+  right: -24px;
+  cursor: pointer;
+}
+
+.personal-icon {
+  position: absolute;
+  top: 50%;
+  font-size: 24px;
+  color: #fff;
+}
+
+.personal-close-div {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: -24px;
 }
 
 .personal-two {
@@ -175,6 +213,7 @@
 }
 
 .all-image {
+  cursor: pointer;
   flex: 1;
   width: 387px;
   height: 257px;
