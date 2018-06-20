@@ -55,7 +55,7 @@ class Index extends Component {
     const listArray = listData.map((list,index) => {
       const { id } = list;
       return (
-        <ItemCard list={list} key={"card" + index} index={index} collection={this.clickCollection.bind(this, id)} like={this.clickLike.bind(this, id)} cardClick={this.cardClick.bind(this, id)} />
+        <ItemCard list={list} key={"card" + index} index={index} collection={this.clickCollection.bind(this, id)} like={this.clickLike.bind(this, id)} cardClick={this.cardClick.bind(this, list.src, list.userName)} />
       );
     });
     return listArray;
@@ -68,10 +68,11 @@ class Index extends Component {
     const { dispatch, homeRedu } = this.props;
     userClick(dispatch, homeRedu, id, 2);
   }
-  cardClick(id) {
+  cardClick(img, userName) {
     const { history } = this.props;
-    sessionStorage.setItem('id', id);
-    history.push(`/details`);
+    sessionStorage.setItem('img', img);
+    sessionStorage.setItem('imgName', userName);
+    history.push(`/detail`);
   }
   render() {
     const { loading, data, hasMore } = this.state;

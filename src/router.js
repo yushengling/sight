@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from './pages/Home/index';
 import User from './pages/User/index';
-import Details from './pages/Details/index';
+import Detail from './pages/Detail/index';
 import Personal from './pages/Personal/index';
 import Setting from './pages/Setting/index';
 import PhonePasswordChange from './components/Setting/PhonePasswordChange';
@@ -16,8 +16,8 @@ const routes = [
     component: User
   },
   {
-    path: "/details",
-    component: Details
+    path: "/detail",
+    component: Detail
   },
   {
     path: "/personal",

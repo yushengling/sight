@@ -10,11 +10,13 @@ import homeRedu from './reducers/HomeRedu';
 import userRedu from './reducers/UserRedu';
 import personalRedu from './reducers/PersonalRedu';
 import settingRedu from './reducers/SettingRedu';
+import detailRedu from './reducers/DetailRedu';
 
 import homeSaga from './sagas/HomeSaga';
 import userSaga from './sagas/UserSaga';
 import personalSaga from './sagas/PersonalSaga';
 import settingSaga from './sagas/SettingSaga';
+import detailSaga from './sagas/DetailSaga';
 const history = createHistory();
 const sagaMiddleware = createSagaMiddleware();
 // const middleware = routerMiddleware(history);
@@ -24,6 +26,7 @@ const store = createStore (
     userRedu,
     personalRedu,
     settingRedu,
+    detailRedu,
     router: routerReducer
   }),
   // applyMiddleware(middleware)
@@ -33,6 +36,7 @@ sagaMiddleware.run(homeSaga);
 sagaMiddleware.run(userSaga);
 sagaMiddleware.run(personalSaga);
 sagaMiddleware.run(settingSaga);
+sagaMiddleware.run(detailSaga);
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
