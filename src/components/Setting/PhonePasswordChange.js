@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button, Affix } from 'antd';
 import LayoutHead from './../Layout/LayoutHead.js';
+import LayoutFooter from './../Layout/LayoutFooter.js';
 import { passwordChangeA, clear } from './../../actions/SettingAction';
 import { tips } from './../../util.js';
 import { getAvatarA } from './../../actions/SettingAction.js';
@@ -104,6 +105,7 @@ class PhonePasswordChange extends React.Component {
             <Button type="primary" htmlType="submit" className="login-form-button">修改</Button>
           </FormItem>
         </Form>
+        <LayoutFooter diffrents={false} />
       </div>
     );
   }

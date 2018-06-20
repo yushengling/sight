@@ -1,0 +1,22 @@
+.layoutfooter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0px;
+  margin-top: 20px;
+  color: #999;
+  background-color: rgb(249,249,249);
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+
+.layoutfooter-bak {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0px;
+  margin-top: 20px;
+  color: #999;
+  background-color: rgb(249,249,249);
+}

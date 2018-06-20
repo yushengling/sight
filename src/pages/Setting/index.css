@@ -6,3 +6,7 @@
 .ant-tabs-vertical.ant-tabs-left > .ant-tabs-bar .ant-tabs-tab {
   text-align: left;
 }
+
+.setting-div {
+  height: 100%;
+}

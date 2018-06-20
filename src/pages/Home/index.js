@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Spin, Affix, Layout, message } from 'antd';
 import ItemCard from './../../components/ItemCard/ItemCard.js';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
+import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import PropTypes from 'prop-types';
 import { getData, userClick, clear } from './../../actions/HomeAction';
 import './index.css';
@@ -102,6 +103,7 @@ class Index extends Component {
             { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
           </InfiniteScroll>
         </Content>
+        <LayoutFooter diffrents={true} />
       </div>
     );
   }

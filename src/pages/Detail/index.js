@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { Affix } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
+import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import { getAvatarA } from './../../actions/DetailAction';
 import * as styles from './index.css';
 class Index extends Component {
@@ -33,6 +34,7 @@ class Index extends Component {
           </header>
           <img className="detail-img" src={img} />
         </main>
+        <LayoutFooter diffrents={true} />
       </div>
     );
   }

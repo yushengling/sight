@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Affix, Button, Modal, message, Spin, Icon } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
+import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import { getAvatarA, uploadImagesA, uploadAvatarA, getImagesA, signOutA } from './../../actions/PersonalAction.js';
 import * as styles from './index.css';
 class Index extends Component {
@@ -97,7 +98,9 @@ class Index extends Component {
   }
   view(id) {
     const appVersion = navigator.appVersion;
-    if(appVersion.indexOf('Android') > 0 || appVersion.indexOf('iPhone') > 0) {
+    if(appVersion.indexOf('Android') > 0) {
+      return;
+    } else if (appVersion.indexOf('iPhone') > 0) {
       return;
     }
     const { personalRedu } = this.props;
@@ -147,9 +150,11 @@ class Index extends Component {
   setting() {
     const { history } = this.props;
     const appVersion = navigator.appVersion;
-    if(appVersion.indexOf('Android') > 0 || appVersion.indexOf('iPhone') > 0) {
+    if(appVersion.indexOf('Android') > 0) {
       history.push('/passwordchange');
-    } else {
+    } else if (appVersion.indexOf('iPhone') > 0) {
+      history.push('/passwordchange');
+    } else if(appVersion.indexOf('iPhone') < 0 && appVersion.indexOf('Android') < 0 ) {
       history.push('/setting');
     }
   }
@@ -261,6 +266,7 @@ class Index extends Component {
             </div>
           </Modal>
         </main>
+        <LayoutFooter diffrents={true} />
       </div>
     );
   }
