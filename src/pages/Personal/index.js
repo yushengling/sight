@@ -63,7 +63,7 @@ class Index extends Component {
     const { dispatch, personalRedu } = this.props;
     const { count } = personalRedu;
     if(num === 0) {
-      message.error('请上传少于50张图片');
+      message.error('请上传少于3张图片');
       return;
     }
     const formData = this.getFormData(files, num);
@@ -198,7 +198,7 @@ class Index extends Component {
                   className="personal-images-input"
                   accept="image/*"
                   multiple
-                  size={50}
+                  size={3}
                   ref="images"
                   type="file"
                   hidden="hidden"
