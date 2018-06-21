@@ -10,3 +10,32 @@
   margin: 0 auto;
   width: 700px;
 }
+
+
+@media only screen and (max-width: 320px) {
+  .cardDiv {
+    margin: 0px;
+    width: 0px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .cardDiv {
+    margin: 0px;
+    width: 0px;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .cardDiv {
+    margin: 0px;
+    width: 0px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cardDiv {
+    margin: 0px;
+    width: 0px;
+  }
+}
