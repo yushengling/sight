@@ -62,7 +62,7 @@ class Index extends Component {
     let num = files.length;
     const { dispatch, personalRedu } = this.props;
     const { count } = personalRedu;
-    if(num === 0) {
+    if(num > 3) {
       message.error('请上传少于3张图片');
       return;
     }
