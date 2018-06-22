@@ -4,30 +4,38 @@
     react + redux + saga + router + es6 + node.js + webpack + mysql + propTypes
 
 # 部署步骤
-    1. npm i // 安装node环境
+    1. git clone https://github.com/bbww/sightb.git
 
-    2. npm start   // 开启
+    2. cd sightb
+
+    3. npm i
+
+    4. npm start
+
+    5. git clone https://github.com/bbww/sight.git
+
+    6. npm i
+
+    7. npm start
 
 # 发布步骤
     npm run build  // 打包静态文件
 
 
 <pre># 目录结构描述
-├── build                       // 静态文件
 ├── public                      // 公共
 ├── src                         // 入口
 │   ├── action                  // action
 │   ├── components              // 组件
-│   ├── images                  // 图片
 │   ├── pages                   // 页面
 │   ├── reducers                // reducers
 │   ├── sagas                   // sagas
 │   ├── servers                 // 接口
+│   ├── store                   // 数据源
 │   ├── index.js                // index.js
 │   ├── requrest.js             // fetch
 │   ├── router.js               // 路由
 │   └── 
-├── build.zip                   // zip包
 ├── LICENSE                     // LICENSE 
 ├── package-lock.json           // package-lock.json
 ├── package.json                // package.json
