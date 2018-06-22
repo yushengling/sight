@@ -21,8 +21,8 @@
 # 发布步骤
     npm run build  // 打包静态文件
 
-
-<pre># 目录结构描述
+# 目录结构描述
+<pre>
 ├── public                      // 公共
 ├── src                         // 入口
 │   ├── action                  // action
