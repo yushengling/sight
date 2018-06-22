@@ -14,9 +14,11 @@
 
     5. git clone https://github.com/bbww/sight.git
 
-    6. npm i
+    6. cd sight
 
-    7. npm start
+    7. npm i
+
+    8. npm start
 
 # 发布步骤
     npm run build  // 打包静态文件
