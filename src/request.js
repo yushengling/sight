@@ -1,6 +1,6 @@
 import { message } from 'antd';
 //生产环境还是开发环境
-const getApi = process.env.NODE_ENV === 'production' ? 'http://47.98.231.165:9000/api/v1/' : 'http://localhost:9000/api/v1/';
+const getApi = process.env.NODE_ENV === 'production' ? 'https://downfuture.com:9000/api/v1/' : 'http://localhost:9000/api/v1/';
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
