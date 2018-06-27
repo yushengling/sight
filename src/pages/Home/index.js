@@ -1,14 +1,13 @@
 import React,{ Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
-import { Spin, Affix, Layout, message } from 'antd';
+import { Spin, Affix, message } from 'antd';
 import ItemCard from './../../components/ItemCard/ItemCard.js';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import PropTypes from 'prop-types';
 import { getData, userClick, clear } from './../../actions/HomeAction';
 import './index.css';
-const { Content } = Layout;
 
 class Index extends Component {
   constructor(props) {
@@ -88,21 +87,21 @@ class Index extends Component {
             history={history}
           />
         </Affix>
-        <Content>
-          <InfiniteScroll
-            initialLoad={false}
-            pageStart={0}
-            loadMore={this.handleInfiniteOnLoad}
-            hasMore={!loading && hasMore}
-            useWindow={true}
-            threshold={10}
-          >
-            <div className="cardDiv" >
+        <InfiniteScroll
+          initialLoad={false}
+          pageStart={0}
+          loadMore={this.handleInfiniteOnLoad}
+          hasMore={!loading && hasMore}
+          useWindow={true}
+          threshold={10}
+        >
+          <div className="cardDiv" >
+            <div className="cardDiv-div">
               {this.renderList(listData)}
             </div>
-            { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
-          </InfiniteScroll>
-        </Content>
+          </div>
+          { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
+        </InfiniteScroll>
         <LayoutFooter diffrents={true} />
       </div>
     );

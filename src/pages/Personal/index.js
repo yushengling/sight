@@ -211,7 +211,7 @@ class Index extends Component {
           <div className="personal-content">
             图片
           </div>
-          <section>
+          <section className="personal-section">
             {
               listData[0] ? <InfiniteScroll
               initialLoad={false}

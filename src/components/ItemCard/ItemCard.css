@@ -1,7 +1,7 @@
 .card {
-  width: 350px;
   vertical-align: top;
   display: inline-block;
+  margin: 24px 12px 0px 12px;
 }
 
 .ant-card-meta-title {
@@ -34,35 +34,6 @@
   display: none;
 }
 
-@media only screen and (min-width: 320px) {
-  .card {
-    width: 320px;
-    margin: 24px 0px 0px 0px;
-  }
-}
-
-@media only screen and (min-width: 375px) {
-  .card {
-    width: 375px;
-    margin: 24px 0px 0px 0px;
-  }
-}
-
-@media only screen and (min-width: 414px) {
-  .card {
-    width: 414px;
-    margin: 24px 0px 0px 0px;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .card {
-    vertical-align: top;
-    width: 320px;
-    margin: 24px 12px 0px 12px;
-  }
-}
-
 .icon-div {
   cursor: pointer;
   -moz-user-select: none; /*火狐*/
@@ -70,4 +41,33 @@
   -ms-user-select: none;   /*IE10*/
   -khtml-user-select: none; /*早期浏览器*/
   user-select: none;
+}
+
+@media only screen and (min-width: 320px) {
+  .card {
+    margin: 24px 0px 0px 0px;
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 375px) {
+  .card {
+    margin: 24px 0px 0px 0px;
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 414px) {
+  .card {
+    margin: 24px 0px 0px 0px;
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card {
+    vertical-align: top;
+    display: inline-block;
+    margin: 24px 12px 0px 12px;
+  }
 }

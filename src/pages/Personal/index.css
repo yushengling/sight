@@ -208,15 +208,13 @@
   margin-left: 20px;
 }
 
-.personal-content-div {
+.personal-section {
   text-align: center;
 }
 
 .all-image {
   cursor: pointer;
   flex: 1;
-  width: 387px;
-  height: 257px;
   margin: 0px 20px;
   margin-bottom: 20px;
 }

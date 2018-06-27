@@ -7,35 +7,30 @@
 }
 
 .cardDiv {
-  margin: 0 auto;
-  width: 700px;
+  text-align: center;
 }
 
 
-@media only screen and (max-width: 320px) {
+@media only screen and (min-width: 320px) {
   .cardDiv {
-    margin: 0px;
-    width: 0px;
+    text-align: unset;
   }
 }
 
-@media only screen and (max-width: 375px) {
+@media only screen and (min-width: 375px) {
   .cardDiv {
-    margin: 0px;
-    width: 0px;
+    text-align: unset;
   }
 }
 
-@media only screen and (max-width: 414px) {
+@media only screen and (min-width: 414px) {
   .cardDiv {
-    margin: 0px;
-    width: 0px;
+    text-align: unset;
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 768px) {
   .cardDiv {
-    margin: 0px;
-    width: 0px;
+    text-align: center;
   }
 }
