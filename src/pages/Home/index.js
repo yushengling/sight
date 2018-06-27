@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
-import { Spin, Affix, message } from 'antd';
+import { Spin, Affix, message, BackTop } from 'antd';
 import ItemCard from './../../components/ItemCard/ItemCard.js';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
@@ -102,6 +102,7 @@ class Index extends Component {
           </div>
           { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
         </InfiniteScroll>
+        <BackTop />
         <LayoutFooter diffrents={true} />
       </div>
     );
