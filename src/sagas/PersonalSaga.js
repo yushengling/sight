@@ -2,6 +2,13 @@ import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
 
 import { fetchAvatar, fetchUploadImages, fetchUploadAvatar, fetchImages, fetchSignOut } from '../servers/personal';
 
+import { message } from 'antd';
+message.config({
+  top: 24,
+  duration: 2,
+  maxCount: 1,
+});
+
 function* fetchAvatarFun(action) {
   let data = yield call(fetchAvatar);
   let images = yield call(fetchImages, action);
@@ -23,6 +30,7 @@ function* fetchUploadImagesFun(action) {
     data.listData = images.srcs;
     data.total = images.total;
     data.count = images.count;
+    message.success('上传成功');
     yield put({
       type: 'PERSONALREDU',
       data,
@@ -32,6 +40,7 @@ function* fetchUploadImagesFun(action) {
 
 function* fetchUploadAvatarFun(action) {
   const data = yield call(fetchUploadAvatar, action);
+  message.success('上传成功');
   yield put({
     type: 'PERSONALREDU',
     data,
