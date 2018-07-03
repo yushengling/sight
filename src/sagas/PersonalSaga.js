@@ -31,22 +31,22 @@ function* fetchUploadImagesFun(action) {
     data.listData = images.srcs;
     data.total = images.total;
     data.count = images.count;
+    message.success('上传成功');
     yield put({
       type: 'PERSONALREDU',
       data,
     });
-    message.success('上传成功');
   }
 }
 
 function* fetchUploadAvatarFun(action) {
   message.loading('上传中', 0);
   const data = yield call(fetchUploadAvatar, action);
+  message.success('上传成功');
   yield put({
     type: 'PERSONALREDU',
     data,
   });
-  message.success('上传成功');
 }
 
 function* fetchImagesFun(action) {
