@@ -14,7 +14,6 @@
     "moment": "^2.21.0",
     "npm": "^5.8.0",
     "prop-types": "^15.6.1",
-    "rc-queue-anim": "^1.6.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^4.0.1",
