@@ -44,7 +44,7 @@ class Index extends Component {
             </TabPane>
           </Tabs>
         </main>
-        <LayoutFooter diffrents={false} />
+        <LayoutFooter />
       </div>
     );
   }

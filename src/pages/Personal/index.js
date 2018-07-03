@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Affix, Button, Modal, message, Spin, Icon } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
-import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import { getAvatarA, uploadImagesA, uploadAvatarA, getImagesA, signOutA } from './../../actions/PersonalAction.js';
 import * as styles from './index.css';
 class Index extends Component {
@@ -266,7 +265,6 @@ class Index extends Component {
             </div>
           </Modal>
         </main>
-        <LayoutFooter diffrents={true} />
       </div>
     );
   }

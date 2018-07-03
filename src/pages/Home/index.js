@@ -104,7 +104,7 @@ class Index extends Component {
           { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
         </InfiniteScroll>
         <BackTop />
-        <LayoutFooter diffrents={true} />
+        <LayoutFooter />
       </div>
     );
   }
