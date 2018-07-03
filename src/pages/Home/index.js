@@ -79,7 +79,7 @@ class Index extends Component {
     const { history, homeRedu } = this.props;
     const { listData, count, userName, avatar } = homeRedu;
     return (
-      <div>
+      <div style={{ maxHeight: '100%', position: 'relative' }}>
         <Affix>
           <LayoutHead 
             userName={userName}
@@ -94,6 +94,7 @@ class Index extends Component {
           hasMore={!loading && hasMore}
           useWindow={true}
           threshold={10}
+          style={{ maxHeight: '100%' }}
         >
           <div className="cardDiv" >
             <div className="cardDiv-div">
