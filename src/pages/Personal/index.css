@@ -26,25 +26,19 @@
 
 .personal-left-div {
   position: absolute;
-  top: 0px;
-  width: 4%;
-  height: 100%;
+  top: 50%;
   left: -24px;
   cursor: pointer;
 }
 
 .personal-right-div {
   position: absolute;
-  width: 4%;
-  height: 100%;
-  top: 0px;
+  top: 50%;
   right: -24px;
   cursor: pointer;
 }
 
 .personal-icon {
-  position: absolute;
-  top: 50%;
   font-size: 24px;
   color: #fff;
 }

@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { fetchData, fetchIsLogin, fetchClick } from '../servers/api';
+import { fetchData, fetchIsLogin, fetchClick } from '../servers/home';
 
 function* fetchDataFun(action) {
   const datas = yield call(fetchData, action);

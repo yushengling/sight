@@ -30,7 +30,7 @@ sagaMiddleware.run(rootSagas);
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div style={{maxHeight: '100%'}}>
+      <div style={{maxHeight: '100%', height: '100%'}}>
         {routeConfig}
       </div>
     </ConnectedRouter>
