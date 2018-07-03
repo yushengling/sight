@@ -1,3 +1,15 @@
+@keyframes myfirst {
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.cardDiv-div {
+  animation: myfirst 2s;
+}
 
 :global(.ant-spin-spinning) {
   margin-top: 10px;
