@@ -6,6 +6,7 @@ import ItemCard from './../../components/ItemCard/ItemCard.js';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import PropTypes from 'prop-types';
+import QueueAnim from 'rc-queue-anim';
 import { getData, userClick, clear } from './../../actions/HomeAction';
 import './index.css';
 
@@ -97,7 +98,9 @@ class Index extends Component {
         >
           <div className="cardDiv" >
             <div className="cardDiv-div">
-              {this.renderList(listData)}
+              <QueueAnim>
+                {this.renderList(listData)}
+              </QueueAnim>
             </div>
           </div>
           { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
