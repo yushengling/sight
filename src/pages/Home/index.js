@@ -6,6 +6,7 @@ import ItemCard from './../../components/ItemCard/ItemCard.js';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import PropTypes from 'prop-types';
+import LazyLoad from 'react-lazyload';
 import { getData, userClick, clear } from './../../actions/HomeAction';
 import './index.css';
 
@@ -57,14 +58,16 @@ class Index extends Component {
     const listArray = listData.map((list,index) => {
       const { id } = list;
       return (
-        <ItemCard
-          list={list}
-          key={"card" + index}
-          index={index}
-          collection={this.clickCollection.bind(this, id)}
-          like={this.clickLike.bind(this, id)}
-          cardClick={this.cardClick.bind(this, list.src, list.userName)}
-        />
+        <LazyLoad throttle={200} height={300} >
+          <ItemCard
+            list={list}
+            key={"card" + index}
+            index={index}
+            collection={this.clickCollection.bind(this, id)}
+            like={this.clickLike.bind(this, id)}
+            cardClick={this.cardClick.bind(this, list.src, list.userName)}
+          />
+        </LazyLoad>
       );
     });
     return listArray;
@@ -123,13 +126,13 @@ class Index extends Component {
         </InfiniteScroll>
         <div className="div-hidden">
           {
-            listData.map((item, index) =>
+            listData.map((item, index) => {
               <img
                 src={item.src}
                 onLoad={this.onLoad.bind(this, item, index)} 
                 key={index}
               />
-            )
+            })
           }
         </div>
         <BackTop />
