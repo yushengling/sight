@@ -126,13 +126,13 @@ class Index extends Component {
         </InfiniteScroll>
         <div className="div-hidden">
           {
-            listData.map((item, index) => {
+            listData.map((item, index) => 
               <img
                 src={item.src}
                 onLoad={this.onLoad.bind(this, item, index)} 
                 key={index}
               />
-            })
+            )
           }
         </div>
         <BackTop />
