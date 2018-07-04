@@ -15,8 +15,9 @@ class Index extends Component {
     this.state = {
       loading: false,
       hasMore: true,
-      loadedItems: [],
+      isRender: false,
     };
+    this.loadedItems = [];
   }
   componentWillReceiveProps(nextProps) {
     message.config({
@@ -82,8 +83,17 @@ class Index extends Component {
     sessionStorage.setItem('imgName', userName);
     history.push(`/detail`);
   }
+  onLoad(item, index) {
+    const { listData } = this.props.homeRedu;
+    this.loadedItems.push(item);
+    if(this.loadedItems.length == listData.length) {
+      this.setState({
+        isRender: true
+      });
+    }
+  }
   render() {
-    const { loading, data, hasMore, loadedItems } = this.state;
+    const { loading, data, hasMore } = this.state;
     const { history, homeRedu } = this.props;
     const { listData, count, userName, avatar } = homeRedu;
     return (
@@ -106,22 +116,22 @@ class Index extends Component {
         >
           <div className="cardDiv" >
             <div className="cardDiv-div">
-              {this.renderList(listData)}
+              {this.renderList(this.loadedItems)}
             </div>
           </div>
           { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
         </InfiniteScroll>
-        {/*<div className="div-hidden">
+        <div className="div-hidden">
           {
             listData.map((item, index) =>
-              <img 
+              <img
                 src={item.src}
                 onLoad={this.onLoad.bind(this, item, index)} 
                 key={index}
               />
             )
           }
-        </div>*/}
+        </div>
         <BackTop />
         <LayoutFooter />
       </div>
