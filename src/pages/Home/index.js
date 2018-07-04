@@ -15,6 +15,7 @@ class Index extends Component {
     this.state = {
       loading: false,
       hasMore: true,
+      loadedItems: [],
     };
   }
   componentWillReceiveProps(nextProps) {
@@ -55,7 +56,14 @@ class Index extends Component {
     const listArray = listData.map((list,index) => {
       const { id } = list;
       return (
-        <ItemCard list={list} key={"card" + index} index={index} collection={this.clickCollection.bind(this, id)} like={this.clickLike.bind(this, id)} cardClick={this.cardClick.bind(this, list.src, list.userName)} />
+        <ItemCard
+          list={list}
+          key={"card" + index}
+          index={index}
+          collection={this.clickCollection.bind(this, id)}
+          like={this.clickLike.bind(this, id)}
+          cardClick={this.cardClick.bind(this, list.src, list.userName)}
+        />
       );
     });
     return listArray;
@@ -75,7 +83,7 @@ class Index extends Component {
     history.push(`/detail`);
   }
   render() {
-    const { loading, data, hasMore } = this.state;
+    const { loading, data, hasMore, loadedItems } = this.state;
     const { history, homeRedu } = this.props;
     const { listData, count, userName, avatar } = homeRedu;
     return (
@@ -103,6 +111,17 @@ class Index extends Component {
           </div>
           { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
         </InfiniteScroll>
+        {/*<div className="div-hidden">
+          {
+            listData.map((item, index) =>
+              <img 
+                src={item.src}
+                onLoad={this.onLoad.bind(this, item, index)} 
+                key={index}
+              />
+            )
+          }
+        </div>*/}
         <BackTop />
         <LayoutFooter />
       </div>

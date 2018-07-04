@@ -14,6 +14,7 @@ class ItemCard extends Component {
       <div className="card">
         <Card
           key={"card" + index}
+          loading
           hoverable
           cover={<img alt="src" src={list.src} onClick={cardClick} className="image" />}
           actions={[

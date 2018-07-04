@@ -7,6 +7,10 @@
   }
 }
 
+.div-hidden {
+  display: none;
+}
+
 .cardDiv-div {
   animation: myfirst 2s;
 }
