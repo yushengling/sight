@@ -26,12 +26,12 @@ function* fetchUploadImagesFun(action) {
   message.loading('上传中', 0);
   let data = yield call(fetchUploadImages, action);
   if(data.code === 200) {
+    message.success('上传成功');
     let images = yield call(fetchImages, action);
     images = JSON.parse(images);
     data.listData = images.srcs;
     data.total = images.total;
     data.count = images.count;
-    message.success('上传成功');
     yield put({
       type: 'PERSONALREDU',
       data,
