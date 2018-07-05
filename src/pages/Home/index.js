@@ -58,7 +58,9 @@ class Index extends Component {
     const listArray = listData.map((list,index) => {
       const { id } = list;
       return (
-        <LazyLoad throttle={200} height={300} >
+        <LazyLoad
+          height={100}
+        >
           <ItemCard
             list={list}
             key={"card" + index}
