@@ -59,7 +59,8 @@ class Index extends Component {
       const { id } = list;
       return (
         <LazyLoad
-          height={100}
+          height={5}
+          once
         >
           <ItemCard
             list={list}
