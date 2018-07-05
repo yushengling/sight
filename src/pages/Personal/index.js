@@ -96,6 +96,7 @@ class Index extends Component {
     return listArray;
   }
   view(id) {
+    id -= 1;
     const appVersion = navigator.appVersion;
     if(appVersion.indexOf('Android') > 0) {
       return;
