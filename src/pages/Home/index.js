@@ -6,7 +6,6 @@ import ItemCard from './../../components/ItemCard/ItemCard.js';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import PropTypes from 'prop-types';
-import LazyLoad from 'react-lazyload';
 import { getData, userClick, clear } from './../../actions/HomeAction';
 import './index.css';
 
@@ -58,19 +57,14 @@ class Index extends Component {
     const listArray = listData.map((list,index) => {
       const { id } = list;
       return (
-        <LazyLoad
-          height={5}
-          once
-        >
-          <ItemCard
-            list={list}
-            key={"card" + index}
-            index={index}
-            collection={this.clickCollection.bind(this, id)}
-            like={this.clickLike.bind(this, id)}
-            cardClick={this.cardClick.bind(this, list.src, list.userName)}
-          />
-        </LazyLoad>
+        <ItemCard
+          list={list}
+          key={"card" + index}
+          index={index}
+          collection={this.clickCollection.bind(this, id)}
+          like={this.clickLike.bind(this, id)}
+          cardClick={this.cardClick.bind(this, list.src, list.userName)}
+        />
       );
     });
     return listArray;
@@ -122,12 +116,12 @@ class Index extends Component {
         >
           <div className="cardDiv" >
             <div className="cardDiv-div">
-              {this.renderList(this.loadedItems)}
+              {this.renderList(listData)}
             </div>
           </div>
           { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
         </InfiniteScroll>
-        <div className="div-hidden">
+        {/*<div className="div-hidden">
           {
             listData.map((item, index) => 
               <img
@@ -137,7 +131,7 @@ class Index extends Component {
               />
             )
           }
-        </div>
+        </div>*/}
         <BackTop />
         <LayoutFooter />
       </div>
