@@ -1,0 +1,40 @@
+.list-logo {
+  width: 15px;
+  height: 15px;
+  background-image: url(./tab-icon-list.svg);
+}
+
+.edit-logo {
+  width: 15px;
+  height: 15px;
+  background-image: url(./tab-icon-edit.svg);
+}
+
+.home-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sider {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  width: 80px;
+  position: absolute;
+  bottom: 0px;
+  text-align: center;
+  line-height: 40px;
+  left: 10px;
+  cursor: pointer;
+}
+
+.icon-left {
+  width: 32px;
+  height: 32px;
+}
+
+.home-content {
+  padding: 40px;
+  width: 100%;
+  background-color: #f8f8f6;
+}
