@@ -1,0 +1,102 @@
+.edit-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.add-property-button {
+  height: 50px;
+  background-color: #38b1a6;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 24px;
+  cursor: pointer;
+}
+
+.edit-content {
+  background-color: #fff;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.edit-content-tab {
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  padding: 18px 0px 18px  18px;
+  width: 200px;
+}
+
+.edit-content-tab:hover {
+  background-color: #fff9da;
+  border-bottom: 1px solid #fce88f;
+}
+
+.edit-content-left {
+  border-right: 1px solid #eee;
+}
+
+.edit-content-right {
+  position: relative;
+  padding: 40px;
+  width: 100%;
+}
+
+.edit-content-right-price {
+  color: #6c6c6c;
+  font-size: 18px;
+}
+
+.edit-content-right-input {
+  margin-top: 20px;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f8f6;
+}
+
+.edit-content-right-input-div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.edit-content-right-input-name {
+  width: 80%;
+  height: 40px;
+  border-radius: 1px;
+}
+
+.edit-content-right-input-price {
+  width: 30%;
+  height: 40px;
+  border-radius: 1px;
+  margin-left: 10px;
+}
+
+.edit-content-right-input-price-icon {
+  background-image: url('./tooltip.svg');
+  height: 20px;
+  width: 20px;
+}
+
+.add-button {
+  height: 50px;
+  margin-top: 20px;
+  width: 80px;
+  background-color: #38b1a6;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 24px;
+  cursor: pointer;
+}
