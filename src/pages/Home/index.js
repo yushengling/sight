@@ -34,7 +34,7 @@ class Index extends Component {
   }
   componentDidMount() {
     const { dispatch } = this.props;
-    getData(dispatch,24);
+    getData(dispatch, 24);
   }
   handleInfiniteOnLoad = (page) => {
     const { dispatch, homeRedu } = this.props;
@@ -61,21 +61,11 @@ class Index extends Component {
           list={list}
           key={"card" + index}
           index={index}
-          collection={this.clickCollection.bind(this, id)}
-          like={this.clickLike.bind(this, id)}
           cardClick={this.cardClick.bind(this, list.src, list.userName)}
         />
       );
     });
     return listArray;
-  }
-  clickCollection(id) {
-    const { dispatch, homeRedu } = this.props;
-    userClick(dispatch, homeRedu, id, 1);
-  };
-  clickLike(id) {
-    const { dispatch, homeRedu } = this.props;
-    userClick(dispatch, homeRedu, id, 2);
   }
   cardClick(img, userName) {
     const { history } = this.props;
@@ -121,17 +111,6 @@ class Index extends Component {
           </div>
           { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
         </InfiniteScroll>
-        {/*<div className="div-hidden">
-          {
-            listData.map((item, index) => 
-              <img
-                src={item.src}
-                onLoad={this.onLoad.bind(this, item, index)} 
-                key={index}
-              />
-            )
-          }
-        </div>*/}
         <BackTop />
         <LayoutFooter />
       </div>
@@ -143,7 +122,6 @@ Index.propTypes = {
   count: PropTypes.number,
   userName: PropTypes.string,
   avatar: PropTypes.string
-
 };
 function mapStateToProps(state,oWnprops) {
   return state;

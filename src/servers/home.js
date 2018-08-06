@@ -17,13 +17,3 @@ export function fetchIsLogin(params) {
     }
   });
 }
-
-export function fetchClick(params) {
-  return request({
-    method: 'fetchClick',
-    options: {
-      method: 'PUT',
-      body: params
-    }
-  }); 
-}

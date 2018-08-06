@@ -5,19 +5,10 @@ const getData = (dispatch, count) => {
   });
 }
 
-const userClick = (dispatch, data, id, num) => {
-  dispatch({
-    type: 'CLICK_SAGA',
-    data,
-    id,
-    num
-  });
-}
-
 const clear = (dispatch) => {
   dispatch({
     type: 'CLEARREDU'
   });
 }
 
-export { getData, userClick, clear };
+export { getData, clear };
