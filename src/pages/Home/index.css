@@ -1,7 +1,7 @@
 .card-div {
-  column-count: 4;
-  -moz-column-count: 4;
-  -webkit-column-count: 4;
+  column-count: auto;
+  -moz-column-count: auto;
+  -webkit-column-count: auto;
 }
 
 :global(.ant-spin-spinning) {
@@ -12,7 +12,7 @@
 }
 
 
-@media only screen and (width: 320px) {
+@media only screen and (min-width: 320px) {
   .card-div {
     column-count: 1;
     -moz-column-count: 1;
@@ -20,7 +20,7 @@
   }
 }
 
-@media only screen and (width: 375px) {
+@media only screen and (min-width: 375px) {
   .card-div {
     column-count: 1;
     -moz-column-count: 1;
@@ -28,7 +28,7 @@
   }
 }
 
-@media only screen and (width: 414px) {
+@media only screen and (min-width: 414px) {
   .card-div {
     column-count: 1;
     -moz-column-count: 1;
@@ -36,10 +36,10 @@
   }
 }
 
-@media only screen and (width: 768px) {
+@media only screen and (min-width: 768px) {
   .card-div {
-    column-count: 4;
-    -moz-column-count: 4;
-    -webkit-column-count: 4;
+    column-count: auto;
+    -moz-column-count: auto;
+    -webkit-column-count: auto;
   }
 }
