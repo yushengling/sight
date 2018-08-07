@@ -3,6 +3,13 @@
   color: #3089DC;
 }
 
+.header {
+  background: #fff;
+  border-bottom: 1px solid #e1e1e1;
+  height: 54px;
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.25);
+}
+
 .user {
   display: flex;
   align-items: center;

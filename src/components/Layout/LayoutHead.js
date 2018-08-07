@@ -6,7 +6,7 @@ const { Header } = Layout;
 function LayoutHead(props) {
   const { userName, avatar, history } = props;
   return (
-    <Header style={{ background: '#fff', borderBottom: '1px solid #e1e1e1', height: 54 }}>
+    <Header className="header">
       <Row className="row" style={{ height: 54 }}>
         <Col span={12}>
           <div className="logo" onClick={() => history.push('/')} />
