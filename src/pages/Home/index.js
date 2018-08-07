@@ -104,10 +104,8 @@ class Index extends Component {
           threshold={10}
           style={{ maxHeight: '100%' }}
         >
-          <div className="cardDiv" >
-            <div className="cardDiv-div">
-              {this.renderList(listData)}
-            </div>
+          <div className="card-div">
+            {this.renderList(listData)}
           </div>
           { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
         </InfiniteScroll>
