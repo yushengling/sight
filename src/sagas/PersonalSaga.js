@@ -23,7 +23,6 @@ function* fetchAvatarFun(action) {
 }
 
 function* fetchUploadImagesFun(action) {
-  message.loading('上传中', 0);
   let data = yield call(fetchUploadImages, action);
   if(data.code === 200) {
     message.success('上传成功');
@@ -36,11 +35,12 @@ function* fetchUploadImagesFun(action) {
       type: 'PERSONALREDU',
       data,
     });
+  } else {
+    message.error('上传失败');
   }
 }
 
 function* fetchUploadAvatarFun(action) {
-  message.loading('上传中', 0);
   const data = yield call(fetchUploadAvatar, action);
   message.success('上传成功');
   yield put({
