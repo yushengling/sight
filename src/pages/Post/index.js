@@ -4,6 +4,8 @@ import { Table, Icon, Divider, Button, Select } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import { getAvatarA } from './../../actions/PostAction';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import * as styles from './index.css';
 const Option = Select.Option;
 const Options = [
@@ -140,7 +142,7 @@ class Index extends Component {
                     name = 'post-button post-button-click';
                   }
                   return (
-                    <button className={name} key={key} onClick={this.statusSwitch.bind(this, list.type)}>{list.name}{list.total}</button>
+                    <button className={name} key={key} onClick={this.statusSwitch.bind(this, list.type)}>{list.name}({list.total})</button>
                   )
                 })
               }
