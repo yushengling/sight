@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Input, Button, Affix } from 'antd';
+import { Form, Input, Button } from 'antd';
 import LayoutHead from './../Layout/LayoutHead.js';
 import { passwordChangeA, clear } from './../../actions/SettingAction';
 import { tips } from './../../util.js';
@@ -11,7 +11,7 @@ class PhonePasswordChange extends React.Component {
   state = {
     confirmDirty: false,
   };
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch } = this.props;
     getAvatarA(dispatch);
   }
@@ -68,13 +68,11 @@ class PhonePasswordChange extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="personal">
-        <Affix>
-          <LayoutHead
-            userName={userName}
-            avatar={avatar}
-            history={history}
-          />
-        </Affix>
+        <LayoutHead
+          userName={userName}
+          avatar={avatar}
+          history={history}
+        />
         <Form onSubmit={this.handleSubmit} className="passwordchange-login-form">
           <FormItem>
             {getFieldDecorator('password', {

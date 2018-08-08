@@ -1,6 +1,6 @@
 const getAvatarA = (dispatch) => {
   dispatch({
-    type: 'GETDETAILAVATAR_SAGA'
+    type: 'GETPOSTAVATAR_SAGA'
   });
 }
 export { getAvatarA };

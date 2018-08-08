@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Affix, Button, Modal, message, Spin, Icon } from 'antd';
+import { Button, Modal, message, Spin, Icon } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import { getAvatarA, uploadImagesA, uploadAvatarA, getImagesA, signOutA } from './../../actions/PersonalAction.js';
@@ -17,7 +17,7 @@ class Index extends Component {
       id: 0
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch } = this.props;
     getAvatarA(dispatch, 24);
   }
@@ -164,13 +164,11 @@ class Index extends Component {
     const { visible, loading, hasMore, viewVisible, src } = this.state;
     return (
       <div className="personal">
-        <Affix>
-          <LayoutHead
-            userName={userName}
-            avatar={avatar}
-            history={history}
-          />
-        </Affix>
+        <LayoutHead
+          userName={userName}
+          avatar={avatar}
+          history={history}
+        />
         <main className="personal-main">
           <header className="personal-header">
             <section className="personal-left">

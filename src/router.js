@@ -5,6 +5,7 @@ import Detail from './pages/Detail/index';
 import Personal from './pages/Personal/index';
 import Setting from './pages/Setting/index';
 import PhonePasswordChange from './components/Setting/PhonePasswordChange';
+import Post from './pages/Post/index';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const routes = [
   {
@@ -30,6 +31,10 @@ const routes = [
   {
     path: "/passwordchange",
     component: PhonePasswordChange
+  },
+  {
+    path: "/post",
+    component: Post
   }
 ]
 

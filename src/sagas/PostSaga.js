@@ -1,6 +1,6 @@
 import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
 
-import { fetchAvatar } from '../servers/detail';
+import { fetchAvatar } from '../servers/post';
 
 function* fetchAvatarFun(action) {
   let data = yield call(fetchAvatar);
@@ -10,8 +10,8 @@ function* fetchAvatarFun(action) {
   });
 }
 
-function* detailSaga() {
-  yield takeLatest('GETDETAILAVATAR_SAGA', fetchAvatarFun);
+function* postSaga() {
+  yield takeLatest('GETPOSTAVATAR_SAGA', fetchAvatarFun);
 }
 
-export default detailSaga;
+export default postSaga;

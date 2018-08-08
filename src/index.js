@@ -11,6 +11,7 @@ import userRedu from './reducers/UserRedu';
 import personalRedu from './reducers/PersonalRedu';
 import settingRedu from './reducers/SettingRedu';
 import detailRedu from './reducers/DetailRedu';
+import postRedu from './reducers/PostRedu';
 
 import rootSagas from './sagas/RootSagas';
 const history = createHistory();
@@ -22,6 +23,7 @@ const store = createStore (
     personalRedu,
     settingRedu,
     detailRedu,
+    postRedu,
     router: routerReducer
   }),
   applyMiddleware(sagaMiddleware)

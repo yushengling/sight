@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
-import { Spin, Affix, message, BackTop } from 'antd';
+import { Spin, message, BackTop } from 'antd';
 import ItemCard from './../../components/ItemCard/ItemCard.js';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
@@ -96,14 +96,12 @@ class Index extends Component {
     datas.threshold = 10;
     datas.style = { maxHeight: '100%' };
     return (
-      <div style={{ maxHeight: '100%', position: 'relative' }}>
-        <Affix>
-          <LayoutHead 
-            userName={userName}
-            avatar={avatar}
-            history={history}
-          />
-        </Affix>
+      <div style={{ position: 'relative' }}>
+        <LayoutHead 
+          userName={userName}
+          avatar={avatar}
+          history={history}
+        />
         <InfiniteScroll
           {...datas}
         >

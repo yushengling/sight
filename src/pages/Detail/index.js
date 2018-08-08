@@ -10,7 +10,7 @@ class Index extends Component {
   constructor(props) {
     super(props);
   }
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch } = this.props;
     getAvatarA(dispatch);
   }

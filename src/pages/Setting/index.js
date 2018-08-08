@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Tabs, Affix } from 'antd';
+import { Tabs } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import PasswordChange from './../../components/Setting/PasswordChange.js';
@@ -12,7 +12,7 @@ class Index extends Component {
   constructor(props) {
     super(props);
   }
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch } = this.props;
     getAvatarA(dispatch);
   }
@@ -21,13 +21,11 @@ class Index extends Component {
     const { userName, avatar } = settingRedu;
     return (
       <div className="setting-div">
-        <Affix>
-          <LayoutHead
-            userName={userName}
-            avatar={avatar}
-            history={history}
-          />
-        </Affix>
+        <LayoutHead
+          userName={userName}
+          avatar={avatar}
+          history={history}
+        />
         <main>
           <Tabs
             className="setting-tab"
