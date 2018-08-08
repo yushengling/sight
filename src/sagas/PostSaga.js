@@ -5,7 +5,7 @@ import { fetchAvatar } from '../servers/post';
 function* fetchAvatarFun(action) {
   let data = yield call(fetchAvatar);
   yield put({
-    type: 'DETAILREDU',
+    type: 'POSTREDU',
     data
   });
 }

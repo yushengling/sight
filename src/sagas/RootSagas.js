@@ -13,6 +13,5 @@ export default function* rootSagas () {
     fork(settingSaga),
     fork(detailSaga),
     fork(postSaga)
-
   ]
 }

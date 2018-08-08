@@ -47,6 +47,7 @@
 .images {
   width: 28px;
   height: 28px;
+  vertical-align: sub;
   border-radius: 100%;
 }
 
