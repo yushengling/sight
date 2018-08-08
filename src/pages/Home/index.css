@@ -43,3 +43,11 @@
     -webkit-column-count: 4;
   }
 }
+
+@media only screen and (max-width: 1280px) {
+  .card-div {
+    column-count: 5;
+    -moz-column-count: 5;
+    -webkit-column-count: 5;
+  }
+}

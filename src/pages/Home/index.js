@@ -86,6 +86,15 @@ class Index extends Component {
     const { loading, data, hasMore } = this.state;
     const { history, homeRedu } = this.props;
     const { listData, count, userName, avatar } = homeRedu;
+    let clientWidth = document.body.clientWidth;
+    let datas = {}, style = {};
+    datas.initialLoad = false;
+    datas.pageStart = 0;
+    datas.loadMore = this.handleInfiniteOnLoad;
+    datas.hasMore = !loading && hasMore;
+    datas.useWindow = true;
+    datas.threshold = 10;
+    datas.style = { maxHeight: '100%' };
     return (
       <div style={{ maxHeight: '100%', position: 'relative' }}>
         <Affix>
@@ -96,13 +105,7 @@ class Index extends Component {
           />
         </Affix>
         <InfiniteScroll
-          initialLoad={false}
-          pageStart={0}
-          loadMore={this.handleInfiniteOnLoad}
-          hasMore={!loading && hasMore}
-          useWindow={true}
-          threshold={10}
-          style={{ maxHeight: '100%' }}
+          {...datas}
         >
           <div className="card-div">
             {this.renderList(listData)}
