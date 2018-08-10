@@ -31,6 +31,10 @@ const Options = [
   {
     name:'动物',
     value: 'animal'
+  },
+  {
+    name: '未分类',
+    value: 'unclassified'
   }
 ];
 class Index extends Component {

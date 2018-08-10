@@ -13,14 +13,20 @@
   font-size: 1rem;
 }
 
-.wrapperClassName {
+div .title-input {
+  width: 40%;
   margin-top: 10px;
-  transition: height 0.3s ease;
-  -moz-transition: height 0.3s ease;
-  -webkit-transition: height 0.3s ease;
-  -o-transition: height 0.3s ease;
-  height: 170px;
-  box-sizing: content-box;
+}
+
+.wrapperClassName {
+  bottom: 80px;
+  margin-top: 10px;
+  width: 50%;
+  transition: height 0.4s ease;
+  -moz-transition: height 0.4s ease;
+  -webkit-transition: height 0.4s ease;
+  -o-transition: height 0.4s ease;
+  height: 140px;
 }
 
 .editorClassName {
@@ -30,7 +36,6 @@
 .grippie:before {
   font-size: 14px;
   padding: 4px 0px;
-  line-height: 4px;
   content: '';
   display: block;
   width: 27px;
