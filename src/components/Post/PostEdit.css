@@ -1,0 +1,43 @@
+.editor-div {
+  background-color: #e9e9e9;
+  transition: height 0.3s ease;
+  -moz-transition: height 0.3s ease;
+  -webkit-transition: height 0.3s ease;
+  -o-transition: height 0.3s ease;
+  z-index: 2;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 300px;
+  padding: 0px 30px;
+  padding-top: 3px;
+}
+
+.wrapperClassName {
+  margin-top: 10px;
+  transition: height 0.3s ease;
+  -moz-transition: height 0.3s ease;
+  -webkit-transition: height 0.3s ease;
+  -o-transition: height 0.3s ease;
+  height: 200px;
+  box-sizing: content-box;
+}
+
+.editorClassName {
+  background-color: #fff;
+}
+
+.grippie:before {
+  font-size: 14px;
+  padding: 4px 0px;
+  line-height: 4px;
+  content: '';
+  display: block;
+  width: 27px;
+  margin: auto;
+  border-top: 3px double #bdbdbd;
+}
+
+.grippie:hover {
+  cursor: move;
+}

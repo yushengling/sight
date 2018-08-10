@@ -1,11 +1,10 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Table, Icon, Divider, Button, Select } from 'antd';
-import LayoutHead from './../../components/Layout/LayoutHead.js';
-import LayoutFooter from './../../components/Layout/LayoutFooter.js';
+import LayoutHead from './../../components/Layout/LayoutHead';
+import LayoutFooter from './../../components/Layout/LayoutFooter';
+import PostEdit from './../../components/Post/PostEdit';
 import { getAvatarA } from './../../actions/PostAction';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import * as styles from './index.css';
 const Option = Select.Option;
 const Options = [
@@ -39,6 +38,7 @@ class Index extends Component {
     super(props);
     this.state = {
       type: 'new',
+      page: 2,
     }
   }
   componentDidMount() {
@@ -53,10 +53,15 @@ class Index extends Component {
       type
     });
   }
+  sendNewButton = () => {
+    this.setState({
+      page: 2
+    });
+  }
   render() {
     const { history, postRedu } = this.props;
     const { userName, avatar, buttons } = postRedu;
-    const { type } = this.state;
+    const { type, page } = this.state;
     const columns = [{
       title: '主题',
       dataIndex: 'theme',
@@ -147,10 +152,11 @@ class Index extends Component {
                 })
               }
             </div>
-            <Button type="primary" style={{ borderRadius: '0' }} >发新主题</Button>
+            <Button type="primary" icon="plus" style={{ borderRadius: '0' }} onClick={this.sendNewButton} >发新主题</Button>
           </div>
           <Table columns={columns} dataSource={data} pagination={false} />
         </div>
+        { page == 2 ? <PostEdit /> : '' }
       </div>
     );
   }
