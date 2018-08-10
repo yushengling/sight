@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Row, Col } from 'antd';
+import { Row, Col, Button } from 'antd';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import * as styles from './PostEdit.css';
@@ -8,15 +8,19 @@ class PostEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      style: {
+
+      },
       clientY: 300,
     };
     this.out = false;
     this.x = 0;
     this.y = 0;
     this.h = 0;
+    this.offsetHeight = 0;
   }
   componentDidMount() {
-    
+    this.offsetHeight = document.body.offsetHeight;
   }
   uploadImageCallBack = (file) => {
     console.log(file);
@@ -27,20 +31,50 @@ class PostEdit extends Component {
       if(!this.out) {
         return false;
       }
+      let { propsStyle } = this.props;
       let y = b.clientY - this.y;
       if(y < 0) {
         y = -(y);
-        y = this.h + y + 10;
+        y = this.h + y;
+        if(b.clientY <= 60) {
+          this.setState({
+            style: {
+              transition: 'height 0.1s ease',
+              MozTransition: 'height 0.1s ease',
+              WebkitTransition: 'height 0.1s ease',
+              OTransition: 'height 0.1s ease'
+            }
+          });
+          this.props.propsStyle.height = this.offsetHeight - 56;
+          return;
+        }
       } else {
         y = this.h - y;
+        if(propsStyle.height <= 230) {
+          this.props.propsStyle.height = 230;
+          this.setState({
+            style: {
+              transition: 'height 0.1s ease',
+              MozTransition: 'height 0.1s ease',
+              WebkitTransition: 'height 0.1s ease',
+              OTransition: 'height 0.1s ease'
+            }
+          });
+          return;
+        }
       }
+      this.props.propsStyle.height = y;
       this.setState({
-        clientY: y,
+        style: {
+          transition: 'height 0s ease',
+          MozTransition: 'height 0s ease',
+          WebkitTransition: 'height 0s ease',
+          OTransition: 'height 0s ease'
+        }
       });
     }
   }
   grippieDown = (e) => {
-    let target = e.target;
     this.out = true;
     this.y = e.clientY;
     let editor = this.refs.editor;
@@ -48,27 +82,22 @@ class PostEdit extends Component {
     const self = this;
     this.grippieMove();
     e.preventDefault();
-    target.onmouseup = () => {
+    document.onmouseup = () => {
       document.onmousemove = null;
-      target.onmouseup = null;
+      document.onmouseup = null;
       this.out = false;
     }
   }
   render() {
-    const { clientY } = this.state;
-    let style;
-    if(this.out) {
-      style = {
-        height: clientY,
-        transition: 'height 0s ease',
-        MozTransition: 'height 0s ease',
-        WebkitTransition: 'height 0s ease',
-        OTransition: 'height 0s ease'
-      };
-    }
+    const { clientY, style } = this.state;
+    const { cancelBtn, propsStyle } = this.props;
     return (
-      <div ref="editor" className="editor-div" style={style}>
+      <div ref="editor" className="editor-div" style={{...style, ...propsStyle}}>
         <div className="grippie" onMouseDown={this.grippieDown} ></div>
+        <div>
+          <Button type="primary" icon="plus" style={{ borderRadius: '0' }} >创建主题</Button>
+          <a className="editor-cancel" onClick={cancelBtn}>取消</a>
+        </div>
         <Col span={12}>
           <Editor
             localization={{ locale: 'zh' }}

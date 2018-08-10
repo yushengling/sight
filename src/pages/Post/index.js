@@ -38,7 +38,10 @@ class Index extends Component {
     super(props);
     this.state = {
       type: 'new',
-      page: 2,
+      isRender: false,
+    }
+    this.propsStyle = {
+      height: 0
     }
   }
   componentDidMount() {
@@ -54,14 +57,27 @@ class Index extends Component {
     });
   }
   sendNewButton = () => {
+    this.propsStyle = {
+      height: 330
+    }
+    const { isRender } = this.state;
     this.setState({
-      page: 2
+      isRender: !isRender
+    });
+  }
+  cancelBtn = () => {
+    this.propsStyle = {
+      height: 0
+    }
+    const { isRender } = this.state;
+    this.setState({
+      isRender: !isRender
     });
   }
   render() {
     const { history, postRedu } = this.props;
     const { userName, avatar, buttons } = postRedu;
-    const { type, page } = this.state;
+    const { type } = this.state;
     const columns = [{
       title: '主题',
       dataIndex: 'theme',
@@ -156,7 +172,7 @@ class Index extends Component {
           </div>
           <Table columns={columns} dataSource={data} pagination={false} />
         </div>
-        { page == 2 ? <PostEdit /> : '' }
+        <PostEdit cancelBtn={this.cancelBtn} propsStyle={this.propsStyle} />
       </div>
     );
   }
