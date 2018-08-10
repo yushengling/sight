@@ -13,31 +13,46 @@ class PostEdit extends Component {
     this.out = false;
     this.x = 0;
     this.y = 0;
+    this.h = 0;
   }
   componentDidMount() {
-
+    
   }
   uploadImageCallBack = (file) => {
     console.log(file);
   }
-  grippieOut = (e) => {
-    this.out = false;
-  }
-  grippieMove = (e) => {
-    if(!this.out) {
-      return false;
+  grippieMove = () => {
+    const self = this;
+    document.onmousemove = (b) => {
+      if(!this.out) {
+        return false;
+      }
+      let y = b.clientY - this.y;
+      if(y < 0) {
+        y = -(y);
+        y = this.h + y + 10;
+      } else {
+        y = this.h - y;
+      }
+      this.setState({
+        clientY: y,
+      });
     }
-    let ny = e.clientY - (this.y - this.t);
-    this.setState({
-      clientY: ny,
-    });
   }
   grippieDown = (e) => {
+    let target = e.target;
     this.out = true;
     this.y = e.clientY;
     let editor = this.refs.editor;
-    this.t = editor.offsetTop;
-    console.log(this.y, editor.offsetHeight);
+    this.h = editor.offsetHeight;
+    const self = this;
+    this.grippieMove();
+    e.preventDefault();
+    target.onmouseup = () => {
+      document.onmousemove = null;
+      target.onmouseup = null;
+      this.out = false;
+    }
   }
   render() {
     const { clientY } = this.state;
@@ -45,12 +60,15 @@ class PostEdit extends Component {
     if(this.out) {
       style = {
         height: clientY,
-        top:clientY
-      }
+        transition: 'height 0s ease',
+        MozTransition: 'height 0s ease',
+        WebkitTransition: 'height 0s ease',
+        OTransition: 'height 0s ease'
+      };
     }
     return (
       <div ref="editor" className="editor-div" style={style}>
-        <div className="grippie" onMouseMove={this.grippieMove} onMouseOut={this.grippieOut} onMouseDown={this.grippieDown}></div>
+        <div className="grippie" onMouseDown={this.grippieDown} ></div>
         <Col span={12}>
           <Editor
             localization={{ locale: 'zh' }}

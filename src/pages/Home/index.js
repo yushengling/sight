@@ -71,7 +71,7 @@ class Index extends Component {
     const { history } = this.props;
     sessionStorage.setItem('img', img);
     sessionStorage.setItem('imgName', userName);
-    history.push(`/detail`);
+    history.push('/detail');
   }
   onLoad(item, index) {
     const { listData } = this.props.homeRedu;
