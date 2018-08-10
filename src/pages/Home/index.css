@@ -51,3 +51,7 @@
     -webkit-column-count: 5;
   }
 }
+
+[title=站长统计] {
+  display: none;
+}
