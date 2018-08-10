@@ -39,10 +39,10 @@ class PostEdit extends Component {
         if(b.clientY <= 60) {
           this.setState({
             style: {
-              transition: 'height 0.1s ease',
-              MozTransition: 'height 0.1s ease',
-              WebkitTransition: 'height 0.1s ease',
-              OTransition: 'height 0.1s ease'
+              transition: 'height 0.4s ease',
+              MozTransition: 'height 0.4s ease',
+              WebkitTransition: 'height 0.4s ease',
+              OTransition: 'height 0.4s ease'
             }
           });
           this.props.propsStyle.height = this.offsetHeight - 56;
@@ -54,10 +54,10 @@ class PostEdit extends Component {
           this.props.propsStyle.height = 230;
           this.setState({
             style: {
-              transition: 'height 0.1s ease',
-              MozTransition: 'height 0.1s ease',
-              WebkitTransition: 'height 0.1s ease',
-              OTransition: 'height 0.1s ease'
+              transition: 'height 0.4s ease',
+              MozTransition: 'height 0.4s ease',
+              WebkitTransition: 'height 0.4s ease',
+              OTransition: 'height 0.4s ease'
             }
           });
           return;
