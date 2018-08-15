@@ -1,9 +1,9 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Button, Input, Select } from 'antd';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import * as styles from './PostEdit.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 const Option = Select.Option;
 const Options = [
   {
@@ -40,16 +40,20 @@ class PostEdit extends Component {
     super(props);
     this.state = {
       style: {
-
+        content: ""
       },
       isRender: false,
-      clientY: 300
+      clientY: 300,
+      text: '',
     };
     this.out = false;
     this.y = 0;
     this.h = 0;
     this.offsetHeight = 0;
     this.childHeight = 0;
+  }
+  handleChange(value) {
+    this.setState({ text: value })
   }
   componentDidMount() {
     this.offsetHeight = document.body.offsetHeight;
@@ -87,14 +91,20 @@ class PostEdit extends Component {
         }
       }
       this.props.propsStyle.height = y;
-      this.childHeight = y - 193;
+      this.childHeight = y - 107;
+      this.props.quillStyle.height = this.childHeight;
+      this.props.quillStyle.display = 'block';
+      this.props.quillStyle.transition = 'height 0s ease';
+      this.props.quillStyle.MozTransition = 'height 0s ease';
+      this.props.quillStyle.WebkitTransition = 'height 0s ease';
+      this.props.quillStyle.OTransition = 'height 0s ease';
       this.setState({
         style: {
           transition: 'height 0s ease',
           MozTransition: 'height 0s ease',
           WebkitTransition: 'height 0s ease',
           OTransition: 'height 0s ease'
-        }
+        },
       });
     }
   }
@@ -110,22 +120,27 @@ class PostEdit extends Component {
       document.onmousemove = null;
       document.onmouseup = null;
       this.out = false;
+      this.props.quillStyle = {
+        display: 'block',
+        height: this.childHeight,
+        transition: 'height 0.4s ease',
+        MozTransition: 'height 0.4s ease',
+        WebkitTransition: 'height 0.4s ease',
+        OTransition: 'height 0.4s ease'
+      };
       this.setState({
         style: {
           transition: 'height 0.4s ease',
           MozTransition: 'height 0.4s ease',
           WebkitTransition: 'height 0.4s ease',
           OTransition: 'height 0.4s ease'
-        }
+        },
       });
     }
   }
-  handleChange = () => {
-
-  }
   render() {
     const { style } = this.state;
-    const { cancelBtn, propsStyle } = this.props;
+    const { cancelBtn, propsStyle, quillStyle } = this.props;
     return (
       <div ref="editor" className="editor-div" style={{...style, ...propsStyle}}>
         <div className="grippie" onMouseDown={this.grippieDown} ></div>
@@ -148,35 +163,8 @@ class PostEdit extends Component {
           </Select>
         </div>
         <Col span={12}>
-          <Editor
-            localization={{ locale: 'zh' }}
-            toolbarClassName="toolbarClassName"
-            wrapperClassName="wrapperClassName"
-            editorClassName="editorClassName"
-            toolbar={{
-              options: ['inline', 'list', 'link', 'textAlign', 'emoji', 'image'],
-              image: { uploadCallback: this.uploadImageCallBack.bind(this), alt: { present: true, mandatory: true } },
-              inline: {
-                options: ['bold', 'italic']
-              },
-              list: {
-                options: ['unordered', 'ordered'],
-              },
-              textAlign: {
-                options: ['left', 'center', 'right'],
-              },
-              link: {
-                inDropdown: false,
-                className: undefined,
-                component: undefined,
-                popupClassName: undefined,
-                dropdownClassName: undefined,
-                showOpenOptionOnHover: true,
-                defaultTargetOption: '_self',
-                options: ['link'],
-              }
-            }}
-          />
+          <ReactQuill className="quill" style={{...quillStyle}} value={this.state.text} >
+          </ReactQuill>
         </Col>
         <Col span={12}>
           123

@@ -46,7 +46,10 @@ class Index extends Component {
     }
     this.propsStyle = {
       height: 0
-    }
+    };
+    this.quillStyle = {
+
+    };
   }
   componentDidMount() {
     const { dispatch } = this.props;
@@ -64,6 +67,14 @@ class Index extends Component {
     this.propsStyle = {
       height: 330
     }
+    this.quillStyle = {
+      display: 'block',
+      height: '160px',
+      transition: 'height 0s ease',
+      MozTransition: 'height 0s ease',
+      WebkitTransition: 'height 0s ease',
+      OTransition: 'height 0s ease'
+    };
     const { isRender } = this.state;
     this.setState({
       isRender: !isRender
@@ -176,7 +187,7 @@ class Index extends Component {
           </div>
           <Table columns={columns} dataSource={data} pagination={false} />
         </div>
-        <PostEdit cancelBtn={this.cancelBtn} propsStyle={this.propsStyle} />
+        <PostEdit cancelBtn={this.cancelBtn} propsStyle={this.propsStyle} quillStyle={this.quillStyle} />
       </div>
     );
   }
