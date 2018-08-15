@@ -78,6 +78,7 @@ class PostEdit extends Component {
             isRender: !isRender
           });
           this.props.propsStyle.height = this.offsetHeight - 56;
+          this.props.quillStyle.height = this.offsetHeight - 170 - 56;
           return;
         }
       } else {
@@ -91,7 +92,7 @@ class PostEdit extends Component {
         }
       }
       this.props.propsStyle.height = y;
-      this.childHeight = y - 107;
+      this.childHeight = y - 170;
       this.props.quillStyle.height = this.childHeight;
       this.props.quillStyle.display = 'block';
       this.props.quillStyle.transition = 'height 0s ease';
@@ -120,14 +121,12 @@ class PostEdit extends Component {
       document.onmousemove = null;
       document.onmouseup = null;
       this.out = false;
-      this.props.quillStyle = {
-        display: 'block',
-        height: this.childHeight,
-        transition: 'height 0.4s ease',
-        MozTransition: 'height 0.4s ease',
-        WebkitTransition: 'height 0.4s ease',
-        OTransition: 'height 0.4s ease'
-      };
+      this.props.quillStyle.height = this.childHeight;
+      this.props.quillStyle.display = 'block';
+      this.props.quillStyle.transition = 'height 0.4s ease';
+      this.props.quillStyle.MozTransition = 'height 0.4s ease';
+      this.props.quillStyle.WebkitTransition = 'height 0.4s ease';
+      this.props.quillStyle.OTransition = 'height 0.4s ease';
       this.setState({
         style: {
           transition: 'height 0.4s ease',
@@ -163,7 +162,7 @@ class PostEdit extends Component {
           </Select>
         </div>
         <Col span={12}>
-          <ReactQuill className="quill" style={{...quillStyle}} value={this.state.text} >
+          <ReactQuill theme="snow" className="quill" style={{...quillStyle}} value={this.state.text} >
           </ReactQuill>
         </Col>
         <Col span={12}>

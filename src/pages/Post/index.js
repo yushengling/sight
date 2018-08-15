@@ -45,10 +45,10 @@ class Index extends Component {
       isRender: false,
     }
     this.propsStyle = {
-      height: 0
+      height: '0px'
     };
     this.quillStyle = {
-
+      display: 'none'
     };
   }
   componentDidMount() {
@@ -65,8 +65,8 @@ class Index extends Component {
   }
   sendNewButton = () => {
     this.propsStyle = {
-      height: 330
-    }
+      height: '330px'
+    };
     this.quillStyle = {
       display: 'block',
       height: '160px',
@@ -82,8 +82,12 @@ class Index extends Component {
   }
   cancelBtn = () => {
     this.propsStyle = {
-      height: 0
-    }
+      height: '0px'
+    };
+    this.quillStyle = {
+      display: 'none',
+      height: '160px',
+    };
     const { isRender } = this.state;
     this.setState({
       isRender: !isRender
