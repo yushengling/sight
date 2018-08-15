@@ -45,6 +45,7 @@ class PostEdit extends Component {
       isRender: false,
       clientY: 300,
       text: '',
+      editorValue: '',
     };
     this.out = false;
     this.y = 0;
@@ -53,13 +54,10 @@ class PostEdit extends Component {
     this.childHeight = 0;
   }
   handleChange(value) {
-    this.setState({ text: value })
+    this.setState({ text: value });
   }
   componentDidMount() {
     this.offsetHeight = document.body.offsetHeight;
-  }
-  uploadImageCallBack = (file) => {
-    console.log(file);
   }
   grippieMove = () => {
     const self = this;
@@ -85,6 +83,7 @@ class PostEdit extends Component {
         y = this.h - y;
         if(propsStyle.height <= 230) {
           this.props.propsStyle.height = 230;
+          this.props.quillStyle.height = 60;
           this.setState({
             isRender: !isRender
           });
@@ -93,6 +92,9 @@ class PostEdit extends Component {
       }
       this.props.propsStyle.height = y;
       this.childHeight = y - 170;
+      if(this.childHeight <= 60) {
+        this.childHeight = 60; 
+      }
       this.props.quillStyle.height = this.childHeight;
       this.props.quillStyle.display = 'block';
       this.props.quillStyle.transition = 'height 0s ease';
@@ -109,6 +111,11 @@ class PostEdit extends Component {
       });
     }
   }
+  editorChange = (content, delta, source, editor) => {
+    this.setState({
+      editorValue: content,
+    });
+  }
   grippieDown = (e) => {
     this.out = true;
     this.y = e.clientY;
@@ -121,6 +128,9 @@ class PostEdit extends Component {
       document.onmousemove = null;
       document.onmouseup = null;
       this.out = false;
+      if(this.childHeight === 0) {
+        this.childHeight = 160;
+      }
       this.props.quillStyle.height = this.childHeight;
       this.props.quillStyle.display = 'block';
       this.props.quillStyle.transition = 'height 0.4s ease';
@@ -138,8 +148,30 @@ class PostEdit extends Component {
     }
   }
   render() {
-    const { style } = this.state;
+    const { style, text, editorValue } = this.state;
     const { cancelBtn, propsStyle, quillStyle } = this.props;
+    let modules = {
+      toolbar: [
+        [{ 'header': [1, 2, false] }],
+        ['bold', 'blockquote'],
+        [{'list': 'ordered'}, {'list': 'bullet'}],
+        ['link', 'image']
+      ],
+    };
+    let formats = [
+      'header',
+      'bold', 'blockquote',
+      'list', 'bullet',
+      'link', 'image'
+    ];
+    let textareaStyle = JSON.parse(JSON.stringify(quillStyle));
+    if(quillStyle.height) {
+      textareaStyle.height = textareaStyle.height + 44;
+      quillStyle.height = quillStyle.height;
+    }
+    if(propsStyle.height) {
+      propsStyle.height = propsStyle.height;
+    }
     return (
       <div ref="editor" className="editor-div" style={{...style, ...propsStyle}}>
         <div className="grippie" onMouseDown={this.grippieDown} ></div>
@@ -161,13 +193,28 @@ class PostEdit extends Component {
             }
           </Select>
         </div>
-        <Col span={12}>
-          <ReactQuill theme="snow" className="quill" style={{...quillStyle}} value={this.state.text} >
-          </ReactQuill>
-        </Col>
-        <Col span={12}>
-          123
-        </Col>
+        <div className="editor-col">
+          <div className="editor-col-div">
+            <ReactQuill
+              className="editor-quill"
+              style={{...quillStyle}}
+              value={editorValue}
+              onChange={this.editorChange}
+              modules={modules}
+              formats={formats}
+            >
+            </ReactQuill>
+          </div>
+          <div className="editor-col-div">
+            <div
+              className="monitor"
+              style={{...textareaStyle}}
+              disabled="disabled"
+              readOnly="readonly"
+              dangerouslySetInnerHTML={{__html: editorValue}}
+            />
+          </div>
+        </div>
       </div>
     );
   }
