@@ -1,10 +1,10 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Table, Icon, Divider, Button, Select } from 'antd';
+import { Table, Icon, Divider, Button, Select, Modal } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead';
 import LayoutFooter from './../../components/Layout/LayoutFooter';
 import PostEdit from './../../components/Post/PostEdit';
-import { getAvatarA } from './../../actions/PostAction';
+import { getAvatarA, getPostDatasA } from './../../actions/PostAction';
 import * as styles from './index.css';
 const Option = Select.Option;
 const Options = [
@@ -53,7 +53,7 @@ class Index extends Component {
   }
   componentDidMount() {
     const { dispatch } = this.props;
-    getAvatarA(dispatch);
+    getAvatarA(dispatch, 10);
   }
   handleChange = () => {
     console.log(`selected ${value}`);
@@ -80,7 +80,28 @@ class Index extends Component {
       isRender: !isRender
     });
   }
+  getPostDatas = () => {
+    const { dispatch } = this.props;
+    getPostDatasA(dispatch, 10);
+  }
   cancelBtn = () => {
+    const { postRedu: { inputThemeValue } } = this.props;
+    if(inputThemeValue) {
+      Modal.confirm({
+        title: '您确定要放弃编辑过的帖子吗？',
+        content: '',
+        iconType: 'info-circle',
+        okText: '确认',
+        cancelText: '取消',
+        onOk: () => {
+          this.cancelFun();
+        }
+      });
+      return;
+    }
+    this.cancelFun();
+  }
+  cancelFun = () => {
     this.propsStyle = {
       height: 0
     };
@@ -93,15 +114,13 @@ class Index extends Component {
     });
   }
   render() {
-    const { history, postRedu } = this.props;
-    const { userName, avatar, buttons } = postRedu;
+    const { history, postRedu: { userName, avatar, buttons, lists } } = this.props;
     const { type } = this.state;
     const columns = [{
       title: '主题',
       dataIndex: 'theme',
       key: 'theme',
-      width: '45%',
-      render: text => <a href="javascript:;">{text}</a>
+      width: '45%'
     }, {
       title: '分类',
       dataIndex: 'classification',
@@ -122,36 +141,6 @@ class Index extends Component {
       dataIndex: 'browse',
       key: 'browse',
       width: '10%'
-    }, {
-      title: '活动',
-      dataIndex: 'activity',
-      key: 'activity',
-      width: '15%'
-    }];
-    const data = [{
-      key: '1',
-      theme: 'biblibilbi',
-      classification: '分享',
-      user: 32,
-      reply: '3',
-      browse: 'aaa',
-      activity: '30分钟'
-    }, {
-      key: '2',
-      theme: 'zzzz',
-      classification: '摄影',
-      user: 32,
-      reply: '5',
-      browse: 'aaa',
-      activity: '30分钟'
-    }, {
-      key: '3',
-      theme: 'lalala',
-      classification: '人文',
-      user: 32,
-      reply: '6',
-      browse: 'aaa',
-      activity: '30分钟'
     }];
     return (
       <div>
@@ -188,9 +177,14 @@ class Index extends Component {
             </div>
             <Button type="primary" icon="plus" style={{ borderRadius: '0' }} onClick={this.sendNewButton} >发新主题</Button>
           </div>
-          <Table columns={columns} dataSource={data} pagination={false} />
+          <Table columns={columns} dataSource={lists} pagination={false} />
         </div>
-        <PostEdit cancelBtn={this.cancelBtn} propsStyle={this.propsStyle} quillStyle={this.quillStyle} />
+        <PostEdit
+          cancelBtn={this.cancelBtn}
+          propsStyle={this.propsStyle}
+          quillStyle={this.quillStyle}
+          getPostDatas={this.getPostDatas}
+        />
       </div>
     );
   }

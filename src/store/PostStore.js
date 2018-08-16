@@ -14,6 +14,8 @@ export const initialState = {
     }
   ],
   editorSelectValue: 'unclassified',
-  inputTitleValue: '',
-  code: 0
+  inputThemeValue: '',
+  code: 0,
+  lists: [],
+  total: 0
 };

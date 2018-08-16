@@ -4,7 +4,7 @@ import { initialState } from './../store/PostStore';
 const postRedu = (state = initialState, action) => {
   switch(action.type) {
     case 'POSTREDU':
-      return Object.assign({}, state, action.data);
+      return Object.assign({}, state, action.data, action.lists);
     break;
     case 'THEMEREDU': 
       return Object.assign({}, state, action.data);

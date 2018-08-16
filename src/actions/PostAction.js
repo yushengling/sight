@@ -1,7 +1,15 @@
-const getAvatarA = (dispatch) => {
+const getAvatarA = (dispatch, count) => {
   dispatch({
-    type: 'GETPOSTAVATAR_SAGA'
+    type: 'GETPOSTAVATAR_SAGA',
+    count
   });
+}
+
+const getPostDatasA = (dispatch, count) => {
+  dispatch({
+    type: 'GETPOSTDATAS_SAGA',
+    count
+  }); 
 }
 
 const createTheme = (dispatch, datas) => {
@@ -19,10 +27,10 @@ const saveSelectValue = (dispatch, editorSelectValue, postRedu) => {
   }); 
 }
 
-const saveInputTitleValue = (dispatch, inputTitleValue, postRedu) => {
+const saveinputThemeValue = (dispatch, inputThemeValue, postRedu) => {
   dispatch({
-    type: 'UPDATEINPUTTITLE_SAGA',
-    inputTitleValue,
+    type: 'UPDATEINPUTTHEME_SAGA',
+    inputThemeValue,
     postRedu
   }); 
 }
@@ -33,4 +41,11 @@ const clearCode = (dispatch, postRedu) => {
     postRedu
   });
 }
-export { getAvatarA, createTheme, saveSelectValue, saveInputTitleValue, clearCode };
+export { 
+  getAvatarA,
+  createTheme,
+  saveSelectValue,
+  saveinputThemeValue,
+  clearCode,
+  getPostDatasA
+};

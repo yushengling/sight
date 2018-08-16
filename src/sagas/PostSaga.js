@@ -1,13 +1,23 @@
 import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
 
-import { fetchAvatar, fetchCreateTheme } from '../servers/post';
+import { fetchAvatar, fetchCreateTheme, fetchGetPost } from '../servers/post';
 
 function* fetchAvatarFun(action) {
   let data = yield call(fetchAvatar);
+  let lists = yield call(fetchGetPost, action.count);
   yield put({
     type: 'POSTREDU',
-    data
+    data,
+    lists
   });
+}
+
+function* fetchPostDatasFun(action) {
+  let lists = yield call(fetchGetPost, action.count);
+  yield put({
+    type: 'POSTREDU',
+    lists
+  }); 
 }
 
 function* fetchCreateThemeFun(action) {
@@ -28,10 +38,10 @@ function* fetchUpdateSelectFun(action) {
   });
 }
 
-function* fetchUpdateInputTitleFun(action) {
-  let inputTitleValue = action.inputTitleValue;
+function* fetchUpdateInputThemeFun(action) {
+  let inputThemeValue = action.inputThemeValue;
   let postRedu = action.postRedu;
-  postRedu.inputTitleValue = inputTitleValue;
+  postRedu.inputThemeValue = inputThemeValue;
   yield put({
     type: 'UPDATEREDU',
     postRedu
@@ -40,6 +50,7 @@ function* fetchUpdateInputTitleFun(action) {
 
 function* fetchClearCodeFun(action) {
   action.postRedu.code = 0;
+  action.postRedu.inputThemeValue = '';
   let postRedu = action.postRedu;
   yield put({
     type: 'CLEARREDU',
@@ -51,8 +62,9 @@ function* postSaga() {
   yield takeLatest('GETPOSTAVATAR_SAGA', fetchAvatarFun);
   yield takeLatest('CREATETHEME_SAGA', fetchCreateThemeFun);
   yield takeLatest('UPDATESELECT_SAGA', fetchUpdateSelectFun);
-  yield takeLatest('UPDATEINPUTTITLE_SAGA', fetchUpdateInputTitleFun);
+  yield takeLatest('UPDATEINPUTTHEME_SAGA', fetchUpdateInputThemeFun);
   yield takeLatest('CLEARCODE_SAGA', fetchClearCodeFun);
+  yield takeLatest('GETPOSTDATAS_SAGA', fetchPostDatasFun);
 }
 
 export default postSaga;

@@ -4,7 +4,7 @@ import { Row, Col, Button, Input, Select, message } from 'antd';
 import * as styles from './PostEdit.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { createTheme, saveSelectValue, saveInputTitleValue, clearCode } from './../../actions/PostAction';
+import { createTheme, saveSelectValue, saveinputThemeValue, clearCode } from './../../actions/PostAction';
 const Option = Select.Option;
 const Options = [
   {
@@ -37,7 +37,7 @@ class PostEdit extends Component {
     super(props);
     this.state = {
       style: {
-        content: ""
+        
       },
       isRender: false,
       clientY: 300,
@@ -54,13 +54,14 @@ class PostEdit extends Component {
     this.offsetHeight = document.body.offsetHeight;
   }
   componentDidUpdate() {
-    const { dispatch, postRedu: { code }, postRedu, cancelBtn } = this.props;
+    const { dispatch, postRedu: { code }, postRedu, cancelBtn, getPostDatas } = this.props;
     switch(code) {
       case 200:
         message.success('创建主题成功！');
         clearCode(dispatch, postRedu);
         setTimeout(() => {
           cancelBtn();
+          getPostDatas();
         }, 200);
       break;
       case 500:
@@ -77,12 +78,12 @@ class PostEdit extends Component {
     const { dispatch, postRedu } = this.props;
     saveSelectValue(dispatch, value, postRedu);
   }
-  inputTitleChange = (e) => {
+  inputThemeChange = (e) => {
     const { dispatch, postRedu } = this.props;
-    saveInputTitleValue(dispatch, e.target.value, postRedu);
+    saveinputThemeValue(dispatch, e.target.value, postRedu);
   }
   crateTheme = () => {
-    const { postRedu: { editorSelectValue, inputTitleValue }, dispatch } = this.props;
+    const { postRedu: { editorSelectValue, inputThemeValue }, dispatch } = this.props;
     if(!editorSelectValue) {
       message.info('请输入标题！');
       return;
@@ -90,7 +91,7 @@ class PostEdit extends Component {
     const { editorValue } = this.state;
     let datas = {};
     datas.editorSelectValue = editorSelectValue;
-    datas.inputTitleValue = inputTitleValue;
+    datas.inputThemeValue = inputThemeValue;
     datas.editorValue = editorValue;
     createTheme(dispatch, datas);
   }
@@ -184,7 +185,7 @@ class PostEdit extends Component {
   }
   render() {
     const { style, text, editorValue } = this.state;
-    const { cancelBtn, propsStyle, quillStyle, postRedu: { editorSelectValue, inputTitleValue, code }  } = this.props;
+    const { cancelBtn, propsStyle, quillStyle, postRedu: { editorSelectValue, inputThemeValue, code }  } = this.props;
     let modules = {
       toolbar: [
         [{ 'header': [1, 2, false] }],
@@ -222,7 +223,7 @@ class PostEdit extends Component {
           <a className="editor-cancel" onClick={cancelBtn}>取消</a>
         </div>
         <div>
-          <Input className="title-input" placeholder="输入标题" onChange={this.inputTitleChange} />
+          <Input className="title-input" placeholder="输入标题" onChange={this.inputThemeChange} />
           <Select
             defaultValue="未分类"
             style={{ width: '20%', marginLeft: '30px' }}

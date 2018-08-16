@@ -18,3 +18,12 @@ export function fetchCreateTheme(params) {
     }
   });
 }
+
+export function fetchGetPost(count) {
+  return request({
+    method: `post?count=${count}`,
+    options: {
+      method: 'GET'
+    }
+  }); 
+}
