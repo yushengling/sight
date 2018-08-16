@@ -34,7 +34,7 @@ class Index extends Component {
   }
   componentDidMount() {
     const { dispatch } = this.props;
-    getData(dispatch, 24);
+    getData(dispatch, 16);
   }
   handleInfiniteOnLoad = (page) => {
     const { dispatch, homeRedu } = this.props;

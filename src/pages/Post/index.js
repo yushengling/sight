@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Table, Icon, Divider, Button, Select, Modal } from 'antd';
+import { Table, Icon, Divider, Button, Select } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead';
 import LayoutFooter from './../../components/Layout/LayoutFooter';
 import PostEdit from './../../components/Post/PostEdit';
@@ -43,6 +43,7 @@ class Index extends Component {
     this.state = {
       type: 'new',
       isRender: false,
+      isShow: false,
     }
     this.propsStyle = {
       height: 0
@@ -55,7 +56,7 @@ class Index extends Component {
     const { dispatch } = this.props;
     getAvatarA(dispatch, 10);
   }
-  handleChange = () => {
+  handleChange = (value) => {
     console.log(`selected ${value}`);
   }
   statusSwitch = (type) => {
@@ -77,7 +78,8 @@ class Index extends Component {
     };
     const { isRender } = this.state;
     this.setState({
-      isRender: !isRender
+      isRender: !isRender,
+      isShow: true,
     });
   }
   getPostDatas = () => {
@@ -85,23 +87,6 @@ class Index extends Component {
     getPostDatasA(dispatch, 10);
   }
   cancelBtn = () => {
-    const { postRedu: { inputThemeValue } } = this.props;
-    if(inputThemeValue) {
-      Modal.confirm({
-        title: '您确定要放弃编辑过的帖子吗？',
-        content: '',
-        iconType: 'info-circle',
-        okText: '确认',
-        cancelText: '取消',
-        onOk: () => {
-          this.cancelFun();
-        }
-      });
-      return;
-    }
-    this.cancelFun();
-  }
-  cancelFun = () => {
     this.propsStyle = {
       height: 0
     };
@@ -110,12 +95,13 @@ class Index extends Component {
     };
     const { isRender } = this.state;
     this.setState({
-      isRender: !isRender
+      isRender: !isRender,
+      isShow: false,
     });
   }
   render() {
     const { history, postRedu: { userName, avatar, buttons, lists } } = this.props;
-    const { type } = this.state;
+    const { type, isShow } = this.state;
     const columns = [{
       title: '主题',
       dataIndex: 'theme',
@@ -184,6 +170,7 @@ class Index extends Component {
           propsStyle={this.propsStyle}
           quillStyle={this.quillStyle}
           getPostDatas={this.getPostDatas}
+          isShow={isShow}
         />
       </div>
     );

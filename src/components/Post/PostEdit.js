@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Row, Col, Button, Input, Select, message } from 'antd';
+import { Row, Col, Button, Input, Select, message, Modal } from 'antd';
 import * as styles from './PostEdit.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -37,7 +37,7 @@ class PostEdit extends Component {
     super(props);
     this.state = {
       style: {
-        
+
       },
       isRender: false,
       clientY: 300,
@@ -57,6 +57,7 @@ class PostEdit extends Component {
     const { dispatch, postRedu: { code }, postRedu, cancelBtn, getPostDatas } = this.props;
     switch(code) {
       case 200:
+        this.state.editorValue = '';
         message.success('创建主题成功！');
         clearCode(dispatch, postRedu);
         setTimeout(() => {
@@ -84,11 +85,15 @@ class PostEdit extends Component {
   }
   crateTheme = () => {
     const { postRedu: { editorSelectValue, inputThemeValue }, dispatch } = this.props;
-    if(!editorSelectValue) {
+    const { editorValue } = this.state;
+    if(!inputThemeValue) {
       message.info('请输入标题！');
       return;
     }
-    const { editorValue } = this.state;
+    if(!editorValue) {
+      message.info('请输入内容！');
+      return;
+    }
     let datas = {};
     datas.editorSelectValue = editorSelectValue;
     datas.inputThemeValue = inputThemeValue;
@@ -183,9 +188,28 @@ class PostEdit extends Component {
       });
     }
   }
+  childCancelBtn = () => {
+    const { postRedu: { inputThemeValue }, dispatch, postRedu, cancelBtn } = this.props;
+    if(inputThemeValue) {
+      Modal.confirm({
+        title: '您确定要放弃编辑过的帖子吗？',
+        content: '',
+        iconType: 'info-circle',
+        okText: '确认',
+        cancelText: '取消',
+        onOk: () => {
+          this.state.editorValue = '';
+          clearCode(dispatch, postRedu);
+          cancelBtn();
+        }
+      });
+    } else {
+      cancelBtn();
+    }
+  }
   render() {
     const { style, text, editorValue } = this.state;
-    const { cancelBtn, propsStyle, quillStyle, postRedu: { editorSelectValue, inputThemeValue, code }  } = this.props;
+    const { cancelBtn, propsStyle, quillStyle, postRedu: { editorSelectValue, inputThemeValue, code }, isShow  } = this.props;
     let modules = {
       toolbar: [
         [{ 'header': [1, 2, false] }],
@@ -216,47 +240,52 @@ class PostEdit extends Component {
       propsStyle.height = propsStyle.height;
     }
     return (
-      <div ref="editor" className="editor-div" style={{...style, ...propsStyle}}>
-        <div className="grippie" onMouseDown={this.grippieDown} ></div>
-        <div>
-          <Button type="primary" icon="plus" style={{ borderRadius: '0' }} onClick={this.crateTheme} >创建主题</Button>
-          <a className="editor-cancel" onClick={cancelBtn}>取消</a>
-        </div>
-        <div>
-          <Input className="title-input" placeholder="输入标题" onChange={this.inputThemeChange} />
-          <Select
-            defaultValue="未分类"
-            style={{ width: '20%', marginLeft: '30px' }}
-            onChange={this.handleChange}
-          >
-            {
-              Options.map((list, key) => 
-                <Option value={list.value} key={key}>{list.name}</Option>
-              )
-            }
-          </Select>
-        </div>
-        <div className="editor-col">
-          <div className="editor-col-div">
-            <ReactQuill
-              className="editor-quill"
-              style={{...quillStyle}}
-              value={editorValue}
-              onChange={this.editorChange}
-              modules={modules}
+      <div>
+        {
+          isShow ? <div ref="editor" className="editor-div" style={{...style, ...propsStyle}}>
+          <div className="grippie" onMouseDown={this.grippieDown} ></div>
+          <div>
+            <Button type="primary" icon="plus" style={{ borderRadius: '0' }} onClick={this.crateTheme} >创建主题</Button>
+            <a className="editor-cancel" onClick={this.childCancelBtn}>取消</a>
+          </div>
+          <div>
+            <Input className="title-input" placeholder="输入标题" onChange={this.inputThemeChange} value={inputThemeValue} />
+            <Select
+              defaultValue="未分类"
+              value={editorSelectValue}
+              style={{ width: '20%', marginLeft: '30px' }}
+              onChange={this.handleChange}
             >
-            </ReactQuill>
+              {
+                Options.map((list, key) => 
+                  <Option value={list.value} key={key}>{list.name}</Option>
+                )
+              }
+            </Select>
           </div>
-          <div className="editor-col-div">
-            <div
-              className="monitor"
-              style={{...textareaStyle}}
-              disabled="disabled"
-              readOnly="readonly"
-              dangerouslySetInnerHTML={{__html: editorValue}}
-            />
+          <div className="editor-col">
+            <div className="editor-col-div">
+              <ReactQuill
+                className="editor-quill"
+                style={{...quillStyle}}
+                value={editorValue}
+                onChange={this.editorChange}
+                modules={modules}
+              >
+              </ReactQuill>
+            </div>
+            <div className="editor-col-div">
+              <div
+                className="monitor"
+                style={{...textareaStyle}}
+                disabled="disabled"
+                readOnly="readonly"
+                dangerouslySetInnerHTML={{__html: editorValue}}
+              />
+            </div>
           </div>
-        </div>
+        </div> : ""
+        }
       </div>
     );
   }
