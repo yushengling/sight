@@ -47,10 +47,38 @@ module.exports = {
       }
     ]
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          chunks: 'initial',
+          name: 'common/vendor', 
+          priority: 10
+        },
+        utils: {
+          test: /\.js$/,
+          chunks: 'initial',
+          name: 'common/utils',
+          minSize: 0
+        }
+      }
+    }
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'sight',
-      template: 'public/index.html'
+      template: 'public/index.html',
+      removeComments: true,
+      collapseWhitespace: true,
+      removeRedundantAttributes: true,
+      useShortDoctype: true,
+      removeEmptyAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      keepClosingSlash: true,
+      minifyJS: true,
+      minifyCSS: true,
+      minifyURLs: true
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
