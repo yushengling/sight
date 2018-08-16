@@ -12,5 +12,8 @@ export const initialState = {
       type: 'unread',
       total: 0
     }
-  ]
+  ],
+  editorSelectValue: 'unclassified',
+  inputTitleValue: '',
+  code: 0
 };

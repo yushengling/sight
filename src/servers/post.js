@@ -8,3 +8,13 @@ export function fetchAvatar() {
     }
   });
 }
+
+export function fetchCreateTheme(params) {
+  return request({
+    method: 'createTheme',
+    options: {
+      method: 'POST',
+      body: params,
+    }
+  });
+}

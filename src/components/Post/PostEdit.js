@@ -1,15 +1,12 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Row, Col, Button, Input, Select } from 'antd';
+import { Row, Col, Button, Input, Select, message } from 'antd';
 import * as styles from './PostEdit.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { createTheme, saveSelectValue, saveInputTitleValue, clearCode } from './../../actions/PostAction';
 const Option = Select.Option;
 const Options = [
-  {
-    name:'全部',
-    value: 'all'
-  },
   {
     name:'人物',
     value: 'character'
@@ -53,11 +50,49 @@ class PostEdit extends Component {
     this.offsetHeight = 0;
     this.childHeight = 0;
   }
-  handleChange(value) {
-    this.setState({ text: value });
-  }
   componentDidMount() {
     this.offsetHeight = document.body.offsetHeight;
+  }
+  componentDidUpdate() {
+    const { dispatch, postRedu: { code }, postRedu, cancelBtn } = this.props;
+    switch(code) {
+      case 200:
+        message.success('创建主题成功！');
+        clearCode(dispatch, postRedu);
+        setTimeout(() => {
+          cancelBtn();
+        }, 200);
+      break;
+      case 500:
+        clearCode(dispatch, postRedu);
+        message.error('创建主题发生错误');
+      break;
+      case 404:
+        clearCode(dispatch, postRedu);
+        message.info('请登录之后，再发表主题');
+      break;
+    }
+  }
+  handleChange = (value) => {
+    const { dispatch, postRedu } = this.props;
+    saveSelectValue(dispatch, value, postRedu);
+  }
+  inputTitleChange = (e) => {
+    const { dispatch, postRedu } = this.props;
+    saveInputTitleValue(dispatch, e.target.value, postRedu);
+  }
+  crateTheme = () => {
+    const { postRedu: { editorSelectValue, inputTitleValue }, dispatch } = this.props;
+    if(!editorSelectValue) {
+      message.info('请输入标题！');
+      return;
+    }
+    const { editorValue } = this.state;
+    let datas = {};
+    datas.editorSelectValue = editorSelectValue;
+    datas.inputTitleValue = inputTitleValue;
+    datas.editorValue = editorValue;
+    createTheme(dispatch, datas);
   }
   grippieMove = () => {
     const self = this;
@@ -149,21 +184,28 @@ class PostEdit extends Component {
   }
   render() {
     const { style, text, editorValue } = this.state;
-    const { cancelBtn, propsStyle, quillStyle } = this.props;
+    const { cancelBtn, propsStyle, quillStyle, postRedu: { editorSelectValue, inputTitleValue, code }  } = this.props;
     let modules = {
+      toolbar: [
+        [{ 'header': [1, 2, false] }],
+        ['bold', 'blockquote'],
+        [{'list': 'ordered'}, {'list': 'bullet'}]
+      ],
+    };
+    /*let modules = {
       toolbar: [
         [{ 'header': [1, 2, false] }],
         ['bold', 'blockquote'],
         [{'list': 'ordered'}, {'list': 'bullet'}],
         ['link', 'image']
       ],
-    };
-    let formats = [
+    };*/
+    /*let formats = [
       'header',
       'bold', 'blockquote',
       'list', 'bullet',
       'link', 'image'
-    ];
+    ];*/
     let textareaStyle = JSON.parse(JSON.stringify(quillStyle));
     if(quillStyle.height) {
       textareaStyle.height = textareaStyle.height + 44;
@@ -176,11 +218,11 @@ class PostEdit extends Component {
       <div ref="editor" className="editor-div" style={{...style, ...propsStyle}}>
         <div className="grippie" onMouseDown={this.grippieDown} ></div>
         <div>
-          <Button type="primary" icon="plus" style={{ borderRadius: '0' }} >创建主题</Button>
+          <Button type="primary" icon="plus" style={{ borderRadius: '0' }} onClick={this.crateTheme} >创建主题</Button>
           <a className="editor-cancel" onClick={cancelBtn}>取消</a>
         </div>
         <div>
-          <Input className="title-input" placeholder="输入标题" />
+          <Input className="title-input" placeholder="输入标题" onChange={this.inputTitleChange} />
           <Select
             defaultValue="未分类"
             style={{ width: '20%', marginLeft: '30px' }}
@@ -201,7 +243,6 @@ class PostEdit extends Component {
               value={editorValue}
               onChange={this.editorChange}
               modules={modules}
-              formats={formats}
             >
             </ReactQuill>
           </div>

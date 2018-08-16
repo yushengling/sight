@@ -6,6 +6,12 @@ const postRedu = (state = initialState, action) => {
     case 'POSTREDU':
       return Object.assign({}, state, action.data);
     break;
+    case 'THEMEREDU': 
+      return Object.assign({}, state, action.data);
+    case 'UPDATEREDU':
+      return Object.assign({}, state, action.postRedu);
+    case 'CLEARREDU':
+      return Object.assign({}, state, action.postRedu);
     default:
       return state;
   }
