@@ -35,10 +35,11 @@ const saveinputThemeValue = (dispatch, inputThemeValue, postRedu) => {
   }); 
 }
 
-const clearCode = (dispatch, postRedu) => {
+const clearCode = (dispatch, postRedu, style) => {
   dispatch({
     type: 'CLEARCODE_SAGA',
-    postRedu
+    postRedu,
+    style
   });
 }
 export { 

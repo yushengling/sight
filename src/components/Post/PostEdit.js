@@ -59,18 +59,18 @@ class PostEdit extends Component {
       case 200:
         this.state.editorValue = '';
         message.success('创建主题成功！');
-        clearCode(dispatch, postRedu);
+        clearCode(dispatch, postRedu, 1);
         setTimeout(() => {
           cancelBtn();
           getPostDatas();
         }, 200);
       break;
       case 500:
-        clearCode(dispatch, postRedu);
+        clearCode(dispatch, postRedu, 2);
         message.error('创建主题发生错误');
       break;
       case 404:
-        clearCode(dispatch, postRedu);
+        clearCode(dispatch, postRedu, 2);
         message.info('请登录之后，再发表主题');
       break;
     }
@@ -190,7 +190,8 @@ class PostEdit extends Component {
   }
   childCancelBtn = () => {
     const { postRedu: { inputThemeValue }, dispatch, postRedu, cancelBtn } = this.props;
-    if(inputThemeValue) {
+    const { editorValue } = this.state;
+    if(inputThemeValue || editorValue) {
       Modal.confirm({
         title: '您确定要放弃编辑过的帖子吗？',
         content: '',
@@ -199,11 +200,16 @@ class PostEdit extends Component {
         cancelText: '取消',
         onOk: () => {
           this.state.editorValue = '';
-          clearCode(dispatch, postRedu);
+          clearCode(dispatch, postRedu, 1);
           cancelBtn();
+        },
+        onCancel: () => {
+
         }
       });
     } else {
+      this.state.editorValue = '';
+      clearCode(dispatch, postRedu, 1);
       cancelBtn();
     }
   }
@@ -213,7 +219,7 @@ class PostEdit extends Component {
     let modules = {
       toolbar: [
         [{ 'header': [1, 2, false] }],
-        ['bold', 'blockquote'],
+        ['bold'],
         [{'list': 'ordered'}, {'list': 'bullet'}]
       ],
     };

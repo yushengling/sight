@@ -49,9 +49,13 @@ function* fetchUpdateInputThemeFun(action) {
 }
 
 function* fetchClearCodeFun(action) {
-  action.postRedu.code = 0;
-  action.postRedu.inputThemeValue = '';
-  action.postRedu.editorSelectValue = 'unclassified';
+  if(action.style === 2) {
+    action.postRedu.code = 0;
+  } else {
+    action.postRedu.code = 0;
+    action.postRedu.inputThemeValue = '';
+    action.postRedu.editorSelectValue = 'unclassified';
+  }
   let postRedu = action.postRedu;
   yield put({
     type: 'CLEARREDU',
