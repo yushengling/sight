@@ -215,7 +215,7 @@ class PostEdit extends Component {
   }
   render() {
     const { style, text, editorValue } = this.state;
-    const { cancelBtn, propsStyle, quillStyle, postRedu: { editorSelectValue, inputThemeValue, code }, isShow  } = this.props;
+    const { cancelBtn, propsStyle, quillStyle, postRedu: { editorSelectValue, inputThemeValue, code, count }, isShow  } = this.props;
     let modules = {
       toolbar: [
         [{ 'header': [1, 2, false] }],
@@ -223,20 +223,6 @@ class PostEdit extends Component {
         [{'list': 'ordered'}, {'list': 'bullet'}]
       ],
     };
-    /*let modules = {
-      toolbar: [
-        [{ 'header': [1, 2, false] }],
-        ['bold', 'blockquote'],
-        [{'list': 'ordered'}, {'list': 'bullet'}],
-        ['link', 'image']
-      ],
-    };*/
-    /*let formats = [
-      'header',
-      'bold', 'blockquote',
-      'list', 'bullet',
-      'link', 'image'
-    ];*/
     let textareaStyle = JSON.parse(JSON.stringify(quillStyle));
     if(quillStyle.height) {
       textareaStyle.height = textareaStyle.height + 44;

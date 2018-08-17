@@ -17,5 +17,6 @@ export const initialState = {
   inputThemeValue: '',
   code: 0,
   lists: [],
+  count: 30,
   total: 0
 };

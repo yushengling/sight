@@ -1,10 +1,11 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
-import { Table, Icon, Divider, Button, Select } from 'antd';
+import { Table, Icon, Divider, Button, Select, Spin } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead';
 import LayoutFooter from './../../components/Layout/LayoutFooter';
 import PostEdit from './../../components/Post/PostEdit';
 import { getAvatarA, getPostDatasA } from './../../actions/PostAction';
+import InfiniteScroll from 'react-infinite-scroller';
 import * as styles from './index.css';
 const Option = Select.Option;
 const Options = [
@@ -44,7 +45,9 @@ class Index extends Component {
       type: 'new',
       isRender: false,
       isShow: false,
-    }
+      loading: false,
+      hasMore: true,
+    };
     this.propsStyle = {
       height: 0
     };
@@ -53,8 +56,8 @@ class Index extends Component {
     };
   }
   componentDidMount() {
-    const { dispatch } = this.props;
-    getAvatarA(dispatch, 10);
+    const { dispatch, postRedu: { count } } = this.props;
+    getAvatarA(dispatch, count);
   }
   handleChange = (value) => {
     console.log(`selected ${value}`);
@@ -64,6 +67,22 @@ class Index extends Component {
       type
     });
   }
+  handleInfiniteOnLoad = (page) => {
+    const { dispatch, postRedu: { total, count } } = this.props;
+    if(total[0]['count(*)'] > count) {
+      this.setState({
+        loading: true,
+      });
+      setTimeout(() => {
+        getPostDatasA(dispatch, count + 30);
+      },500);
+      setTimeout(() => {
+        this.setState({
+          loading: false,
+        });
+      },700);
+    }
+  };
   sendNewButton = () => {
     this.propsStyle = {
       height: 330
@@ -83,8 +102,8 @@ class Index extends Component {
     });
   }
   getPostDatas = () => {
-    const { dispatch } = this.props;
-    getPostDatasA(dispatch, 10);
+    const { dispatch, postRedu: { count } } = this.props;
+    getPostDatasA(dispatch, count);
   }
   cancelBtn = () => {
     this.propsStyle = {
@@ -100,8 +119,8 @@ class Index extends Component {
     });
   }
   render() {
-    const { history, postRedu: { userName, avatar, buttons, lists } } = this.props;
-    const { type, isShow } = this.state;
+    const { history, postRedu: { userName, avatar, buttons, lists, count } } = this.props;
+    const { type, isShow, loading, hasMore } = this.state;
     const columns = [{
       title: '主题',
       dataIndex: 'theme',
@@ -128,6 +147,9 @@ class Index extends Component {
       key: 'browse',
       width: '10%'
     }];
+    let datas = {};
+    console.log(count);
+    ({ datas: datas.initialLoad = false, datas: datas.pageStart = 0, datas: datas.loadMore = this.handleInfiniteOnLoad, datas: datas.hasMore = !loading && hasMore, datas: datas.useWindow = true, datas: datas.threshold = 10, datas: datas.style = { maxHeight: '100%' } } = {});
     return (
       <div>
         <LayoutHead 
@@ -163,7 +185,12 @@ class Index extends Component {
             </div>
             <Button type="primary" icon="plus" style={{ borderRadius: '0' }} onClick={this.sendNewButton} >发新主题</Button>
           </div>
-          <Table columns={columns} dataSource={lists} pagination={false} />
+          <InfiniteScroll
+            {...datas}
+          >
+            <Table columns={columns} dataSource={lists} pagination={false} />
+            { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
+          </InfiniteScroll>
         </div>
         <PostEdit
           cancelBtn={this.cancelBtn}

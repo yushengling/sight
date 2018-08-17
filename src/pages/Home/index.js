@@ -37,14 +37,13 @@ class Index extends Component {
     getData(dispatch, 16);
   }
   handleInfiniteOnLoad = (page) => {
-    const { dispatch, homeRedu } = this.props;
-    const { count, total } = homeRedu;
+    const { dispatch, homeRedu: { count, total } } = this.props;
     if(total[0]['count(*)'] > count) {
       this.setState({
         loading: true,
       });
       setTimeout(() => {
-        getData(dispatch,count + 24);
+        getData(dispatch, count + 24);
       },500);
       setTimeout(() => {
         this.setState({
@@ -88,13 +87,7 @@ class Index extends Component {
     const { listData, count, userName, avatar } = homeRedu;
     let clientWidth = document.body.clientWidth;
     let datas = {}, style = {};
-    datas.initialLoad = false;
-    datas.pageStart = 0;
-    datas.loadMore = this.handleInfiniteOnLoad;
-    datas.hasMore = !loading && hasMore;
-    datas.useWindow = true;
-    datas.threshold = 10;
-    datas.style = { maxHeight: '100%' };
+    ({ datas: datas.initialLoad = false, datas: datas.pageStart = 0, datas: datas.loadMore = this.handleInfiniteOnLoad, datas: datas.hasMore = !loading && hasMore, datas: datas.useWindow = true, datas: datas.threshold = 10, datas: datas.style = { maxHeight: '100%' } } = {});
     return (
       <div style={{ position: 'relative' }}>
         <LayoutHead 
