@@ -56,11 +56,12 @@ class Index extends Component {
     };
   }
   componentDidMount() {
-    const { dispatch, postRedu: { count } } = this.props;
-    getAvatarA(dispatch, count);
+    const { dispatch, postRedu: { count, selectValue } } = this.props;
+    getAvatarA(dispatch, count, selectValue);
   }
   handleChange = (value) => {
-    console.log(`selected ${value}`);
+    const { dispatch, postRedu: { count } } = this.props;
+    getPostDatasA(dispatch, 30, value);
   }
   statusSwitch = (type) => {
     this.setState({
@@ -68,13 +69,13 @@ class Index extends Component {
     });
   }
   handleInfiniteOnLoad = (page) => {
-    const { dispatch, postRedu: { total, count } } = this.props;
+    const { dispatch, postRedu: { total, count, selectValue } } = this.props;
     if(total[0]['count(*)'] > count) {
       this.setState({
         loading: true,
       });
       setTimeout(() => {
-        getPostDatasA(dispatch, count + 30);
+        getPostDatasA(dispatch, count + 30, selectValue);
       },500);
       setTimeout(() => {
         this.setState({
@@ -102,8 +103,8 @@ class Index extends Component {
     });
   }
   getPostDatas = () => {
-    const { dispatch, postRedu: { count } } = this.props;
-    getPostDatasA(dispatch, count);
+    const { dispatch, postRedu: { count, selectValue } } = this.props;
+    getPostDatasA(dispatch, count, selectValue);
   }
   cancelBtn = () => {
     this.propsStyle = {

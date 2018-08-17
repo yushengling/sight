@@ -15,6 +15,7 @@ export const initialState = {
   ],
   editorSelectValue: 'unclassified',
   inputThemeValue: '',
+  selectValue: 'all',
   code: 0,
   lists: [],
   count: 30,

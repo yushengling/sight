@@ -4,7 +4,7 @@ import { fetchAvatar, fetchCreateTheme, fetchGetPost } from '../servers/post';
 
 function* fetchAvatarFun(action) {
   let data = yield call(fetchAvatar);
-  let lists = yield call(fetchGetPost, action.count);
+  let lists = yield call(fetchGetPost, action.count, action.selectValue);
   yield put({
     type: 'POSTREDU',
     data,
@@ -13,7 +13,7 @@ function* fetchAvatarFun(action) {
 }
 
 function* fetchPostDatasFun(action) {
-  let lists = yield call(fetchGetPost, action.count);
+  let lists = yield call(fetchGetPost, action.count, action.selectValue);
   yield put({
     type: 'POSTREDU',
     lists

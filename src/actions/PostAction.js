@@ -1,14 +1,16 @@
-const getAvatarA = (dispatch, count) => {
+const getAvatarA = (dispatch, count, selectValue) => {
   dispatch({
     type: 'GETPOSTAVATAR_SAGA',
-    count
+    count,
+    selectValue
   });
 }
 
-const getPostDatasA = (dispatch, count) => {
+const getPostDatasA = (dispatch, count, selectValue) => {
   dispatch({
     type: 'GETPOSTDATAS_SAGA',
-    count
+    count,
+    selectValue
   }); 
 }
 

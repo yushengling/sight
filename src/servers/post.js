@@ -19,9 +19,9 @@ export function fetchCreateTheme(params) {
   });
 }
 
-export function fetchGetPost(count) {
+export function fetchGetPost(count, selectValue) {
   return request({
-    method: `post?count=${count}`,
+    method: `post?count=${count}&selectValue=${selectValue}`,
     options: {
       method: 'GET'
     }
