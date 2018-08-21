@@ -5,6 +5,7 @@ import personalSaga from './PersonalSaga';
 import settingSaga from './SettingSaga';
 import detailSaga from './DetailSaga';
 import postSaga from './PostSaga';
+import postDetailSaga from './PostDetailSaga';
 export default function* rootSagas () {
   yield [
     fork(homeSaga),
@@ -12,6 +13,7 @@ export default function* rootSagas () {
     fork(personalSaga),
     fork(settingSaga),
     fork(detailSaga),
-    fork(postSaga)
+    fork(postSaga),
+    fork(postDetailSaga)
   ]
 }

@@ -2,7 +2,6 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Table, Icon, Divider, Button, Select, Spin } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead';
-import LayoutFooter from './../../components/Layout/LayoutFooter';
 import PostEdit from './../../components/Post/PostEdit';
 import { getAvatarA, getPostDatasA } from './../../actions/PostAction';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -119,6 +118,11 @@ class Index extends Component {
       isShow: false,
     });
   }
+  postDetail(key) {
+    const { history } = this.props;
+    localStorage.setItem('postId', key);
+    history.push('/postDetail');
+  }
   render() {
     const { history, postRedu: { userName, avatar, buttons, lists, count } } = this.props;
     const { type, isShow, loading, hasMore } = this.state;
@@ -126,7 +130,11 @@ class Index extends Component {
       title: '主题',
       dataIndex: 'theme',
       key: 'theme',
-      width: '45%'
+      width: '45%',
+      className: 'post-theme',
+      render: (theme, list) => {
+        return <div onClick={this.postDetail.bind(this, list.id)}>{theme}</div>
+      }
     }, {
       title: '分类',
       dataIndex: 'classification',
@@ -149,7 +157,6 @@ class Index extends Component {
       width: '10%'
     }];
     let datas = {};
-    console.log(count);
     ({ datas: datas.initialLoad = false, datas: datas.pageStart = 0, datas: datas.loadMore = this.handleInfiniteOnLoad, datas: datas.hasMore = !loading && hasMore, datas: datas.useWindow = true, datas: datas.threshold = 10, datas: datas.style = { maxHeight: '100%' } } = {});
     return (
       <div>

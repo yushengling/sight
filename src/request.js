@@ -21,10 +21,10 @@ function request({ method, options, callback }) {
     };
     if(!(options.method === 'GET' || options.method === 'DELETE')) {
       options.body = JSON.stringify(options.body);
-    }
+    };
   }
   options.credentials = 'include';
-  return fetch(getApi + method, options )
+  return fetch(getApi + method, options)
     .then(checkStatus)
     .then(parseJSON)
     .then((data) => {

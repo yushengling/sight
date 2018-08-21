@@ -46,3 +46,7 @@
 .ant-select-selection--single {
   border-radius: 0px;
 }
+
+.post-theme {
+  cursor: pointer;
+}
