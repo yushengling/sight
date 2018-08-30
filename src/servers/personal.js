@@ -2,7 +2,7 @@ import { request } from '../request';
 
 export function fetchAvatar() {
   return request({
-    method: 'personal',
+    url: 'personal',
     options: {
       method: 'GET'
     }
@@ -11,7 +11,7 @@ export function fetchAvatar() {
 
 export function fetchUploadImages(params) {
   return request({
-    method: 'uploadImages',
+    url: 'uploadImages',
     options: {
       method: 'PUT',
       body: params.formData,
@@ -22,7 +22,7 @@ export function fetchUploadImages(params) {
 
 export function fetchUploadAvatar(params) {
   return request({
-    method: 'uploadAvatar',
+    url: 'uploadAvatar',
     options: {
       method: 'PUT',
       body: params.formData,
@@ -33,7 +33,7 @@ export function fetchUploadAvatar(params) {
 
 export function fetchImages(params) {
   return request({
-    method: `getImages?count=${params.count}`,
+    url: `getImages?count=${params.count}`,
     options: {
       method: 'GET'
     }
@@ -42,7 +42,7 @@ export function fetchImages(params) {
 
 export function fetchSignOut() {
   return request({
-    method: 'signOut',
+    url: 'signOut',
     options: {
       method: 'DELETE'
     }

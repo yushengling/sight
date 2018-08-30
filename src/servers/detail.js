@@ -2,7 +2,7 @@ import { request } from '../request';
 
 export function fetchAvatar() {
   return request({
-    method: 'personal',
+    url: 'personal',
     options: {
       method: 'GET'
     }

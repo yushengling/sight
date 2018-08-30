@@ -2,7 +2,7 @@ import { request } from '../request';
 
 export function fetchPasswordChange(params) {
   return request({
-    method: 'passwordChange',
+    url: 'passwordChange',
     options: {
       body: params.values,
       method: 'PUT'
@@ -12,7 +12,7 @@ export function fetchPasswordChange(params) {
 
 export function fetchAvatar() {
   return request({
-    method: 'setting',
+    url: 'setting',
     options: {
       method: 'GET'
     }

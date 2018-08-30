@@ -35,6 +35,20 @@ class Index extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     getData(dispatch, 16);
+    /*const ws = new WebSocket("ws://localhost:9000/test");
+    ws.onopen = function(evt) {
+      console.log("Connection open ..."); 
+      ws.send("Hello WebSockets!");
+    };
+
+    ws.onmessage = function(evt) {
+      console.log( "Received Message: " + evt.data);
+      ws.close();
+    };*/
+
+    /*ws.onclose = function(evt) {
+      console.log("Connection closed.");
+    };*/  
   }
   handleInfiniteOnLoad = (page) => {
     const { dispatch, homeRedu: { count, total } } = this.props;

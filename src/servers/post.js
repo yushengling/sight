@@ -2,7 +2,7 @@ import { request } from '../request';
 
 export function fetchAvatar() {
   return request({
-    method: 'personal',
+    url: 'personal',
     options: {
       method: 'GET'
     }
@@ -11,7 +11,7 @@ export function fetchAvatar() {
 
 export function fetchCreateTheme(params) {
   return request({
-    method: 'createTheme',
+    url: 'createTheme',
     options: {
       method: 'POST',
       body: params,
@@ -21,7 +21,7 @@ export function fetchCreateTheme(params) {
 
 export function fetchGetPost(count, selectValue) {
   return request({
-    method: `post?count=${count}&selectValue=${selectValue}`,
+    url: `post?count=${count}&selectValue=${selectValue}`,
     options: {
       method: 'GET'
     }

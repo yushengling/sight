@@ -2,7 +2,7 @@ import { request } from '../request';
 
 export function fetchRegister(params) {
   return request({
-    method: 'register',
+    url: 'register',
     options: {
       body: params.values,
       method: 'POST'
@@ -12,7 +12,7 @@ export function fetchRegister(params) {
 
 export function fetchUpdatePassword(params) {
   return request({
-    method: 'updatePassword',
+    url: 'updatePassword',
     options: {
       method: 'PUT',
       body: params.values
@@ -23,7 +23,7 @@ export function fetchUpdatePassword(params) {
 export function fetchLogin(params) {
   const { userName, password, confirm } = params.values;
   return request({
-    method: `login?userName=${userName}&password=${password}&confirm=${confirm}`,
+    url: `login?userName=${userName}&password=${password}&confirm=${confirm}`,
     options: {
       method: 'GET'
     }

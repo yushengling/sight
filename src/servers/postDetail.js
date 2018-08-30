@@ -2,7 +2,7 @@ import { request } from '../request';
 
 export function fetchAvatar() {
   return request({
-    method: 'personal',
+    url: 'personal',
     options: {
       method: 'GET'
     }
@@ -11,7 +11,7 @@ export function fetchAvatar() {
 
 export function fetchGetPostDetail(postId) {
   return request({
-    method: `getPostDetail?postId=${postId}`,
+    url: `getPostDetail?postId=${postId}`,
     options: {
       method: 'GET'
     }

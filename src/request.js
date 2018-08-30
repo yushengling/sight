@@ -13,7 +13,7 @@ function checkStatus(response) {
 function parseJSON(response) {
   return response.json();
 }
-function request({ method, options, callback }) {
+function request({ url, options, callback }) {
   options.mode = "cors";
   if(!options.sign) {
     options.headers = {
@@ -24,7 +24,7 @@ function request({ method, options, callback }) {
     };
   }
   options.credentials = 'include';
-  return fetch(getApi + method, options)
+  return fetch(getApi + url, options)
     .then(checkStatus)
     .then(parseJSON)
     .then((data) => {
@@ -35,7 +35,7 @@ function request({ method, options, callback }) {
         duration: 1,
         maxCount: 3,
       });
-      message.error('发送fetch失败' + JSON.stringify(err) + ',方法名：' + method);
+      message.error('发送fetch失败' + JSON.stringify(err) + ',方法名：' + url);
     });
 }
 
