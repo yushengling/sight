@@ -9,16 +9,38 @@ class Index extends Component {
     this.state = {
 
     };
+    this.offsetWidth = 0;
   }
   componentDidMount() {
     const { dispatch } = this.props;
     const postId = localStorage.getItem('postId');
     getPostDetailA(dispatch, postId);
+    this.offsetWidth = document.body.offsetWidth;
   }
   render() {
     const { postDetailRedu: list, history, postDetailRedu } = this.props;
     const { userName, avatar, theme, editor_value, classification } = list;
-    console.log(theme);
+    let value;
+    switch(classification) {
+      case 'character':
+        value = '人物';
+      break;
+      case 'bw':
+        value = '黑白';
+      break;
+      case 'city':
+        value = '城市';
+      break;
+      case 'food':
+        value = '食物';
+      break;
+      case 'animal':
+        value = '动物';
+      break;
+      case 'unclassified':
+        value = '未分类';
+      break;
+    }
     return (
       <div>
         <LayoutHead 
@@ -26,9 +48,21 @@ class Index extends Component {
           avatar={avatar}
           history={history}
         />
-        <div>
-          <h1>{theme}</h1>
-        </div>
+        <section className="detail-main" style={{ width: this.offsetWidth - 100 }}>
+          <section className="detail-theme">
+            <h1>{theme}</h1>
+            <div className="detail-classification">{value}</div>
+          </section>
+          <section className="detail-editor">
+            <div className="detail-avatar">
+              <img src={avatar} height="45" width="45" alt="头像" />
+            </div>
+            <section className="detail-editor-right">
+              <div className="detail-editor-right-username">{userName}</div>
+              <div style={{ marginTop: '24px' }} dangerouslySetInnerHTML={{__html: editor_value}} />
+            </section>
+          </section>
+        </section>
       </div>
     );
   }
