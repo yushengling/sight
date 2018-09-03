@@ -19,7 +19,7 @@ class Index extends Component {
   }
   render() {
     const { postDetailRedu: list, history, postDetailRedu } = this.props;
-    const { userName, avatar, theme, editor_value, classification } = list;
+    const { userName, avatar, theme, editor_value, classification, user, userAvatar, time} = list;
     let value;
     switch(classification) {
       case 'character':
@@ -48,18 +48,19 @@ class Index extends Component {
           avatar={avatar}
           history={history}
         />
-        <section className="detail-main" style={{ width: this.offsetWidth - 100 }}>
+        <section className="detail-main" style={{ width: this.offsetWidth - 300 }}>
           <section className="detail-theme">
             <h1>{theme}</h1>
             <div className="detail-classification">{value}</div>
           </section>
           <section className="detail-editor">
             <div className="detail-avatar">
-              <img src={avatar} height="45" width="45" alt="头像" />
+              <img src={userAvatar} height="45" width="45" alt="头像" />
             </div>
             <section className="detail-editor-right">
-              <div className="detail-editor-right-username">{userName}</div>
+              <div className="detail-editor-right-username">{user}</div>
               <div style={{ marginTop: '24px' }} dangerouslySetInnerHTML={{__html: editor_value}} />
+              <span style={{ float: 'right' }}>{time}</span>
             </section>
           </section>
         </section>

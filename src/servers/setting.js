@@ -12,7 +12,7 @@ export function fetchPasswordChange(params) {
 
 export function fetchAvatar() {
   return request({
-    url: 'setting',
+    url: 'personal',
     options: {
       method: 'GET'
     }

@@ -180,7 +180,7 @@ class Index extends Component {
                 }
               </Select>
               {
-                buttons.map((list, key) => {
+                /*buttons.map((list, key) => {
                   let name = 'post-button';
                   if(type === list.type) {
                     name = 'post-button post-button-click';
@@ -188,7 +188,7 @@ class Index extends Component {
                   return (
                     <button className={name} key={key} onClick={this.statusSwitch.bind(this, list.type)}>{list.name}({list.total})</button>
                   )
-                })
+                })*/
               }
             </div>
             <Button type="primary" icon="plus" style={{ borderRadius: '0' }} onClick={this.sendNewButton} >发新主题</Button>
