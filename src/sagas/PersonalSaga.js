@@ -12,7 +12,6 @@ message.config({
 function* fetchAvatarFun(action) {
   let data = yield call(fetchAvatar);
   let images = yield call(fetchImages, action);
-  images = JSON.parse(images);
   data.listData = images.srcs;
   data.total = images.total;
   data.count = images.count;
@@ -27,7 +26,6 @@ function* fetchUploadImagesFun(action) {
   if(data.code === 200) {
     message.success('上传成功');
     let images = yield call(fetchImages, action);
-    images = JSON.parse(images);
     data.listData = images.srcs;
     data.total = images.total;
     data.count = images.count;
@@ -52,7 +50,6 @@ function* fetchUploadAvatarFun(action) {
 function* fetchImagesFun(action) {
   let images = yield call(fetchImages, action);
   let data = {};
-  images = JSON.parse(images);
   data.listData = images.srcs;
   data.total = images.total;
   data.count = images.count;

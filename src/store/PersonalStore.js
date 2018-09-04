@@ -3,5 +3,6 @@ export const initialState = {
   avatar: false,
   listData: [],
   total: 0,
-  count: 0
+  count: 0,
+  code: 0
 };
