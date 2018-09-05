@@ -11,7 +11,13 @@ function LayoutHead(props) {
       <Header className="header">
         <Row className="row" style={{ height: 54 }}>
           <Col span={12}>
-            <div className="logo" onClick={() => location.reload(true) } />
+            <div className="logo" onClick={() => {
+              if(location.pathname === '/') {
+                location.reload(true);
+              } else {
+                history.push('/');
+              }
+            }} />
           </Col>
           <Col span={12} className="header-row-col">
             <span className="header-row-col-compass">

@@ -1,6 +1,6 @@
 export const initialState = {
   userName: false,
-  avatar: false,
+  avatar: 'https://downfuture.com/user.png',
   listData: [],
   total: 0,
   count: 0,
