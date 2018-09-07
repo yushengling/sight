@@ -14,13 +14,13 @@ class Index extends Component {
   goRegister = () => {
     const { isLogin } = this.state;
     if(isLogin === 1) {
-      this.setState({
+      this.setState((prevState, props) => ({
         isLogin: 2,
-      });
+      }));
     } else {
-      this.setState({
+      this.setState((prevState, props) => ({
         isLogin: 1,
-      });
+      }));
     }
   };
   /**
@@ -29,9 +29,9 @@ class Index extends Component {
    * @return {[type]} [description]
    */
   forgetPassword = () => {
-    this.setState({
+    this.setState((prevState, props) => ({
       isLogin: 3,
-    });
+    }));
   }
   renderContent() {
     const { isLogin } = this.state;
@@ -53,9 +53,10 @@ class Index extends Component {
   }
   render() {
     const { isLogin } = this.state;
+    const { height, width } = this.props;
     return (
       <div className="content">
-        <div className="user-div">
+        <div className="user-div" style={{ height: height, width: width }}>
           <div className="logo-div">
             <img alt="src" src="https://img.downfuture.com/favicon.png" className="login-logo" />
           </div>

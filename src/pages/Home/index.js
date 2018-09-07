@@ -48,21 +48,21 @@ class Index extends Component {
 
     /*ws.onclose = function(evt) {
       console.log("Connection closed.");
-    };*/  
+    };*/
   }
   handleInfiniteOnLoad = (page) => {
     const { dispatch, homeRedu: { count, total } } = this.props;
     if(total[0]['count(*)'] > count) {
-      this.setState({
+      this.setState((prevState, props) => ({
         loading: true,
-      });
+      }));
       setTimeout(() => {
         getData(dispatch, count + 24);
       },500);
       setTimeout(() => {
-        this.setState({
+        this.setState((prevState, props) => ({
           loading: false,
-        });
+        }));
       },700);
     }
   };
@@ -90,9 +90,9 @@ class Index extends Component {
     const { listData } = this.props.homeRedu;
     this.loadedItems.push(item);
     if(this.loadedItems.length == listData.length) {
-      this.setState({
+      this.setState((prevState, props) => ({
         isRender: true
-      });
+      }));
     }
   }
   render() {

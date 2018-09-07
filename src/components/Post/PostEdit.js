@@ -113,9 +113,9 @@ class PostEdit extends Component {
         y = -(y);
         y = this.h + y;
         if(b.clientY <= 60) {
-          this.setState({
+          this.setState((prevState, props) => ({
             isRender: !isRender
-          });
+          }));
           this.props.propsStyle.height = this.offsetHeight - 56;
           this.props.quillStyle.height = this.offsetHeight - 170 - 56;
           return;
@@ -125,9 +125,9 @@ class PostEdit extends Component {
         if(propsStyle.height <= 230) {
           this.props.propsStyle.height = 230;
           this.props.quillStyle.height = 60;
-          this.setState({
+          this.setState((prevState, props) => ({
             isRender: !isRender
-          });
+          }));
           return;
         }
       }
@@ -142,20 +142,20 @@ class PostEdit extends Component {
       this.props.quillStyle.MozTransition = 'height 0s ease';
       this.props.quillStyle.WebkitTransition = 'height 0s ease';
       this.props.quillStyle.OTransition = 'height 0s ease';
-      this.setState({
+      this.setState((prevState, props) => ({
         style: {
           transition: 'height 0s ease',
           MozTransition: 'height 0s ease',
           WebkitTransition: 'height 0s ease',
           OTransition: 'height 0s ease'
         },
-      });
+      }));
     }
   }
   editorChange = (content, delta, source, editor) => {
-    this.setState({
+    this.setState((prevState, props) => ({
       editorValue: content,
-    });
+    }));
   }
   grippieDown = (e) => {
     this.out = true;
@@ -178,14 +178,14 @@ class PostEdit extends Component {
       this.props.quillStyle.MozTransition = 'height 0.4s ease';
       this.props.quillStyle.WebkitTransition = 'height 0.4s ease';
       this.props.quillStyle.OTransition = 'height 0.4s ease';
-      this.setState({
+      this.setState((prevState, props) => ({
         style: {
           transition: 'height 0.4s ease',
           MozTransition: 'height 0.4s ease',
           WebkitTransition: 'height 0.4s ease',
           OTransition: 'height 0.4s ease'
         },
-      });
+      }));
     }
   }
   childCancelBtn = () => {

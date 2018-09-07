@@ -30,7 +30,9 @@ class UserForgetPassword extends React.Component {
   }
   handleConfirmBlur = (e) => {
     const value = e.target.value;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+    this.setState((prevState, props) => ({
+      confirmDirty: this.state.confirmDirty || !!value
+    }));
   }
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;

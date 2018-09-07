@@ -63,23 +63,23 @@ class Index extends Component {
     getPostDatasA(dispatch, 30, value);
   }
   statusSwitch = (type) => {
-    this.setState({
+    this.setState((prevState, props) => ({
       type
-    });
+    }));
   }
   handleInfiniteOnLoad = (page) => {
     const { dispatch, postRedu: { total, count, selectValue } } = this.props;
     if(total[0]['count(*)'] > count) {
-      this.setState({
+      this.setState((prevState, props) => ({
         loading: true,
-      });
+      }));
       setTimeout(() => {
         getPostDatasA(dispatch, count + 30, selectValue);
       },500);
       setTimeout(() => {
-        this.setState({
+        this.setState((prevState, props) => ({
           loading: false,
-        });
+        }));
       },700);
     }
   };
@@ -96,10 +96,10 @@ class Index extends Component {
       OTransition: 'height 0s ease'
     };
     const { isRender } = this.state;
-    this.setState({
+    this.setState((prevState, props) => ({
       isRender: !isRender,
       isShow: true,
-    });
+    }));
   }
   getPostDatas = () => {
     const { dispatch, postRedu: { count, selectValue } } = this.props;
@@ -113,10 +113,10 @@ class Index extends Component {
       display: 'none'
     };
     const { isRender } = this.state;
-    this.setState({
+    this.setState((prevState, props) => ({
       isRender: !isRender,
       isShow: false,
-    });
+    }));
   }
   postDetail(key) {
     const { history } = this.props;

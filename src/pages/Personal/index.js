@@ -31,13 +31,13 @@ class Index extends Component {
   settingBtn() {
     const { visible } = this.state;
     if(visible) {
-      this.setState({
+      this.setState((prevState, props) => ({
         visible: false,
-      });
+      }));
     } else {
-      this.setState({
+      this.setState((prevState, props) => ({
         visible: true,
-      });
+      }));
     }
   }
   uploadAvatar(e) {
@@ -73,16 +73,16 @@ class Index extends Component {
     const { dispatch, personalRedu } = this.props;
     const { count, total } = personalRedu;
     if(total[0]['count(*)'] > count) {
-      this.setState({
+      this.setState((prevState, props) => ({
         loading: true,
-      });
+      }));
       setTimeout(() => {
         getImagesA(dispatch,count + 24);
       },500);
       setTimeout(() => {
-        this.setState({
+        this.setState((prevState, props) => ({
           loading: false,
-        });
+        }));
       },700);
     }
   };
@@ -106,11 +106,11 @@ class Index extends Component {
     const { personalRedu } = this.props;
     const { listData } = personalRedu;
     const src = listData[id];
-    this.setState({
+    this.setState((prevState, props) => ({
       src,
       id,
       viewVisible: true
-    });
+    }));
   }
   viewClick(type) {
     let { id } = this.state;
@@ -133,15 +133,15 @@ class Index extends Component {
       id -= 1;
     }
     const src = listData[id];
-    this.setState({
+    this.setState((prevState, props) => ({
       id,
       src
-    });
+    }));
   }
   close() {
-    this.setState({
+    this.setState((prevState, props) => ({
       viewVisible: false
-    });
+    }));
   }
   signOut() {
     const { dispatch } = this.props;
