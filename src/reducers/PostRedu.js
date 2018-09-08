@@ -1,6 +1,4 @@
 const initialState = {
-  userName: false,
-  avatar: false,
   buttons: [
     {
       name: '最新',

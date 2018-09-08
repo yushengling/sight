@@ -98,17 +98,13 @@ class Index extends Component {
   render() {
     const { loading, data, hasMore } = this.state;
     const { history, homeRedu } = this.props;
-    const { listData, count, userName, avatar } = homeRedu;
+    const { listData, count } = homeRedu;
     let clientWidth = document.body.clientWidth;
     let datas = {}, style = {};
     ({ datas: datas.initialLoad = false, datas: datas.pageStart = 0, datas: datas.loadMore = this.handleInfiniteOnLoad, datas: datas.hasMore = !loading && hasMore, datas: datas.useWindow = true, datas: datas.threshold = 10, datas: datas.style = { maxHeight: '100%' } } = {});
     return (
       <div style={{ position: 'relative' }}>
-        <LayoutHead 
-          userName={userName}
-          avatar={avatar}
-          history={history}
-        />
+        <LayoutHead history={history} />
         <InfiniteScroll
           {...datas}
         >

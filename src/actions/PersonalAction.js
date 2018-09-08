@@ -1,11 +1,11 @@
-const getAvatarA = (dispatch, count) => {
+const getFirstImages = (dispatch, count) => {
   dispatch({
-    type:'GETAVATAR_SAGA',
+    type:'GETFIRSTIMAGES_SAGA',
     count
   });
 }
 
-const uploadImagesA = (dispatch, formData, count) => {
+const uploadImages = (dispatch, formData, count) => {
   dispatch({
     type: 'UPLOADIMAGES_SAGA',
     formData,
@@ -13,29 +13,29 @@ const uploadImagesA = (dispatch, formData, count) => {
   });
 }
 
-const uploadAvatarA = (dispatch, formData) => {
+const uploadAvatar = (dispatch, formData) => {
   dispatch({
     type: 'UPLOADAVATAR_SAGA',
     formData
   });
 }
 
-const getImagesA = (dispatch, count) => {
+const getImages = (dispatch, count) => {
   dispatch({
     type: 'GETIMAGES_SAGA',
     count
   });
 }
 
-const signOutA = (dispatch) => {
+const signOut = (dispatch) => {
   dispatch({
     type: 'SIGNOUT_SAGA'
   }); 
 }
 export {
-  getAvatarA,
-  uploadImagesA,
-  uploadAvatarA,
-  getImagesA,
-  signOutA
+  getFirstImages,
+  uploadImages,
+  uploadAvatar,
+  getImages,
+  signOut
 };

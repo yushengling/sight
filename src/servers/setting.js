@@ -9,12 +9,3 @@ export function fetchPasswordChange(params) {
     }
   });
 }
-
-export function fetchAvatar() {
-  return request({
-    url: 'personal',
-    options: {
-      method: 'GET'
-    }
-  });
-}

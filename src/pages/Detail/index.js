@@ -4,29 +4,19 @@ import { connect } from 'react-redux';
 import { Affix } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
-import { getAvatarA } from './../../actions/DetailAction';
 import * as styles from './index.css';
 class Index extends Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    const { dispatch } = this.props;
-    getAvatarA(dispatch);
-  }
   render() {
-    const { history, detailRedu } = this.props;
-    const { userName, avatar } = detailRedu;
+    const { history } = this.props;
     const img = sessionStorage.getItem('img');
     const imgName = sessionStorage.getItem('imgName');
     return (
       <div className="detail">
         <Affix>
-          <LayoutHead
-            userName={userName}
-            avatar={avatar}
-            history={history}
-          />
+          <LayoutHead history={history} />
         </Affix>
         <main>
           <header className="detail-header">

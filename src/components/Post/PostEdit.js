@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
-import { connect } from 'react-redux';
 import { Row, Col, Button, Input, Select, message, Modal } from 'antd';
+import { connect } from 'react-redux';
 import * as styles from './PostEdit.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -54,7 +54,7 @@ class PostEdit extends Component {
     this.offsetHeight = document.body.offsetHeight;
   }
   componentDidUpdate() {
-    const { dispatch, postRedu: { code }, postRedu, cancelBtn, getPostDatas } = this.props;
+    const { dispatch, postRedu: { code }, postRedu, cancelBtn, postDatas } = this.props;
     switch(code) {
       case 200:
         this.state.editorValue = '';
@@ -62,7 +62,7 @@ class PostEdit extends Component {
         clearCode(dispatch, postRedu, 1);
         setTimeout(() => {
           cancelBtn();
-          getPostDatas();
+          postDatas();
         }, 200);
       break;
       case 500:
@@ -286,7 +286,7 @@ class PostEdit extends Component {
     );
   }
 }
-function mapStateToProps(state,oWnprops) {
+function mapStateToProps(state, oWnprops) {
   return state;
 }
 export default connect(mapStateToProps)(PostEdit);

@@ -9,15 +9,11 @@ message.config({
   maxCount: 1,
 });
 
-function* fetchAvatarFun(action) {
-  let data = yield call(fetchAvatar);
-  let images = yield call(fetchImages, action);
-  data.listData = images.srcs;
-  data.total = images.total;
-  data.count = images.count;
+function* fetchFirstImagesFun(action) {
+  let datas = yield call(fetchImages, action);
   yield put({
     type: 'PERSONALREDU',
-    data,
+    datas,
   });
 }
 
@@ -69,7 +65,7 @@ function* fetchSignOutFun() {
 }
 
 function* personalSaga() {
-  yield takeLatest('GETAVATAR_SAGA', fetchAvatarFun);
+  yield takeLatest('GETFIRSTIMAGES_SAGA', fetchFirstImagesFun);
   yield takeLatest('UPLOADIMAGES_SAGA', fetchUploadImagesFun);
   yield takeLatest('UPLOADAVATAR_SAGA', fetchUploadAvatarFun);
   yield takeLatest('GETIMAGES_SAGA', fetchImagesFun);

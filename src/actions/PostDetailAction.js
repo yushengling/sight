@@ -1,9 +1,9 @@
-const getPostDetailA = (dispatch, postId) => {
+const getPostDetail = (dispatch, postId) => {
   dispatch({
     type: 'GETPOSTDETAIL_SAGA',
     postId,
   });
 }
 export { 
-  getPostDetailA
+  getPostDetail
 };

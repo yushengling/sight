@@ -1,7 +1,5 @@
 const initialState = {
   list: {
-    userName: false,
-    avatar: false,
     browse: 0,
     classification: 'unclassified',
     editor_value: '',

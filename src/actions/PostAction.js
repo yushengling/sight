@@ -1,12 +1,12 @@
-const getAvatarA = (dispatch, count, selectValue) => {
+const getPost = (dispatch, count, selectValue) => {
   dispatch({
-    type: 'GETPOSTAVATAR_SAGA',
+    type: 'GETPOST_SAGA',
     count,
     selectValue
   });
 }
 
-const getPostDatasA = (dispatch, count, selectValue) => {
+const getPostDatas = (dispatch, count, selectValue) => {
   dispatch({
     type: 'GETPOSTDATAS_SAGA',
     count,
@@ -44,11 +44,11 @@ const clearCode = (dispatch, postRedu, style) => {
     style
   });
 }
-export { 
-  getAvatarA,
+export {
+  getPost,
   createTheme,
   saveSelectValue,
   saveinputThemeValue,
   clearCode,
-  getPostDatasA
+  getPostDatas
 };

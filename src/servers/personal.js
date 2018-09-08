@@ -1,14 +1,5 @@
 import { request } from '../request';
 
-export function fetchAvatar() {
-  return request({
-    url: 'personal',
-    options: {
-      method: 'GET'
-    }
-  });
-}
-
 export function fetchUploadImages(params) {
   return request({
     url: 'uploadImages',

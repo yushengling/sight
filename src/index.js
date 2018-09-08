@@ -13,6 +13,7 @@ import settingRedu from './reducers/SettingRedu';
 import detailRedu from './reducers/DetailRedu';
 import postRedu from './reducers/PostRedu';
 import postDetailRedu from './reducers/PostDetailRedu';
+import layoutHeadRedu from './reducers/LayoutHeadRedu';
 
 import rootSagas from './sagas/RootSagas';
 const history = createHistory();
@@ -26,6 +27,7 @@ const store = createStore (
     detailRedu,
     postRedu,
     postDetailRedu,
+    layoutHeadRedu,
     router: routerReducer
   }),
   applyMiddleware(sagaMiddleware)

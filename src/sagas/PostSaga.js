@@ -1,13 +1,11 @@
 import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
 
-import { fetchAvatar, fetchCreateTheme, fetchGetPost } from '../servers/post';
+import { fetchCreateTheme, fetchGetPost } from '../servers/post';
 
-function* fetchAvatarFun(action) {
-  let data = yield call(fetchAvatar);
+function* fetchGetPostFun(action) {
   let lists = yield call(fetchGetPost, action.count, action.selectValue);
   yield put({
     type: 'POSTREDU',
-    data,
     lists
   });
 }
@@ -64,7 +62,7 @@ function* fetchClearCodeFun(action) {
 }
 
 function* postSaga() {
-  yield takeLatest('GETPOSTAVATAR_SAGA', fetchAvatarFun);
+  yield takeLatest('GETPOST_SAGA', fetchGetPostFun);
   yield takeLatest('CREATETHEME_SAGA', fetchCreateThemeFun);
   yield takeLatest('UPDATESELECT_SAGA', fetchUpdateSelectFun);
   yield takeLatest('UPDATEINPUTTHEME_SAGA', fetchUpdateInputThemeFun);

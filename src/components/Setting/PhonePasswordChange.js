@@ -7,7 +7,7 @@ import { tips } from './../../util.js';
 import { getAvatarA } from './../../actions/SettingAction.js';
 import * as styles from './PhonePasswordChange.css';
 const FormItem = Form.Item;
-class PhonePasswordChange extends React.Component {
+class PhonePasswordChange extends Component {
   state = {
     confirmDirty: false,
   };

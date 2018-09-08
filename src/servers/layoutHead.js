@@ -1,8 +1,8 @@
 import { request } from '../request';
 
-export function fetchGetPostDetail(postId) {
+export function fetchAvatar() {
   return request({
-    url: `getPostDetail?postId=${postId}`,
+    url: 'personal',
     options: {
       method: 'GET'
     }

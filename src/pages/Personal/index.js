@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button, Modal, message, Spin, Icon } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
-import { getAvatarA, uploadImagesA, uploadAvatarA, getImagesA, signOutA } from './../../actions/PersonalAction.js';
+import { getFirstImages, uploadImages, uploadAvatar, getImages, signOut } from './../../actions/PersonalAction.js';
 import * as styles from './index.css';
 class Index extends Component {
   constructor(props) {
@@ -19,14 +19,7 @@ class Index extends Component {
   }
   componentDidMount() {
     const { dispatch } = this.props;
-    getAvatarA(dispatch, 24);
-  }
-  componentWillReceiveProps(nextProps) {
-    const { history } = this.props;
-    const { userName } = nextProps.personalRedu;
-    if(!userName) {
-      history.push('/');
-    }
+    getFirstImages(dispatch, 24);
   }
   settingBtn() {
     const { visible } = this.state;
@@ -45,7 +38,7 @@ class Index extends Component {
     let num = files.length;
     const { dispatch } = this.props;
     const formData = this.getFormData(files, num);
-    uploadAvatarA(dispatch, formData);
+    uploadAvatar(dispatch, formData);
     e.target.value = '';
   }
   getFormData(files, num) {
@@ -66,7 +59,7 @@ class Index extends Component {
       return;
     }
     const formData = this.getFormData(files, num);
-    uploadImagesA(dispatch, formData, count);
+    uploadImages(dispatch, formData, count);
     e.target.value = '';
   }
   handleInfiniteOnLoad = (page) => {
@@ -77,7 +70,7 @@ class Index extends Component {
         loading: true,
       }));
       setTimeout(() => {
-        getImagesA(dispatch,count + 24);
+        getImages(dispatch,count + 24);
       },500);
       setTimeout(() => {
         this.setState((prevState, props) => ({
@@ -143,9 +136,9 @@ class Index extends Component {
       viewVisible: false
     }));
   }
-  signOut() {
+  signOutHandler() {
     const { dispatch } = this.props;
-    signOutA(dispatch);
+    signOut(dispatch);
   }
   setting() {
     const { history } = this.props;
@@ -160,15 +153,11 @@ class Index extends Component {
   }
   render() {
     const { history, personalRedu } = this.props;
-    const { userName, avatar, listData } = personalRedu;
+    const { listData } = personalRedu;
     const { visible, loading, hasMore, viewVisible, src } = this.state;
     return (
       <div className="personal">
-        <LayoutHead
-          userName={userName}
-          avatar={avatar}
-          history={history}
-        />
+        <LayoutHead history={history} />
         <main className="personal-main">
           <header className="personal-header">
             <section className="personal-left">
@@ -236,7 +225,7 @@ class Index extends Component {
             <div className="personal-modal-content" onClick={this.setting.bind(this)}>
               更改密码
             </div>
-            <div className="personal-modal-content" onClick={this.signOut.bind(this)}>
+            <div className="personal-modal-content" onClick={this.signOutHandler.bind(this)}>
               登出
             </div>
             <div className="personal-modal-cancel" onClick={this.settingBtn.bind(this)}>

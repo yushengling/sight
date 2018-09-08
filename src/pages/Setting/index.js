@@ -5,27 +5,17 @@ import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import PasswordChange from './../../components/Setting/PasswordChange.js';
 import ManageAccess from './../../components/Setting/ManageAccess.js';
-import { getAvatarA } from './../../actions/SettingAction';
 import * as styles from './index.css';
 const TabPane = Tabs.TabPane;
 class Index extends Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    const { dispatch } = this.props;
-    getAvatarA(dispatch);
-  }
   render() {
-    const { history, settingRedu } = this.props;
-    const { userName, avatar } = settingRedu;
+    const { history } = this.props;
     return (
       <div className="setting-div">
-        <LayoutHead
-          userName={userName}
-          avatar={avatar}
-          history={history}
-        />
+        <LayoutHead history={history} />
         <main>
           <Tabs
             className="setting-tab"

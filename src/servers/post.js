@@ -1,14 +1,5 @@
 import { request } from '../request';
 
-export function fetchAvatar() {
-  return request({
-    url: 'personal',
-    options: {
-      method: 'GET'
-    }
-  });
-}
-
 export function fetchCreateTheme(params) {
   return request({
     url: 'createTheme',

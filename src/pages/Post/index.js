@@ -4,7 +4,7 @@ import { Table, Icon, Divider, Button, Select, Spin } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead';
 import PostEdit from './../../components/Post/PostEdit';
 import UserLoginModal from './../../components/User/UserLoginModal';
-import { getAvatarA, getPostDatasA } from './../../actions/PostAction';
+import { getPost, getPostDatas } from './../../actions/PostAction';
 import InfiniteScroll from 'react-infinite-scroller';
 import * as styles from './index.css';
 const Option = Select.Option;
@@ -58,11 +58,11 @@ class Index extends Component {
   }
   componentDidMount() {
     const { dispatch, postRedu: { count, selectValue } } = this.props;
-    getAvatarA(dispatch, count, selectValue);
+    getPost(dispatch, count, selectValue);
   }
   handleChange = (value) => {
     const { dispatch, postRedu: { count } } = this.props;
-    getPostDatasA(dispatch, 30, value);
+    getPostDatas(dispatch, 30, value);
   }
   statusSwitch = (type) => {
     this.setState((prevState, props) => ({
@@ -76,7 +76,7 @@ class Index extends Component {
         loading: true,
       }));
       setTimeout(() => {
-        getPostDatasA(dispatch, count + 30, selectValue);
+        getPostDatas(dispatch, count + 30, selectValue);
       },500);
       setTimeout(() => {
         this.setState((prevState, props) => ({
@@ -103,9 +103,9 @@ class Index extends Component {
       isShow: true,
     }));
   }
-  getPostDatas = () => {
+  postDatas = () => {
     const { dispatch, postRedu: { count, selectValue } } = this.props;
-    getPostDatasA(dispatch, count, selectValue);
+    getPostDatas(dispatch, count, selectValue);
   }
   cancelBtn = () => {
     this.propsStyle = {
@@ -136,7 +136,7 @@ class Index extends Component {
     }));
   };
   render() {
-    const { history, postRedu: { userName, avatar, buttons, lists, count } } = this.props;
+    const { history, postRedu: { buttons, lists, count } } = this.props;
     const { type, isShow, loading, hasMore, visible } = this.state;
     const columns = [{
       title: '主题',
@@ -171,13 +171,10 @@ class Index extends Component {
     let datas = {};
     ({ datas: datas.initialLoad = false, datas: datas.pageStart = 0, datas: datas.loadMore = this.handleInfiniteOnLoad, datas: datas.hasMore = !loading && hasMore, datas: datas.useWindow = true, datas: datas.threshold = 10, datas: datas.style = { maxHeight: '100%' } } = {});
     let edits = {};
-    ({ edits: edits.cancelBtn = this.cancelBtn, edits: edits.propsStyle = this.propsStyle, edits: edits.quillStyle = this.quillStyle, edits: edits.getPostDatas = this.getPostDatas, edits: edits.isShow = isShow, edits: edits.handleOk = this.handleOk } = {});
+    ({ edits: edits.cancelBtn = this.cancelBtn, edits: edits.propsStyle = this.propsStyle, edits: edits.quillStyle = this.quillStyle, edits: edits.postDatas = this.postDatas, edits: edits.isShow = isShow, edits: edits.handleOk = this.handleOk } = {});
     return (
       <div>
-        <LayoutHead 
-          userName={userName}
-          avatar={avatar}
-          history={history}
+        <LayoutHead history={history}
         />
         <div className="post">
           <div className="post-sendnewtheme">
