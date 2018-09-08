@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Table, Icon, Divider, Button, Select, Spin } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead';
 import PostEdit from './../../components/Post/PostEdit';
+import UserLoginModal from './../../components/User/UserLoginModal';
 import { getAvatarA, getPostDatasA } from './../../actions/PostAction';
 import InfiniteScroll from 'react-infinite-scroller';
 import * as styles from './index.css';
@@ -46,6 +47,7 @@ class Index extends Component {
       isShow: false,
       loading: false,
       hasMore: true,
+      visible: false,
     };
     this.propsStyle = {
       height: 0
@@ -117,15 +119,25 @@ class Index extends Component {
       isRender: !isRender,
       isShow: false,
     }));
-  }
+  };
   postDetail(key) {
     const { history } = this.props;
     localStorage.setItem('postId', key);
     history.push('/postDetail');
   }
+  handleOk = () => {
+    this.setState(() => ({
+      visible: true,
+    }));
+  };
+  handleCancel = () => {
+    this.setState(() => ({
+      visible: false,
+    }));
+  };
   render() {
     const { history, postRedu: { userName, avatar, buttons, lists, count } } = this.props;
-    const { type, isShow, loading, hasMore } = this.state;
+    const { type, isShow, loading, hasMore, visible } = this.state;
     const columns = [{
       title: '主题',
       dataIndex: 'theme',
@@ -158,6 +170,8 @@ class Index extends Component {
     }];
     let datas = {};
     ({ datas: datas.initialLoad = false, datas: datas.pageStart = 0, datas: datas.loadMore = this.handleInfiniteOnLoad, datas: datas.hasMore = !loading && hasMore, datas: datas.useWindow = true, datas: datas.threshold = 10, datas: datas.style = { maxHeight: '100%' } } = {});
+    let edits = {};
+    ({ edits: edits.cancelBtn = this.cancelBtn, edits: edits.propsStyle = this.propsStyle, edits: edits.quillStyle = this.quillStyle, edits: edits.getPostDatas = this.getPostDatas, edits: edits.isShow = isShow, edits: edits.handleOk = this.handleOk } = {});
     return (
       <div>
         <LayoutHead 
@@ -200,13 +214,8 @@ class Index extends Component {
             { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
           </InfiniteScroll>
         </div>
-        <PostEdit
-          cancelBtn={this.cancelBtn}
-          propsStyle={this.propsStyle}
-          quillStyle={this.quillStyle}
-          getPostDatas={this.getPostDatas}
-          isShow={isShow}
-        />
+        <PostEdit {...edits} />
+        <UserLoginModal visible={visible} handleCancel={this.handleCancel} />
       </div>
     );
   }

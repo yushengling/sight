@@ -72,6 +72,9 @@ class PostEdit extends Component {
       case 404:
         clearCode(dispatch, postRedu, 2);
         message.info('请登录之后，再发表主题');
+        setTimeout(() => {
+          this.props.handleOk();
+        }, 200);
       break;
     }
   }
@@ -212,7 +215,7 @@ class PostEdit extends Component {
       clearCode(dispatch, postRedu, 1);
       cancelBtn();
     }
-  }
+  };
   render() {
     const { style, text, editorValue } = this.state;
     const { cancelBtn, propsStyle, quillStyle, postRedu: { editorSelectValue, inputThemeValue, code, count }, isShow  } = this.props;
@@ -234,49 +237,50 @@ class PostEdit extends Component {
     return (
       <div>
         {
-          isShow ? <div ref="editor" className="editor-div" style={{...style, ...propsStyle}}>
-          <div className="grippie" onMouseDown={this.grippieDown} ></div>
-          <div>
-            <Button type="primary" icon="plus" style={{ borderRadius: '0' }} onClick={this.crateTheme} >创建主题</Button>
-            <a className="editor-cancel" onClick={this.childCancelBtn}>取消</a>
-          </div>
-          <div>
-            <Input className="title-input" placeholder="输入标题" onChange={this.inputThemeChange} value={inputThemeValue} />
-            <Select
-              defaultValue="未分类"
-              value={editorSelectValue}
-              style={{ width: '20%', marginLeft: '30px' }}
-              onChange={this.handleChange}
-            >
-              {
-                Options.map((list, key) => 
-                  <Option value={list.value} key={key}>{list.name}</Option>
-                )
-              }
-            </Select>
-          </div>
-          <div className="editor-col">
-            <div className="editor-col-div">
-              <ReactQuill
-                className="editor-quill"
-                style={{...quillStyle}}
-                value={editorValue}
-                onChange={this.editorChange}
-                modules={modules}
+          isShow ? 
+          <div ref="editor" className="editor-div" style={{...style, ...propsStyle}}>
+            <div className="grippie" onMouseDown={this.grippieDown} ></div>
+            <div>
+              <Button type="primary" icon="plus" style={{ borderRadius: '0' }} onClick={this.crateTheme} >创建主题</Button>
+              <a className="editor-cancel" onClick={this.childCancelBtn}>取消</a>
+            </div>
+            <div>
+              <Input className="title-input" placeholder="输入标题" onChange={this.inputThemeChange} value={inputThemeValue} />
+              <Select
+                defaultValue="未分类"
+                value={editorSelectValue}
+                style={{ width: '20%', marginLeft: '30px' }}
+                onChange={this.handleChange}
               >
-              </ReactQuill>
+                {
+                  Options.map((list, key) => 
+                    <Option value={list.value} key={key}>{list.name}</Option>
+                  )
+                }
+              </Select>
             </div>
-            <div className="editor-col-div">
-              <div
-                className="monitor"
-                style={{...textareaStyle}}
-                disabled="disabled"
-                readOnly="readonly"
-                dangerouslySetInnerHTML={{__html: editorValue}}
-              />
+            <div className="editor-col">
+              <div className="editor-col-div">
+                <ReactQuill
+                  className="editor-quill"
+                  style={{...quillStyle}}
+                  value={editorValue}
+                  onChange={this.editorChange}
+                  modules={modules}
+                >
+                </ReactQuill>
+              </div>
+              <div className="editor-col-div">
+                <div
+                  className="monitor"
+                  style={{...textareaStyle}}
+                  disabled="disabled"
+                  readOnly="readonly"
+                  dangerouslySetInnerHTML={{__html: editorValue}}
+                />
+              </div>
             </div>
-          </div>
-        </div> : ""
+          </div> : ""
         }
       </div>
     );
