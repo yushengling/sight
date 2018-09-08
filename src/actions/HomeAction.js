@@ -11,4 +11,7 @@ const clear = (dispatch) => {
   });
 }
 
-export { getData, clear };
+export {
+  getData,
+  clear
+};

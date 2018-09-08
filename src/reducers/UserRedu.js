@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import { initialState } from './../store/UserStore';
-
+const initialState = {
+  code: 0,
+  message: '',  
+}
 const userRedu = (state = initialState, action) => {
   switch(action.type) {
     case 'REGISTERREDU':

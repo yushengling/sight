@@ -1,6 +1,15 @@
-import { combineReducers } from 'redux';
-import { initialState, changeState } from './../store/SettingStore';
+const initialState = {
+  code: 0,
+  message: '',
+  userName: false,
+  avatar: false,
+  isgo: true
+};
 
+const changeState = {
+  code: 0,
+  message: ''
+};
 const settingRedu = (state = initialState, action) => {
   switch(action.type) {
     case 'SETTINGREDU':

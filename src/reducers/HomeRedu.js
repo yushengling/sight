@@ -1,5 +1,18 @@
 import { combineReducers } from 'redux';
-import { initialState, changeState } from './../store/HomeStore';
+const initialState = {
+  count: 0,
+  listData: [],
+  userName: false,
+  avatar: false,
+  total: 0,
+  code: 0,
+  message: ''
+};
+
+const changeState = {
+  code: 0,
+  message: ''
+};
 
 const homeRedu = (state = initialState, action) => {
   switch(action.type) {

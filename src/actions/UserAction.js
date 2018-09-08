@@ -25,4 +25,9 @@ const login = (dispatch, values) => {
   });
 }
 
-export { register, clear, updatePassword, login };
+export {
+  register,
+  clear,
+  updatePassword,
+  login
+};

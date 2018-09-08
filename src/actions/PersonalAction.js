@@ -32,4 +32,10 @@ const signOutA = (dispatch) => {
     type: 'SIGNOUT_SAGA'
   }); 
 }
-export { getAvatarA, uploadImagesA, uploadAvatarA, getImagesA, signOutA };
+export {
+  getAvatarA,
+  uploadImagesA,
+  uploadAvatarA,
+  getImagesA,
+  signOutA
+};

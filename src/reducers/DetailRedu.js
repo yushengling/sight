@@ -1,6 +1,7 @@
-import { combineReducers } from 'redux';
-import { initialState } from './../store/DetailStore';
-
+const initialState = {
+  userName: false,
+  avatar: false
+};
 const detailRedu = (state = initialState, action) => {
   switch(action.type) {
     case 'DETAILREDU':

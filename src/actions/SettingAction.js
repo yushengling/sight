@@ -16,4 +16,8 @@ const clear = (dispatch) => {
     type:'CLEARREDU'
   });
 }
-export { passwordChangeA, getAvatarA, clear };
+export {
+  passwordChangeA,
+  getAvatarA,
+  clear
+};
