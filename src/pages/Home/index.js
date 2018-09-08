@@ -125,7 +125,7 @@ Index.propTypes = {
   userName: PropTypes.string,
   avatar: PropTypes.string
 };
-function mapStateToProps(state,oWnprops) {
+function mapStateToProps(state, oWnprops) {
   return state;
 }
 export default connect(mapStateToProps)(Index);

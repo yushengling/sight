@@ -6,9 +6,11 @@ import { tips } from './../../util.js';
 import * as styles from './UserRegister.css';
 const FormItem = Form.Item;
 class UserRegister extends React.Component {
-  state = {
-    confirmDirty: false,
-  };
+  constructor(props) {
+    super(props);
+  
+    this.state = {};
+  }
   componentWillReceiveProps(nextProps) {
     const { userRedu } = nextProps;
     const { dispatch, history } = this.props;
@@ -27,12 +29,6 @@ class UserRegister extends React.Component {
         register(dispatch, values);
       }
     });
-  }
-  handleConfirmBlur = (e) => {
-    const value = e.target.value;
-    this.setState((prevState, props) => ({
-      confirmDirty: this.state.confirmDirty || !!value
-    }));
   }
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
@@ -77,7 +73,7 @@ class UserRegister extends React.Component {
       <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>
           {getFieldDecorator('userName', {
-            rules: [{ 
+            rules: [{
               required: true,
               message: '请输入用户名!',
               whitespace: true
@@ -121,7 +117,7 @@ class UserRegister extends React.Component {
 }
 
 const WrappedRegistrationForm = Form.create()(UserRegister);
-function mapStateToProps(state,oWnprops) {
+function mapStateToProps(state, oWnprops) {
   return state;
 }
 export default connect(mapStateToProps)(WrappedRegistrationForm);

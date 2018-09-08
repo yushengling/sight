@@ -10,10 +10,10 @@ message.config({
 });
 
 function* fetchFirstImagesFun(action) {
-  let datas = yield call(fetchImages, action);
+  let data = yield call(fetchImages, action);
   yield put({
     type: 'PERSONALREDU',
-    datas,
+    data,
   });
 }
 
@@ -22,7 +22,7 @@ function* fetchUploadImagesFun(action) {
   if(data.code === 200) {
     message.success('上传成功');
     let images = yield call(fetchImages, action);
-    data.listData = images.srcs;
+    data.listData = images.listData;
     data.total = images.total;
     data.count = images.count;
     yield put({
@@ -46,7 +46,7 @@ function* fetchUploadAvatarFun(action) {
 function* fetchImagesFun(action) {
   let images = yield call(fetchImages, action);
   let data = {};
-  data.listData = images.srcs;
+  data.listData = images.listData;
   data.total = images.total;
   data.count = images.count;
   yield put({

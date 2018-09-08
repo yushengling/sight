@@ -36,9 +36,7 @@ class PostEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      style: {
-
-      },
+      style: {},
       isRender: false,
       clientY: 300,
       text: '',

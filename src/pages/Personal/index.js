@@ -153,7 +153,7 @@ class Index extends Component {
   }
   render() {
     const { history, personalRedu } = this.props;
-    const { listData } = personalRedu;
+    const { listData, avatar, userName } = personalRedu;
     const { visible, loading, hasMore, viewVisible, src } = this.state;
     return (
       <div className="personal">
@@ -257,7 +257,7 @@ class Index extends Component {
     );
   }
 }
-function mapStateToProps(state,oWnprops) {
+function mapStateToProps(state, oWnprops) {
   return state;
 }
 export default connect(mapStateToProps)(Index);

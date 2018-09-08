@@ -63,7 +63,7 @@ class UserLogin extends Component {
   }
 }
 const WrappedNormalLoginForm = Form.create()(UserLogin);
-function mapStateToProps(state,oWnprops) {
+function mapStateToProps(state, oWnprops) {
   return state;
 }
 export default connect(mapStateToProps)(withRouter(WrappedNormalLoginForm));

@@ -29,7 +29,7 @@ class Index extends Component {
     );
   }
 }
-function mapStateToProps(state,oWnprops) {
+function mapStateToProps(state, oWnprops) {
   return state;
 }
 

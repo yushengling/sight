@@ -2,7 +2,6 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
-import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import PasswordChange from './../../components/Setting/PasswordChange.js';
 import ManageAccess from './../../components/Setting/ManageAccess.js';
 import * as styles from './index.css';
@@ -32,12 +31,11 @@ class Index extends Component {
             </TabPane>
           </Tabs>
         </main>
-        <LayoutFooter />
       </div>
     );
   }
 }
-function mapStateToProps(state,oWnprops) {
+function mapStateToProps(state, oWnprops) {
   return state;
 }
 export default connect(mapStateToProps)(Index);

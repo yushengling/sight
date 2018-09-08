@@ -6,7 +6,7 @@ import * as styles from './index.css';
 class Index extends Component {
   constructor(props) {
     super(props);
-    this.state = { };
+    this.state = {};
     this.offsetWidth = 0;
   }
   componentDidMount() {

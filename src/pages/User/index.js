@@ -23,11 +23,6 @@ class Index extends Component {
       }));
     }
   };
-  /**
-   * 忘记密码
-   * @author  Jiang
-   * @return {[type]} [description]
-   */
   forgetPassword = () => {
     this.setState((prevState, props) => ({
       isLogin: 3,
@@ -68,7 +63,7 @@ class Index extends Component {
     );
   }
 }
-function mapStateToProps(state,oWnprops) {
+function mapStateToProps(state, oWnprops) {
   return state;
 }
 

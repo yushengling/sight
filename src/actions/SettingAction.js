@@ -1,4 +1,4 @@
-const passwordChangeA = (dispatch, values) => {
+const passwordChange = (dispatch, values) => {
   dispatch({
     type:'PASSWORDCHANGE_SAGA',
     values
@@ -11,6 +11,6 @@ const clear = (dispatch) => {
   });
 }
 export {
-  passwordChangeA,
+  passwordChange,
   clear
 };

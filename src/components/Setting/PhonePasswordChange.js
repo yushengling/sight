@@ -2,18 +2,15 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button } from 'antd';
 import LayoutHead from './../Layout/LayoutHead.js';
-import { passwordChangeA, clear } from './../../actions/SettingAction';
+import { passwordChange, clear } from './../../actions/SettingAction';
 import { tips } from './../../util.js';
-import { getAvatarA } from './../../actions/SettingAction.js';
 import * as styles from './PhonePasswordChange.css';
 const FormItem = Form.Item;
 class PhonePasswordChange extends Component {
-  state = {
-    confirmDirty: false,
-  };
-  componentDidMount() {
-    const { dispatch } = this.props;
-    getAvatarA(dispatch);
+  constructor(props) {
+    super(props);
+  
+    this.state = {};
   }
   componentWillReceiveProps(nextProps) {
     const { settingRedu } = nextProps;
@@ -30,15 +27,9 @@ class PhonePasswordChange extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         const { dispatch } = this.props;
-        passwordChangeA(dispatch, values);
+        passwordChange(dispatch, values);
       }
     });
-  }
-  handleConfirmBlur = (e) => {
-    const value = e.target.value;
-    this.setState((prevState, props) => ({
-      confirmDirty: this.state.confirmDirty || !!value
-    }));
   }
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
@@ -66,15 +57,10 @@ class PhonePasswordChange extends Component {
   };
   render() {
     const { history, settingRedu } = this.props;
-    const { userName, avatar } = settingRedu;
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="personal">
-        <LayoutHead
-          userName={userName}
-          avatar={avatar}
-          history={history}
-        />
+        <LayoutHead history={history} />
         <Form onSubmit={this.handleSubmit} className="passwordchange-login-form">
           <FormItem>
             {getFieldDecorator('password', {

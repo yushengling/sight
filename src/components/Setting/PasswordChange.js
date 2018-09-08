@@ -1,14 +1,16 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button } from 'antd';
-import { passwordChangeA, clear } from './../../actions/SettingAction';
+import { passwordChange, clear } from './../../actions/SettingAction';
 import { tips } from './../../util.js';
 import * as styles from './PasswordChange.css';
 const FormItem = Form.Item;
 class PasswordChange extends React.Component {
-  state = {
-    confirmDirty: false,
-  };
+  constructor(props) {
+    super(props);
+  
+    this.state = {};
+  }
   componentWillReceiveProps(nextProps) {
     const { settingRedu } = nextProps;
     const { dispatch, history } = this.props;
@@ -24,15 +26,9 @@ class PasswordChange extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         const { dispatch } = this.props;
-        passwordChangeA(dispatch, values);
+        passwordChange(dispatch, values);
       }
     });
-  }
-  handleConfirmBlur = (e) => {
-    const value = e.target.value;
-    this.setState((prevState, props) => ({
-      confirmDirty: this.state.confirmDirty || !!value
-    }));
   }
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
