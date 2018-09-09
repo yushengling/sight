@@ -3,7 +3,7 @@ import * as styles from './UserLoginModal.css';
 import { Modal } from 'antd';
 import UserLogin from './../../pages/User/index';
 const UserLoginModal = (props) => {
-  const { visible, handleCancel } = props;
+  const { visible, handleCancel, page } = props;
   return (
     <div>
       <Modal
@@ -16,7 +16,7 @@ const UserLoginModal = (props) => {
           footer={null}
           zIndex={2}
         >
-        <UserLogin />
+        <UserLogin page={page} handleCancel={handleCancel} />
       </Modal>
     </div>
   );

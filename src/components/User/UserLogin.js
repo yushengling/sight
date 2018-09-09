@@ -12,12 +12,14 @@ class UserLogin extends Component {
   }
   componentWillReceiveProps(nextProps) {
     const { userRedu } = nextProps;
-    const { dispatch, history } = this.props;
+    const { dispatch, history, page, handleCancel } = this.props;
     let datas = {};
     datas.userRedu = userRedu;
     datas.dispatch = dispatch;
     datas.clear = clear;
     datas.history = history;
+    datas.page = page;
+    datas.handleCancel = handleCancel;
     tips.alertMessage.call(datas);
   }
   handleSubmit = (e) => {

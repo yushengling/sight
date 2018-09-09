@@ -4,6 +4,8 @@ const tips = {
   clear: undefined,
   history: undefined,
   dispatch: undefined,
+  page: undefined,
+  handleCancel: undefined,
   alertMessage: function() {
     message.config({
       top: 24,
@@ -18,7 +20,11 @@ const tips = {
       message.success(message);
       if(!isgo) {
         setTimeout(() => {
-          this.history.push('/');
+          if(this.page == 'edit') {
+            this.handleCancel();
+          } else {
+            this.history.push('/');
+          }
         },1100);
       }
       this.clear(this.dispatch);

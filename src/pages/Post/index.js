@@ -131,9 +131,10 @@ class Index extends Component {
     }));
   };
   handleCancel = () => {
-    this.setState(() => ({
+    console.log(this);
+    /*this.setState(() => ({
       visible: false,
-    }));
+    }));*/
   };
   render() {
     const { history, postRedu: { buttons, lists, count } } = this.props;
@@ -172,10 +173,10 @@ class Index extends Component {
     ({ datas: datas.initialLoad = false, datas: datas.pageStart = 0, datas: datas.loadMore = this.handleInfiniteOnLoad, datas: datas.hasMore = !loading && hasMore, datas: datas.useWindow = true, datas: datas.threshold = 10, datas: datas.style = { maxHeight: '100%' } } = {});
     let edits = {};
     ({ edits: edits.cancelBtn = this.cancelBtn, edits: edits.propsStyle = this.propsStyle, edits: edits.quillStyle = this.quillStyle, edits: edits.postDatas = this.postDatas, edits: edits.isShow = isShow, edits: edits.handleOk = this.handleOk } = {});
+    const ref = React.createRef();
     return (
       <div>
-        <LayoutHead history={history}
-        />
+        <LayoutHead ref={ref} history={history} />
         <div className="post">
           <div className="post-sendnewtheme">
             <div>
@@ -212,7 +213,7 @@ class Index extends Component {
           </InfiniteScroll>
         </div>
         <PostEdit {...edits} />
-        <UserLoginModal visible={visible} handleCancel={this.handleCancel} />
+        <UserLoginModal visible={visible} handleCancel={this.handleCancel} page={"edit"}  />
       </div>
     );
   }

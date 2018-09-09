@@ -13,6 +13,10 @@ class LayoutHead extends Component {
     const { dispatch } = this.props;
     getAvatar(dispatch);
   }
+  getAvatarHandler() {
+    const { dispatch } = this.props;
+    getAvatar(dispatch);
+  }
   render() {
     const { layoutHeadRedu: { userName, avatar }, history } = this.props;
     return (
