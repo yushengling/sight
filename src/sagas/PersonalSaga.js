@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
+import { call, put, takeLatest, delay } from 'redux-saga/effects';
 
 import { fetchAvatar, fetchUploadImages, fetchUploadAvatar, fetchImages, fetchSignOut } from '../servers/personal';
 
@@ -55,13 +55,14 @@ function* fetchImagesFun(action) {
   });
 }
 
-function* fetchSignOutFun() {
+function* fetchSignOutFun(action) {
   let data = yield call(fetchSignOut);
   data = JSON.parse(data);
   yield put({
     type: 'CLEARREDU',
     data,
   });
+  action.history.push('/');
 }
 
 function* personalSaga() {

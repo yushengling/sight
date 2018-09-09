@@ -27,9 +27,10 @@ const getImages = (dispatch, count) => {
   });
 }
 
-const signOut = (dispatch) => {
+const signOut = (dispatch, history) => {
   dispatch({
-    type: 'SIGNOUT_SAGA'
+    type: 'SIGNOUT_SAGA',
+    history
   }); 
 }
 export {

@@ -137,8 +137,8 @@ class Index extends Component {
     }));
   }
   signOutHandler() {
-    const { dispatch } = this.props;
-    signOut(dispatch);
+    const { dispatch, history } = this.props;
+    signOut(dispatch, history);
   }
   setting() {
     const { history } = this.props;
