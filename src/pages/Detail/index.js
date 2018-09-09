@@ -24,7 +24,6 @@ class Index extends Component {
           </header>
           <img className="detail-img" src={img} />
         </main>
-        <LayoutFooter />
       </div>
     );
   }
