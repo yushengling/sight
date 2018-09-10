@@ -1,10 +1,10 @@
-import React,{ Component } from 'react';
+import React,{ PureComponent } from 'react';
 import { Layout, Row, Col, Icon, Affix } from 'antd';
 import { connect } from 'react-redux';
 import * as styles from './LayoutHead.css';
 import { getAvatar } from './../../actions/LayoutHeadAction.js';
 const { Header } = Layout;
-class LayoutHead extends Component {
+class LayoutHead extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};

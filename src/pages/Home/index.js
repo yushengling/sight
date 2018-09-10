@@ -119,13 +119,9 @@ class Index extends Component {
     );
   }
 }
-Index.propTypes = {
-  listData: PropTypes.array,
-  count: PropTypes.number,
-  userName: PropTypes.string,
-  avatar: PropTypes.string
-};
+
 function mapStateToProps(state, oWnprops) {
   return state;
 }
-export default connect(mapStateToProps)(Index);
+
+export default connect(mapStateToProps)(BlogPostWithSubscription);
