@@ -124,4 +124,4 @@ function mapStateToProps(state, oWnprops) {
   return state;
 }
 
-export default connect(mapStateToProps)(BlogPostWithSubscription);
+export default connect(mapStateToProps)(Index);
