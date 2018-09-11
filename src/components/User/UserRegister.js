@@ -10,6 +10,7 @@ class UserRegister extends React.Component {
     super(props);
   
     this.state = {};
+    this.numbers = [];
   }
   componentWillReceiveProps(nextProps) {
     const { userRedu } = nextProps;
@@ -22,6 +23,53 @@ class UserRegister extends React.Component {
     datas.page = page;
     datas.handleCancel = handleCancel;
     tips.alertMessage.call(datas);
+  }
+  componentDidMount() {
+    let canVas = this.refs.myCanvas;
+    var w = 192;
+    var h = 40;
+    var context = canVas.getContext("2d");
+    context.fillStyle = this.rc(180,230);
+    context.fillRect(0, 0, w, h);
+    var pool = "ABCDEFGHIJKLIMNOPQRSTUVWSYZ1234567890";
+    for(var i = 0; i < 4; i++) {
+      var c = pool[this.rn(0, pool.length)];//随机的字
+      this.numbers.push(c);
+      var fs = this.rn(18, 40);//字体的大小
+      var deg = this.rn(-30, 30);//字体的旋转角度
+      context.font = fs + 'px Simhei';
+      context.textBaseline = "top";
+      context.fillStyle = this.rc(80,150);
+      context.save();
+      context.translate(30 * i + 15,15);
+      context.rotate(deg * Math.PI / 180);
+      context.fillText(c, -15 + 5, -15);
+      context.restore();
+    }
+    for(var i = 0; i < 5; i++) {
+      context.beginPath();
+      context.moveTo(this.rn(0,w),this.rn(0,h));
+      context.lineTo(this.rn(0,w),this.rn(0,h));
+      context.strokeStyle = this.rc(180,230);
+      context.closePath();
+      context.stroke();
+    }
+    for(var i = 0; i < 40; i++) {
+      context.beginPath();
+      context.arc(this.rn(0, w),this.rn(0, h), 1, 0, 2 * Math.PI);
+      context.closePath();
+      context.fillStyle = this.rc(150,200);
+      context.fill();
+    }
+  }
+  rc(min, max) {
+      var r = this.rn(min, max);
+      var g = this.rn(min, max);
+      var b = this.rn(min, max);
+      return `rgb(${r},${g},${b})`;
+  }
+  rn(min, max) {
+    return  parseInt(Math.random()*(max-min)+min);
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -39,7 +87,7 @@ class UserRegister extends React.Component {
     } else {
       callback();
     }
-  };
+  }
   validateToNextName = (rule, value , callback) => {
     const form = this.props.form;
     const namePattern = /^\d/;
@@ -68,7 +116,22 @@ class UserRegister extends React.Component {
     } else {
       callback();
     }
-  };
+  }
+  validateToNextCode = (rule, value, callback) => {
+    if(value) {
+      let numbers = '';
+      for(let i = 0, len = this.numbers.length; i < len; i++) {
+        numbers += this.numbers[i];
+      }
+      if(value.toUpperCase() != numbers) {
+        callback('请输入正确的验证码');
+      } else {
+        callback();
+      }
+    } else {
+      callback();
+    }
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -76,14 +139,12 @@ class UserRegister extends React.Component {
         <FormItem>
           {getFieldDecorator('userName', {
             rules: [{
-              required: true,
-              message: '请输入用户名!',
-              whitespace: true
+              required: true, message: '请输入用户名!',
             }, {
               validator: this.validateToNextName,
             }],
           })(
-            <Input placeholder="请输入用户名" />
+            <Input type="user" placeholder="请输入用户名" />
           )}
         </FormItem>
         <FormItem>
@@ -94,9 +155,7 @@ class UserRegister extends React.Component {
               validator: this.validateToNextPassword,
             }],
           })(
-            <div>
-              <Input type="password" placeholder="请输入密码" />
-            </div>
+            <Input type="password" placeholder="请输入密码" />
           )}
         </FormItem>
         <FormItem>
@@ -108,6 +167,20 @@ class UserRegister extends React.Component {
             }],
           })(
             <Input type="password" placeholder="请确认密码" />
+          )}
+        </FormItem>
+        <FormItem>
+          {getFieldDecorator('verCode', {
+            rules: [{
+              required: true, message: '请确认验证码!', whitespace: true
+            }, {
+              validator: this.validateToNextCode,
+            }],
+          })(
+            <span>
+              <canvas ref="myCanvas" width="192" height="40"></canvas>
+              <Input placeholder="请输入验证码" />
+            </span>
           )}
         </FormItem>
         <FormItem>
