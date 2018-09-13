@@ -4,6 +4,7 @@ import { Form, Input, Button, message } from 'antd';
 import { register, clear } from './../../actions/UserAction';
 import { tips } from './../../util.js'; 
 import * as styles from './UserRegister.css';
+import VerificationCode from 'react-verificationcode-s';
 const FormItem = Form.Item;
 class UserRegister extends React.Component {
   constructor(props) {
@@ -23,53 +24,6 @@ class UserRegister extends React.Component {
     datas.page = page;
     datas.handleCancel = handleCancel;
     tips.alertMessage.call(datas);
-  }
-  componentDidMount() {
-    let canVas = this.refs.myCanvas;
-    var w = 192;
-    var h = 40;
-    var context = canVas.getContext("2d");
-    context.fillStyle = this.rc(180,230);
-    context.fillRect(0, 0, w, h);
-    var pool = "ABCDEFGHIJKLIMNOPQRSTUVWSYZ1234567890";
-    for(var i = 0; i < 4; i++) {
-      var c = pool[this.rn(0, pool.length)];//随机的字
-      this.numbers.push(c);
-      var fs = this.rn(18, 40);//字体的大小
-      var deg = this.rn(-30, 30);//字体的旋转角度
-      context.font = fs + 'px Simhei';
-      context.textBaseline = "top";
-      context.fillStyle = this.rc(80,150);
-      context.save();
-      context.translate(30 * i + 15,15);
-      context.rotate(deg * Math.PI / 180);
-      context.fillText(c, -15 + 5, -15);
-      context.restore();
-    }
-    for(var i = 0; i < 5; i++) {
-      context.beginPath();
-      context.moveTo(this.rn(0,w),this.rn(0,h));
-      context.lineTo(this.rn(0,w),this.rn(0,h));
-      context.strokeStyle = this.rc(180,230);
-      context.closePath();
-      context.stroke();
-    }
-    for(var i = 0; i < 40; i++) {
-      context.beginPath();
-      context.arc(this.rn(0, w),this.rn(0, h), 1, 0, 2 * Math.PI);
-      context.closePath();
-      context.fillStyle = this.rc(150,200);
-      context.fill();
-    }
-  }
-  rc(min, max) {
-      var r = this.rn(min, max);
-      var g = this.rn(min, max);
-      var b = this.rn(min, max);
-      return `rgb(${r},${g},${b})`;
-  }
-  rn(min, max) {
-    return  parseInt(Math.random()*(max-min)+min);
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -132,6 +86,9 @@ class UserRegister extends React.Component {
       callback();
     }
   }
+  getNumbers(value) {
+    this.numbers = value;
+  }
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -178,7 +135,7 @@ class UserRegister extends React.Component {
             }],
           })(
             <span>
-              <canvas ref="myCanvas" width="192" height="40"></canvas>
+              <VerificationCode getNumbers={this.getNumbers.bind(this)} height="40" width="192" />
               <Input placeholder="请输入验证码" />
             </span>
           )}

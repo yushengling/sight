@@ -44,9 +44,9 @@ class Index extends Component {
     ws.onmessage = function(evt) {
       console.log( "Received Message: " + evt.data);
       ws.close();
-    };*/
+    };
 
-    /*ws.onclose = function(evt) {
+    ws.onclose = function(evt) {
       console.log("Connection closed.");
     };*/
   }
