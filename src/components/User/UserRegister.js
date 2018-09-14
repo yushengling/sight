@@ -27,9 +27,9 @@ class UserRegister extends React.Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
+    const { form, dispatch } = this.props;
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        const { dispatch } = this.props;
         register(dispatch, values);
       }
     });

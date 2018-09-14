@@ -66,21 +66,21 @@ class Index extends Component {
     getPostDatas(dispatch, 30, value);
   }
   statusSwitch = (type) => {
-    this.setState((prevState, props) => ({
+    this.setState(() => ({
       type
     }));
   }
   handleInfiniteOnLoad = (page) => {
     const { dispatch, postRedu: { total, count, selectValue } } = this.props;
     if(total[0]['count(*)'] > count) {
-      this.setState((prevState, props) => ({
+      this.setState(() => ({
         loading: true,
       }));
       setTimeout(() => {
         getPostDatas(dispatch, count + 30, selectValue);
       },500);
       setTimeout(() => {
-        this.setState((prevState, props) => ({
+        this.setState(() => ({
           loading: false,
         }));
       },700);
@@ -99,7 +99,7 @@ class Index extends Component {
       OTransition: 'height 0s ease'
     };
     const { isRender } = this.state;
-    this.setState((prevState, props) => ({
+    this.setState(() => ({
       isRender: !isRender,
       isShow: true,
     }));
@@ -116,7 +116,7 @@ class Index extends Component {
       display: 'none'
     };
     const { isRender } = this.state;
-    this.setState((prevState, props) => ({
+    this.setState(() => ({
       isRender: !isRender,
       isShow: false,
     }));
@@ -191,17 +191,6 @@ class Index extends Component {
                   )
                 }
               </Select>
-              {
-                /*buttons.map((list, key) => {
-                  let name = 'post-button';
-                  if(type === list.type) {
-                    name = 'post-button post-button-click';
-                  }
-                  return (
-                    <button className={name} key={key} onClick={this.statusSwitch.bind(this, list.type)}>{list.name}({list.total})</button>
-                  )
-                })*/
-              }
             </div>
             <Button type="primary" icon="plus" style={{ borderRadius: '0' }} onClick={this.sendNewButton} >发新主题</Button>
           </div>

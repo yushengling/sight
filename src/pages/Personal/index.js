@@ -19,16 +19,16 @@ class Index extends Component {
   }
   componentDidMount() {
     const { dispatch } = this.props;
-    getFirstImages(dispatch, 24);
+    getFirstImages(dispatch, 16);
   }
   settingBtn() {
     const { visible } = this.state;
     if(visible) {
-      this.setState((prevState, props) => ({
+      this.setState(() => ({
         visible: false,
       }));
     } else {
-      this.setState((prevState, props) => ({
+      this.setState(() => ({
         visible: true,
       }));
     }
@@ -70,7 +70,7 @@ class Index extends Component {
         loading: true,
       }));
       setTimeout(() => {
-        getImages(dispatch,count + 24);
+        getImages(dispatch,count + 16);
       },500);
       setTimeout(() => {
         this.setState((prevState, props) => ({

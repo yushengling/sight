@@ -24,9 +24,9 @@ class UserLogin extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    const { form, dispatch } = this.props;
+    form.validateFields((err, values) => {
       if (!err) {
-        const { dispatch } = this.props;
         login(dispatch, values);
       }
     });

@@ -1,9 +1,13 @@
 import { call, put, takeEvery, takeLatest, delay } from 'redux-saga/effects';
-
+import { message } from 'antd';
 import { fetchCreateTheme, fetchGetPost } from '../servers/post';
 
 function* fetchGetPostFun(action) {
   let lists = yield call(fetchGetPost, action.count, action.selectValue);
+  if(lists.code === 500) {
+    message.error(lists.error);
+    return;
+  }
   yield put({
     type: 'POSTREDU',
     lists
@@ -12,6 +16,10 @@ function* fetchGetPostFun(action) {
 
 function* fetchPostDatasFun(action) {
   let lists = yield call(fetchGetPost, action.count, action.selectValue);
+  if(lists.code === 500) {
+    message.error(lists.error);
+    return;
+  }
   yield put({
     type: 'POSTREDU',
     lists
@@ -20,6 +28,10 @@ function* fetchPostDatasFun(action) {
 
 function* fetchCreateThemeFun(action) {
   let data = yield call(fetchCreateTheme, action.datas);
+  if(data.code === 500) {
+    message.error(data.error);
+    return;
+  }
   yield put({
     type: 'POSTREDU',
     data

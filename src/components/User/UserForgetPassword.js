@@ -24,9 +24,9 @@ class UserForgetPassword extends React.Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    const { form, dispatch } = this.props;
+    form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        const { dispatch } = this.props;
         updatePassword(dispatch, values);
       }
     });

@@ -15,9 +15,7 @@ class Index extends Component {
     this.state = {
       loading: false,
       hasMore: true,
-      isRender: false,
     };
-    this.loadedItems = [];
   }
   componentWillReceiveProps(nextProps) {
     message.config({
@@ -53,14 +51,14 @@ class Index extends Component {
   handleInfiniteOnLoad = (page) => {
     const { dispatch, homeRedu: { count, total } } = this.props;
     if(total[0]['count(*)'] > count) {
-      this.setState((prevState, props) => ({
+      this.setState(() => ({
         loading: true,
       }));
       setTimeout(() => {
         getData(dispatch, count + 24);
       },500);
       setTimeout(() => {
-        this.setState((prevState, props) => ({
+        this.setState(() => ({
           loading: false,
         }));
       },700);
@@ -86,21 +84,10 @@ class Index extends Component {
     sessionStorage.setItem('imgName', userName);
     history.push('/detail');
   }
-  onLoad(item, index) {
-    const { listData } = this.props.homeRedu;
-    this.loadedItems.push(item);
-    if(this.loadedItems.length == listData.length) {
-      this.setState((prevState, props) => ({
-        isRender: true
-      }));
-    }
-  }
   render() {
-    const { loading, data, hasMore } = this.state;
-    const { history, homeRedu } = this.props;
-    const { listData, count } = homeRedu;
-    let clientWidth = document.body.clientWidth;
-    let datas = {}, style = {};
+    const { loading, hasMore } = this.state;
+    const { history, homeRedu: { listData } } = this.props;
+    let datas = {};
     ({ datas: datas.initialLoad = false, datas: datas.pageStart = 0, datas: datas.loadMore = this.handleInfiniteOnLoad, datas: datas.hasMore = !loading && hasMore, datas: datas.useWindow = true, datas: datas.threshold = 10, datas: datas.style = { maxHeight: '100%' } } = {});
     return (
       <div style={{ position: 'relative' }}>
@@ -114,7 +101,6 @@ class Index extends Component {
           { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
         </InfiniteScroll>
         <BackTop />
-        <LayoutFooter />
       </div>
     );
   }

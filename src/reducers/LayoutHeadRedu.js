@@ -1,6 +1,6 @@
 const initialState = {
   userName: false,
-  avatar: 'https://downfuture.com/user.png'
+  avatar: '//downfuture.com/user.png'
 };
 const LayoutHeadRedu = (state = initialState, action) => {
   switch(action.type) {

@@ -3,7 +3,7 @@ const initialState = {
   total: 0,
   count: 0,
   code: 0,
-  avatar: 'https://downfuture.com/user.png',
+  avatar: '//downfuture.com/user.png',
   userName: false
 };
 const userRedu = (state = initialState, action) => {

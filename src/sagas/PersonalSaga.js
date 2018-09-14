@@ -1,16 +1,13 @@
 import { call, put, takeLatest, delay } from 'redux-saga/effects';
-
-import { fetchAvatar, fetchUploadImages, fetchUploadAvatar, fetchImages, fetchSignOut } from '../servers/personal';
-
 import { message } from 'antd';
-message.config({
-  top: 24,
-  duration: 2,
-  maxCount: 1,
-});
+import { fetchAvatar, fetchUploadImages, fetchUploadAvatar, fetchImages, fetchSignOut } from '../servers/personal';
 
 function* fetchFirstImagesFun(action) {
   let data = yield call(fetchImages, action);
+  if(data.code === 500) {
+    message.error(data.error);
+    return;
+  }
   yield put({
     type: 'PERSONALREDU',
     data,
@@ -19,6 +16,10 @@ function* fetchFirstImagesFun(action) {
 
 function* fetchUploadImagesFun(action) {
   let data = yield call(fetchUploadImages, action);
+  if(data.code === 500) {
+    message.error(data.error);
+    return;
+  }
   if(data.code === 200) {
     message.success('上传成功');
     let images = yield call(fetchImages, action);
@@ -36,6 +37,10 @@ function* fetchUploadImagesFun(action) {
 
 function* fetchUploadAvatarFun(action) {
   const data = yield call(fetchUploadAvatar, action);
+  if(data.code === 500) {
+    message.error(data.error);
+    return;
+  }
   message.success('上传成功');
   yield put({
     type: 'PERSONALREDU',
@@ -45,6 +50,10 @@ function* fetchUploadAvatarFun(action) {
 
 function* fetchImagesFun(action) {
   let images = yield call(fetchImages, action);
+  if(images.code === 500) {
+    message.error(images.error);
+    return;
+  }
   let data = {};
   data.listData = images.listData;
   data.total = images.total;
