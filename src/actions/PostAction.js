@@ -44,11 +44,19 @@ const clearCode = (dispatch, postRedu, style) => {
     style
   });
 }
+
+const updateEditorValue = (dispatch, content) => {
+  dispatch({
+    type: 'EDITORVALUE_SAGA',
+    content
+  });
+}
 export {
   getPost,
   createTheme,
   saveSelectValue,
   saveinputThemeValue,
   clearCode,
-  getPostDatas
+  getPostDatas,
+  updateEditorValue
 };

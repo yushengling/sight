@@ -6,7 +6,7 @@ import ItemCard from './../../components/ItemCard/ItemCard.js';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import PropTypes from 'prop-types';
-import { getData, userClick, clear } from './../../actions/HomeAction';
+import { getData, userClick, clear, clearListData } from './../../actions/HomeAction';
 import './index.css';
 
 class Index extends Component {
@@ -84,14 +84,24 @@ class Index extends Component {
     sessionStorage.setItem('imgName', userName);
     history.push('/detail');
   }
+  onload = () => {
+    const { dispatch } = this.props;
+    clearListData(dispatch);
+    setTimeout(() => {
+      getData(dispatch, 16);
+    }, 500);
+  }
   render() {
     const { loading, hasMore } = this.state;
-    const { history, homeRedu: { listData } } = this.props;
+    const { history, homeRedu: { listData, isRender } } = this.props;
     let datas = {};
     ({ datas: datas.initialLoad = false, datas: datas.pageStart = 0, datas: datas.loadMore = this.handleInfiniteOnLoad, datas: datas.hasMore = !loading && hasMore, datas: datas.useWindow = true, datas: datas.threshold = 10, datas: datas.style = { maxHeight: '100%' } } = {});
     return (
       <div style={{ position: 'relative' }}>
-        <LayoutHead history={history} />
+        <LayoutHead history={history} onload={this.onload.bind(this)} />
+        {
+          isRender && <Spin size="large" />
+        }
         <InfiniteScroll
           {...datas}
         >

@@ -8,6 +8,7 @@ function* fetchDataFun(action) {
     message.error(datas.error);
     return;
   }
+  datas.isRender = false;
   yield put({
     type: "GETDATA",
     homeData: datas

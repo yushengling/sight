@@ -14,7 +14,7 @@ class LayoutHead extends PureComponent {
     getAvatar(dispatch);
   }
   render() {
-    const { layoutHeadRedu: { userName, avatar }, history } = this.props;
+    const { layoutHeadRedu: { userName, avatar }, history, onload } = this.props;
     return (
       <Affix>
         <div className="header-bar"></div>
@@ -23,7 +23,7 @@ class LayoutHead extends PureComponent {
             <Col span={12}>
               <div className="logo" onClick={() => {
                 if(location.pathname === '/') {
-                  location.reload(true);
+                  onload();
                 } else {
                   history.push('/');
                 }

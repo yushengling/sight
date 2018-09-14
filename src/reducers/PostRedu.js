@@ -13,6 +13,7 @@ const initialState = {
   ],
   editorSelectValue: 'unclassified',
   inputThemeValue: '',
+  editorValue: '',
   selectValue: 'all',
   code: 0,
   lists: [],
@@ -30,6 +31,8 @@ const postRedu = (state = initialState, action) => {
       return Object.assign({}, state, action.postRedu);
     case 'CLEARREDU':
       return Object.assign({}, state, action.postRedu);
+    case 'UPDATEEDITOR':
+      return Object.assign({}, state, action.datas);
     default:
       return state;
   }

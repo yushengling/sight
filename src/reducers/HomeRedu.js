@@ -4,12 +4,18 @@ const initialState = {
   listData: [],
   total: 0,
   code: 0,
-  message: ''
+  message: '',
+  isRender: false
 };
 
 const changeState = {
   code: 0,
   message: ''
+};
+
+const clearListData = {
+  listData: [],
+  isRender: true
 };
 
 const homeRedu = (state = initialState, action) => {
@@ -19,6 +25,8 @@ const homeRedu = (state = initialState, action) => {
     break;
     case 'CLEARREDU':
       return Object.assign({}, state, changeState);
+    case 'CLEARLISTDATAREDU':
+      return Object.assign({}, state, clearListData);
     default:
       return state;
   }

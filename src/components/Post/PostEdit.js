@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as styles from './PostEdit.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { createTheme, saveSelectValue, saveinputThemeValue, clearCode } from './../../actions/PostAction';
+import { createTheme, saveSelectValue, saveinputThemeValue, clearCode, updateEditorValue } from './../../actions/PostAction';
 const Option = Select.Option;
 const Options = [
   {
@@ -39,8 +39,6 @@ class PostEdit extends Component {
       style: {},
       isRender: false,
       clientY: 300,
-      text: '',
-      editorValue: '',
     };
     this.out = false;
     this.y = 0;
@@ -55,7 +53,6 @@ class PostEdit extends Component {
     const { dispatch, postRedu: { code }, postRedu, cancelBtn, postDatas } = this.props;
     switch(code) {
       case 200:
-        this.state.editorValue = '';
         message.success('创建主题成功！');
         clearCode(dispatch, postRedu, 1);
         setTimeout(() => {
@@ -85,8 +82,7 @@ class PostEdit extends Component {
     saveinputThemeValue(dispatch, e.target.value, postRedu);
   }
   crateTheme = () => {
-    const { postRedu: { editorSelectValue, inputThemeValue }, dispatch } = this.props;
-    const { editorValue } = this.state;
+    const { postRedu: { editorSelectValue, inputThemeValue, editorValue }, dispatch } = this.props;
     if(!inputThemeValue) {
       message.info('请输入标题！');
       return;
@@ -154,9 +150,8 @@ class PostEdit extends Component {
     }
   }
   editorChange = (content, delta, source, editor) => {
-    this.setState((prevState, props) => ({
-      editorValue: content,
-    }));
+    const { dispatch } = this.props;
+    updateEditorValue(dispatch, content);
   }
   grippieDown = (e) => {
     this.out = true;
@@ -190,8 +185,7 @@ class PostEdit extends Component {
     }
   }
   childCancelBtn = () => {
-    const { postRedu: { inputThemeValue }, dispatch, postRedu, cancelBtn } = this.props;
-    const { editorValue } = this.state;
+    const { postRedu: { inputThemeValue, editorValue }, dispatch, postRedu, cancelBtn } = this.props;
     if(inputThemeValue || editorValue) {
       Modal.confirm({
         title: '您确定要放弃编辑过的帖子吗？',
@@ -200,7 +194,6 @@ class PostEdit extends Component {
         okText: '确认',
         cancelText: '取消',
         onOk: () => {
-          this.state.editorValue = '';
           clearCode(dispatch, postRedu, 1);
           cancelBtn();
         },
@@ -209,14 +202,13 @@ class PostEdit extends Component {
         }
       });
     } else {
-      this.state.editorValue = '';
       clearCode(dispatch, postRedu, 1);
       cancelBtn();
     }
   };
   render() {
-    const { style, text, editorValue } = this.state;
-    const { cancelBtn, propsStyle, quillStyle, postRedu: { editorSelectValue, inputThemeValue, code, count }, isShow  } = this.props;
+    const { style } = this.state;
+    const { cancelBtn, propsStyle, quillStyle, postRedu: { editorSelectValue, inputThemeValue, code, count, editorValue }, isShow  } = this.props;
     let modules = {
       toolbar: [
         [{ 'header': [1, 2, false] }],

@@ -64,6 +64,7 @@ function* fetchClearCodeFun(action) {
   } else {
     action.postRedu.code = 0;
     action.postRedu.inputThemeValue = '';
+    action.postRedu.editorValue = '';
     action.postRedu.editorSelectValue = 'unclassified';
   }
   let postRedu = action.postRedu;
@@ -73,6 +74,16 @@ function* fetchClearCodeFun(action) {
   });
 }
 
+function* fetchUpdateEditorFun(action) {
+  let datas = {};
+  let editorValue = action.content;
+  datas.editorValue = editorValue;
+  yield put({
+    type: 'UPDATEEDITOR',
+    datas
+  }); 
+}
+
 function* postSaga() {
   yield takeLatest('GETPOST_SAGA', fetchGetPostFun);
   yield takeLatest('CREATETHEME_SAGA', fetchCreateThemeFun);
@@ -80,6 +91,7 @@ function* postSaga() {
   yield takeLatest('UPDATEINPUTTHEME_SAGA', fetchUpdateInputThemeFun);
   yield takeLatest('CLEARCODE_SAGA', fetchClearCodeFun);
   yield takeLatest('GETPOSTDATAS_SAGA', fetchPostDatasFun);
+  yield takeLatest('EDITORVALUE_SAGA', fetchUpdateEditorFun);
 }
 
 export default postSaga;

@@ -11,7 +11,14 @@ const clear = (dispatch) => {
   });
 }
 
+const clearListData = (dispatch) => {
+  dispatch({
+    type: 'CLEARLISTDATAREDU'
+  })
+}
+
 export {
   getData,
-  clear
+  clear,
+  clearListData
 };
