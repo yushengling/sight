@@ -40,9 +40,15 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|gif|jpeg)$/,
-        use: [
-          'file-loader'
-        ]
+        loader: 'url-loader',
+        options: {
+          limit: 10 * 1024,
+        },
+      },
+      {
+        test: /\.(png|svg|jpg|gif|jpeg)$/,
+        loader: 'image-webpack-loader',
+        enforce: 'pre',
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -68,7 +74,8 @@ module.exports = {
           minSize: 0
         }
       }
-    }
+    },
+    concatenateModules: true
   },
   plugins: [
     new CleanWebpackPlugin(['build']),
@@ -99,10 +106,6 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: true,
-    // contentBase: path.resolve(__dirname,'src/index.js'),
     compress: true
-  },
-  externals: {
-    "antd":"antd"
   }
 };
