@@ -4,7 +4,8 @@ const initialState = {
   count: 0,
   code: 0,
   avatar: '//downfuture.com/user.png',
-  userName: false
+  userName: false,
+  headId: '0'
 };
 const userRedu = (state = initialState, action) => {
   switch(action.type) {

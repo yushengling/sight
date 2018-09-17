@@ -42,6 +42,7 @@ function* fetchUploadAvatarFun(action) {
     return;
   }
   message.success('上传成功');
+  data.headId = '1';
   yield put({
     type: 'PERSONALREDU',
     data,

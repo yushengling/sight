@@ -152,12 +152,11 @@ class Index extends Component {
     }
   }
   render() {
-    const { history, personalRedu } = this.props;
-    const { listData, avatar, userName } = personalRedu;
+    const { history, personalRedu: { listData, avatar, userName, headId } } = this.props;
     const { visible, loading, hasMore, viewVisible, src } = this.state;
     return (
       <div className="personal">
-        <LayoutHead history={history} />
+        <LayoutHead id={headId} history={history} />
         <main className="personal-main">
           <header className="personal-header">
             <section className="personal-left">
