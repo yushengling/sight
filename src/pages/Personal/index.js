@@ -156,7 +156,7 @@ class Index extends Component {
     const { visible, loading, hasMore, viewVisible, src } = this.state;
     return (
       <div className="personal">
-        <LayoutHead id={headId} history={history} />
+        <LayoutHead key={headId} history={history} />
         <main className="personal-main">
           <header className="personal-header">
             <section className="personal-left">
