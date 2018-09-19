@@ -1,16 +1,15 @@
 .card-div {
-  column-count: 4;
-  -moz-column-count: 4;
-  -webkit-column-count: 4;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 40px;
 }
 
-:global(.ant-spin-spinning) {
+.loading-spin {
   margin-top: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 
 @media only screen and (min-width: 320px) {
   .card-div {
@@ -50,8 +49,4 @@
     -moz-column-count: 5;
     -webkit-column-count: 5;
   }
-}
-
-[title=站长统计] {
-  display: none;
 }

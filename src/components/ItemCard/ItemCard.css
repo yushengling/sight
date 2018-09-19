@@ -1,8 +1,12 @@
 .card {
   cursor: pointer;
-  vertical-align: top;
-  display: inline-block;
-  margin: 24px 12px 0px 12px;
+  margin: 24px 0px 0px 0px;
+  display: flex;
+}
+
+.card img {
+  width: 614px;
+  height: 100%;
 }
 
 .ant-card-meta-title {
@@ -76,11 +80,11 @@
 
 @media only screen and (min-width: 768px) {
   .card {
-    vertical-align: top;
-    display: inline-block;
-    margin: 24px 12px 0px 12px;
+    margin: 24px 0px 0px 0px;
+    display: flex;
   }
   .card img {
-    width: 100%;
+    width: 614px;
+    height: 100%;
   }
 }

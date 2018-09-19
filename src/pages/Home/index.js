@@ -32,21 +32,7 @@ class Index extends Component {
   }
   componentDidMount() {
     const { dispatch } = this.props;
-    getData(dispatch, 16);
-    /*const ws = new WebSocket("ws://localhost:9000/test");
-    ws.onopen = function(evt) {
-      console.log("Connection open ..."); 
-      ws.send("Hello WebSockets!");
-    };
-
-    ws.onmessage = function(evt) {
-      console.log( "Received Message: " + evt.data);
-      ws.close();
-    };
-
-    ws.onclose = function(evt) {
-      console.log("Connection closed.");
-    };*/
+    getData(dispatch, 10);
   }
   handleInfiniteOnLoad = (page) => {
     const { dispatch, homeRedu: { count, total } } = this.props;
@@ -55,13 +41,13 @@ class Index extends Component {
         loading: true,
       }));
       setTimeout(() => {
-        getData(dispatch, count + 24);
-      },500);
+        getData(dispatch, count + 10);
+      }, 200);
       setTimeout(() => {
         this.setState(() => ({
           loading: false,
         }));
-      },700);
+      }, 200);
     }
   };
   renderList(listData) {
@@ -95,24 +81,25 @@ class Index extends Component {
     const { loading, hasMore } = this.state;
     const { history, homeRedu: { listData, isRender } } = this.props;
     let datas = {};
-    ({ datas: datas.initialLoad = false, datas: datas.pageStart = 0, datas: datas.loadMore = this.handleInfiniteOnLoad, datas: datas.hasMore = !loading && hasMore, datas: datas.useWindow = true, datas: datas.threshold = 10, datas: datas.style = { maxHeight: '100%' } } = {});
+    ({ datas: datas.initialLoad = false, datas: datas.pageStart = 0, datas: datas.loadMore = this.handleInfiniteOnLoad, datas: datas.hasMore = !loading && hasMore, datas: datas.useWindow = true, datas: datas.threshold = 10 } = {});
     return (
-      <div style={{ position: 'relative' }}>
+      <section>
         <LayoutHead history={history} onload={this.onload.bind(this)} />
         {
           isRender && <Spin size="large" />
         }
-        <InfiniteScroll
-          {...datas}
-        >
-          <div className="card-div">
-            {this.renderList(listData)}
-          </div>
-          { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
-        </InfiniteScroll>
-        <BackTop />
-        <LayoutFooter />
-      </div>
+        <section style={{ margin: '0 auto', maxWidth: '1010px' }}>
+          <InfiniteScroll
+            {...datas}
+          >
+            <div className="card-div">
+              {this.renderList(listData)}
+            </div>
+            { loading && <Spin className="loading-spin" /> }
+          </InfiniteScroll>
+          <BackTop />
+        </section>
+      </section>
     );
   }
 }
