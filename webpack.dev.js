@@ -33,23 +33,11 @@ module.exports = {
           "css-loader"
         ]
       },
-      /*{
+      {
         test: /\.(png|svg|jpg|gif|jpeg)$/,
         use: [
           'file-loader'
         ]
-      },*/
-      {
-        test: /\.(png|svg|jpg|gif|jpeg)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10 * 1024,
-        },
-      },
-      {
-        test: /\.(png|svg|jpg|gif|jpeg)$/,
-        loader: 'image-webpack-loader',
-        enforce: 'pre',
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -75,8 +63,7 @@ module.exports = {
           minSize: 0
         }
       }
-    },
-    concatenateModules: true
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -98,10 +85,12 @@ module.exports = {
       chunkFilename: "[id].css"
     }),
     new webpack.NamedModulesPlugin()
+    // new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     hot: false,
     historyApiFallback: true,
+    //contentBase: path.resolve(__dirname,'src/index.js'),
     compress: true
   }
 };
