@@ -1,3 +1,8 @@
+.home-section {
+  margin: 0px auto;
+  max-height: 1010px;
+}
+
 .card-div {
   display: flex;
   flex-direction: column;

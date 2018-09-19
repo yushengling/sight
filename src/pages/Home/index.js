@@ -88,7 +88,7 @@ class Index extends Component {
         {
           isRender && <Spin size="large" />
         }
-        <section style={{ margin: '0 auto', maxWidth: '1010px' }}>
+        <section className="home-section">
           <InfiniteScroll
             {...datas}
           >
