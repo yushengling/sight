@@ -7,11 +7,34 @@
   border-radius: 3px;
 }
 
+.card img {
+  width: 100%;
+}
+
+li {
+  list-style: none;
+}
+
+li a {
+  color: #262626;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 5px;
+  margin-left: -5px;
+  font-size: 14px;
+}
+
+li span {
+  color: #c2c2c2;
+  font-size: 14px;
+}
+
 .card-img {
   cursor: pointer;
 }
 
-.card-section {
+.card-body-section {
   height: 40px;
   display: flex;
   align-items: center;
@@ -20,19 +43,67 @@
 .card-like {
   cursor: pointer;
   font-size: 24px;
-  padding-left: 16px;
 }
 
 .card-share-alt {
   cursor: pointer;
   font-size: 24px;
-  padding-left: 15px;
+  padding-left: 16px;
+}
+
+.card-body-total {
+  font-weight: 600;
+  font-size: 14px;
+  color: #262626;
+  margin-bottom: 4px;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  border-top: 1px solid #efefef;
+  margin-top: 8px;
+}
+
+.card-footer-textarea {
+  background: 0 0;
+  border: 0;
+  color: #262626;
+  font-size: 14px;
+  max-height: 80px;
+  outline: 0;
+  padding: 0;
+  resize: none;
+  cursor: text;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  width: 100%;
+  overflow: auto;
+  line-height: 18px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+  background-color: #fafafa;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fafafa;
+  border: 1px solid #e7e7e7;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #c2c2c2;
 }
 
 .card-heart {
   cursor: pointer;
   font-size: 24px;
-  padding-left: 15px;
+  padding-left: 16px;
 }
 
 .card .card-header {
@@ -66,6 +137,11 @@
   color: #262626;
   font-size: 14px;
   cursor: pointer;
+}
+
+.card-body {
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .ant-card-meta-title {
@@ -108,38 +184,17 @@
 }
 
 @media only screen and (min-width: 320px) {
-  .card {
-    margin: 24px 0px 0px 0px;
-    display: block;
-  }
-  .card img {
-    width: 100%;
-  }
+  
 }
 
 @media only screen and (min-width: 375px) {
-  .card {
-    margin: 24px 0px 0px 0px;
-    display: block;
-  }
-  .card img {
-    width: 100%;
-  }
+  
 }
 
 @media only screen and (min-width: 414px) {
-  .card {
-    margin: 24px 0px 0px 0px;
-    display: block;
-  }
-  .card img {
-    width: 100%;
-  }
+  
 }
 
 @media only screen and (min-width: 768px) {
-  .card {
-    background-color: #fff;
-    margin: 24px 0px 0px 0px;
-  }
+
 }

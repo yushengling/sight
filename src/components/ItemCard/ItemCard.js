@@ -13,16 +13,28 @@ function ItemCard(props) {
         <span className="card-header-name">123</span>
       </header>
       <img className="card-img" alt="src" src={list.src} />
-      <section className="card-section">
-        {
-          Icons.map((icon, index) => {
-            return (
-              <span key={index}>
-                <Icon className={'card-' + icon} type={icon} theme="outlined" />
-              </span>
-            )
-          })
-        }
+      <section className="card-body">
+        <section className="card-body-section">
+          {
+            Icons.map((icon, index) => {
+              return (
+                <span key={index}>
+                  <Icon className={'card-' + icon} type={icon} theme="outlined" />
+                </span>
+              )
+            })
+          }
+        </section>
+        <section className="card-body-total">
+          0次赞
+        </section>
+        <li>
+          <a>test：</a>
+          <span>213123</span>
+        </li>
+        <section className="card-footer">
+          <textarea className="card-footer-textarea" placeholder="添加评论..." style={{ height: '18px' }}></textarea>
+        </section>
       </section>
     </article>
   );
