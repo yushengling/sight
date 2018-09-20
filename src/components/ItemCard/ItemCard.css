@@ -1,12 +1,71 @@
 .card {
-  cursor: pointer;
   margin: 24px 0px 0px 0px;
-  display: flex;
+  width: 600px;
+  height: 100%;
+  border: 1px solid #e6e6e6;
+  background-color: #fff;
+  border-radius: 3px;
 }
 
-.card img {
-  width: 614px;
-  height: 100%;
+.card-img {
+  cursor: pointer;
+}
+
+.card-section {
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.card-like {
+  cursor: pointer;
+  font-size: 24px;
+  padding-left: 16px;
+}
+
+.card-share-alt {
+  cursor: pointer;
+  font-size: 24px;
+  padding-left: 15px;
+}
+
+.card-heart {
+  cursor: pointer;
+  font-size: 24px;
+  padding-left: 15px;
+}
+
+.card .card-header {
+  border: 1px solid #efefef;
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  padding: 16px;
+  align-items: center;
+}
+
+.card .card-header .card-header-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: block;
+  overflow: hidden;
+}
+
+.card .card-header .card-header-avatar img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.card .card-header .card-header-name {
+  margin-left: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #262626;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .ant-card-meta-title {
@@ -80,11 +139,7 @@
 
 @media only screen and (min-width: 768px) {
   .card {
+    background-color: #fff;
     margin: 24px 0px 0px 0px;
-    display: flex;
-  }
-  .card img {
-    width: 614px;
-    height: 100%;
   }
 }

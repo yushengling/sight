@@ -58,17 +58,10 @@ class Index extends Component {
           list={list}
           key={"card" + index}
           index={index}
-          cardClick={this.cardClick.bind(this, list.src, list.userName)}
         />
       );
     });
     return listArray;
-  }
-  cardClick(img, userName) {
-    const { history } = this.props;
-    sessionStorage.setItem('img', img);
-    sessionStorage.setItem('imgName', userName);
-    history.push('/detail');
   }
   onload = () => {
     const { dispatch } = this.props;

@@ -190,6 +190,8 @@
   left: 0;
   top: 0;
   border-radius: 100%;
+  display: block;
+  overflow: hidden;
 }
 
 .personal-main {

@@ -33,6 +33,8 @@
 
 .header-row-col-user {
   cursor: pointer;
+  display: block;
+  overflow: hidden;
 }
 
 .ant-layout-header {
