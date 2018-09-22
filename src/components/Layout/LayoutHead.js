@@ -33,7 +33,7 @@ class LayoutHead extends PureComponent {
                   }
                 }} />
               </Col>
-              <Col span={8}>
+              <Col span={8} className="head-search-col">
                 <Search placeholder="搜索" onSearch={this.searchText.bind(this)} className="header-input" />
               </Col>
               <Col span={8} className="header-row-col">

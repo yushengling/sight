@@ -71,3 +71,23 @@
   justify-content: flex-end;
   align-items: center;
 }
+
+@media only screen and (max-width: 1024px) {
+  .header .header-div {
+    margin: 0 auto;
+    max-width: 935px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .head-search-col {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header .header-div {
+    margin: 0 auto;
+    max-width: 600px;
+  }
+}
