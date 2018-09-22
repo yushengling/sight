@@ -28,7 +28,7 @@ function ItemCard(props) {
         <section className="card-body-total">
           0次赞
         </section>
-        <li>
+        <li className="card-body-li">
           <a>test：</a>
           <span>213123</span>
         </li>

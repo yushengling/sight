@@ -1,12 +1,77 @@
-.home-section {
+.home-body-section {
   margin: 0px auto;
   max-width: 1010px;
+  display: flex;
+  flex-direction: row;
+  padding-top: 24px;
+  position: relative;
 }
 
-.card-div {
+.home-body-left-card-div {
   display: flex;
   flex-direction: column;
-  padding: 0px 40px;
+}
+
+.home-body-right-card-div {
+  position: absolute;
+  right: 0px;
+  width: 100%;
+  max-width: 293px;
+}
+
+.right-card-div-avatar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.right-card-div-img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.right-card-div-name {
+  color: #262626;
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 14px;
+  word-break: break-all;
+  margin-bottom: 0px;
+}
+
+.right-card-list {
+  display: flex;
+  padding-left: 0px;
+  flex-direction: row;
+  border-top: 1px solid #e7e7e7;
+  margin-top: 10px;
+  padding-top: 10px;
+  margin-bottom: 0px;
+}
+
+.right-card-list li {
+  text-align: left;
+  min-width: 73.25px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.right-card-footer {
+  margin-top: 8px;
+  border-top: 1px solid #e7e7e7;
+  padding-top: 10px;
+  color: #c7c7c7;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.right-card-list li span {
+  font-size: 14px;
+  font-weight: 600px;
+  color: #262626;
 }
 
 .loading-spin {
