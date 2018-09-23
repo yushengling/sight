@@ -15,6 +15,14 @@
   list-style: none;
 }
 
+.card-view-comment {
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: 500px !important;
+  color: #999;
+  cursor: pointer;
+}
+
 .card-body-li a {
   color: #262626;
   font-weight: 600;
@@ -55,7 +63,6 @@
   font-weight: 600;
   font-size: 14px;
   color: #262626;
-  margin-bottom: 4px;
 }
 
 .card-footer {

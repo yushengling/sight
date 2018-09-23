@@ -37,26 +37,13 @@ class UserLogin extends Component {
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem>
-          {getFieldDecorator('userName', {
-            rules: [{ required: true, message: '请输入用户名!' }],
-          })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
-          )}
+          <Input placeholder="账号或手机号或邮箱" />
         </FormItem>
         <FormItem>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: '请输入密码!' }],
-          })(
-            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="密码" />
-          )}
+          <Input type="password" placeholder="密码" />
         </FormItem>
         <FormItem>
-          {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true,
-          })(
-            <Checkbox className="remenberMe">记住我</Checkbox>
-          )}
+          {/*<a>第三方登录</a>*/}
           <a className="login-form-forgot" onClick={forgetPassword}>忘记密码</a>
           <Button type="primary" htmlType="submit" className="login-form-button">登录</Button>
         </FormItem>

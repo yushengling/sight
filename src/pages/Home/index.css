@@ -57,7 +57,7 @@
 }
 
 .right-card-list li {
-  text-align: left;
+  text-align: center;
   min-width: 73.25px;
   display: flex;
   flex-direction: column;

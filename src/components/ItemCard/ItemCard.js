@@ -28,6 +28,7 @@ function ItemCard(props) {
         <section className="card-body-total">
           0次赞
         </section>
+        <p className="card-view-comment">加载更多评论</p>
         <li className="card-body-li">
           <a>test：</a>
           <span>213123</span>

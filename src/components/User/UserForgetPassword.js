@@ -57,37 +57,37 @@ class UserForgetPassword extends React.Component {
   };
   render() {
     const { getFieldDecorator } = this.props.form;
+    let a = <span>获取验证码</span>
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
+        <FormItem validateStatus="success" hasFeedback>
+          <Input placeholder="手机号" />
+        </FormItem>
         <FormItem>
-          {getFieldDecorator('userName', {
-            rules: [{ required: true, message: '请输入用户名!', whitespace: true }],
-          })(
-            <Input placeholder="请输入用户名" />
-          )}
+          <Input placeholder="验证码" suffix={a} />
         </FormItem>
         <FormItem>
           {getFieldDecorator('password', {
             rules: [{
-              required: true, message: '请输入新密码!',
+              required: true, message: '请输入新密码',
             }, {
               validator: this.validateToNextPassword,
             }],
           })(
             <div>
-              <Input type="password" placeholder="请输入新密码" />
+              <Input type="password" placeholder="新密码" />
             </div>
           )}
         </FormItem>
         <FormItem>
           {getFieldDecorator('confirm', {
             rules: [{
-              required: true, message: '请确认新密码!',
+              required: true, message: '请确认新密码',
             }, {
               validator: this.compareToFirstPassword,
             }],
           })(
-            <Input type="password" placeholder="请确认新密码" />
+            <Input type="password" placeholder="新密码" />
           )}
         </FormItem>
         <FormItem>

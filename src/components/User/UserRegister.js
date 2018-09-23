@@ -6,11 +6,14 @@ import { tips } from './../../util.js';
 import * as styles from './UserRegister.css';
 import VerificationCode from 'react-verificationcode-s';
 const FormItem = Form.Item;
+//<VerificationCode getNumbers={this.getNumbers.bind(this)} height="40" width="192" />
 class UserRegister extends React.Component {
   constructor(props) {
     super(props);
   
-    this.state = {};
+    this.state = {
+      formItems: ['phone|手机号|0', 'user|用户名|0', 'password|密码|0'],
+    };
     this.numbers = [];
   }
   componentWillReceiveProps(nextProps) {
@@ -28,118 +31,76 @@ class UserRegister extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { form, dispatch } = this.props;
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         register(dispatch, values);
       }
     });
   }
-  compareToFirstPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('两个密码输入不一致！');
-    } else {
-      callback();
-    }
-  }
-  validateToNextName = (rule, value , callback) => {
-    const form = this.props.form;
-    const namePattern = /^\d/;
-    if(value) {
-      if(namePattern.test(value)) {
-        callback('用户名不能以数字开头，应为字符串或中文组成');
-      } else {
-        callback();
-      }
-    } else {
-      callback();
-    }
-  }
-  validateToNextPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    const passWordPattern = /^(?=.*\d)(?=.*[a-z]).{6,20}$/;
-    if(value) {
-      if(!passWordPattern.test(value)) {
-        callback('密码应为6-20位，由大小写字母及数字组成');
-      } else {
-        if (value && this.state.confirmDirty) {
-          form.validateFields(['confirm'], { force: true });
-        }
-        callback();
-      }
-    } else {
-      callback();
-    }
-  }
-  validateToNextCode = (rule, value, callback) => {
-    if(value) {
-      let numbers = '';
-      for(let i = 0, len = this.numbers.length; i < len; i++) {
-        numbers += this.numbers[i];
-      }
-      if(value.toUpperCase() != numbers) {
-        callback('请输入正确的验证码');
-      } else {
-        callback();
-      }
-    } else {
-      callback();
-    }
-  }
   getNumbers(value) {
     this.numbers = value;
   }
-  render() {
+  inputHanlder = (id, e) => {
+    let value = e.target.value;
+    let { formItems } = this.state;
+    console.log(value);
+    switch(id) {
+      case 0:
+        const phonePattern = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+        if(!value) {
+          formItems[0] = formItems[0].replace(/[0-9]/, 2);
+          break;
+        }
+        if(phonePattern.test(value)) {
+          formItems[0] = formItems[0].replace(/[0-9]/, 1);
+        } else {
+          formItems[0] = formItems[0].replace(/[0-9]/, 2);
+        }
+      break;
+      case 1:
+        const namePattern = /^\d/;
+        if(!value) {
+          formItems[1] = formItems[1].replace(/[0-9]/, 2);
+          break;
+        }
+        if(!(namePattern.test(value))) {
+          formItems[1] = formItems[1].replace(/[0-9]/, 1);
+        } else {
+          formItems[1] = formItems[1].replace(/[0-9]/, 2);
+        }
+      break;
+    }
+    this.setState(() => ({
+      formItems
+    }));
+  }
+  renderFormItem() {
     const { getFieldDecorator } = this.props.form;
+    let formItemsArray = [];
+    const { formItems } = this.state;
+    formItemsArray = formItems.map((list, id) => {
+      let validateStatus, hasFeedback;
+      console.log(parseInt(list.split('|')[2]));
+      if(parseInt(list.split('|')[2]) === 1) {
+        hasFeedback = true;
+        validateStatus = 'success';
+      } else if(parseInt(list.split('|')[2]) === 2) {
+        hasFeedback = true;
+        validateStatus = 'error';
+      }
+      return (
+        <FormItem key={id} hasFeedback validateStatus={validateStatus} >
+          <Input type={list.split('|')[0]} placeholder={list.split('|')[1]} onInput={this.inputHanlder.bind(this, id)} />
+        </FormItem>   
+      )
+    });
+    return formItemsArray;
+  }
+  render() {
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
-        <FormItem>
-          {getFieldDecorator('userName', {
-            rules: [{
-              required: true, message: '请输入用户名!',
-            }, {
-              validator: this.validateToNextName,
-            }],
-          })(
-            <Input type="user" placeholder="请输入用户名" />
-          )}
-        </FormItem>
-        <FormItem>
-          {getFieldDecorator('password', {
-            rules: [{
-              required: true, message: '请输入密码!',
-            }, {
-              validator: this.validateToNextPassword,
-            }],
-          })(
-            <Input type="password" placeholder="请输入密码" />
-          )}
-        </FormItem>
-        <FormItem>
-          {getFieldDecorator('confirm', {
-            rules: [{
-              required: true, message: '请确认密码!',
-            }, {
-              validator: this.compareToFirstPassword,
-            }],
-          })(
-            <Input type="password" placeholder="请确认密码" />
-          )}
-        </FormItem>
-        <FormItem>
-          {getFieldDecorator('verCode', {
-            rules: [{
-              required: true, message: '请确认验证码!', whitespace: true
-            }, {
-              validator: this.validateToNextCode,
-            }],
-          })(
-            <span>
-              <VerificationCode getNumbers={this.getNumbers.bind(this)} height="40" width="192" />
-              <Input placeholder="请输入验证码" />
-            </span>
-          )}
-        </FormItem>
+        <h2 className="register-title">注册视线，进入你的世界</h2>
+        {this.renderFormItem()}
         <FormItem>
           <Button type="primary" htmlType="submit" className="login-form-button">注册</Button>
         </FormItem>
