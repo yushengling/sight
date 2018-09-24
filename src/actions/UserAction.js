@@ -32,10 +32,19 @@ const tips = (dispatch, tipsArray) => {
   });
 }
 
+const getCode = (dispatch, number, phone) => {
+  dispatch({
+    type: 'GET_CODE_SAGA',
+    number,
+    phone
+  });
+}
+
 export {
   register,
   clear,
   updatePassword,
   login,
-  tips
+  tips,
+  getCode
 };

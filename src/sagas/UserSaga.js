@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { message } from 'antd';
-import { fetchRegister, fetchUpdatePassword, fetchLogin } from '../servers/user';
+import { fetchRegister, fetchUpdatePassword, fetchLogin, fetchCode } from '../servers/user';
 
 function* registerUser(action) {
   let datas = {};
@@ -40,10 +40,19 @@ function* login(action) {
   }); 
 }
 
+function* getCode(action) {
+  let data = yield call(fetchCode, action);
+  yield put({
+    type: 'REGISTERREDU',
+    data,
+  }); 
+}
+
 function* userSaga() {
   yield takeEvery('REGISTER_SAGA', registerUser);
   yield takeEvery('UPDATEPASSWORD_SAGA', updatePassword);
   yield takeEvery('LOGIN_SAGA', login);
+  yield takeEvery('GET_CODE_SAGA', getCode);
 }
 
 export default userSaga;

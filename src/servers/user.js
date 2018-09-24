@@ -29,3 +29,13 @@ export function fetchLogin(params) {
     }
   });
 }
+
+export function fetchCode(params) {
+  const { number, phone } = params;
+  return request({
+    url: `code?phone=${phone}&number=${number}`,
+    options: {
+      method: 'GET'
+    }
+  });
+}

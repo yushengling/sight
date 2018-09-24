@@ -127,7 +127,7 @@ class UserRegister extends React.Component {
     return formItemsArray;
   }
   render() {
-    const { userRedu: { tips, loading } } = this.props;
+    const { userRedu: { tips, loading, code } } = this.props;
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <h2 className="register-title">注册视线，进入你的世界</h2>
@@ -138,9 +138,9 @@ class UserRegister extends React.Component {
         <p className="register-clause">
           注册即表示你同意接受我们的<a target="_blank" href="javascript:void(0)">条款</a> 、 <a target="_blank" href="javascript:void(0)">数据使用政策</a>
         </p>
-        <p className="register-text-tips">
-          {tips}
-        </p>
+        {
+          code === 200 ? <p className="register-text-tips" style={{ color: '#52c419' }}>{tips}</p> : <p className="register-text-tips">{tips}</p>
+        }
       </Form>
     );
   }

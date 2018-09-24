@@ -3,6 +3,7 @@ const initialState = {
   code: 0,
   tips: '',
   loading: false,
+  numbers: '',
 }
 const userRedu = (state = initialState, action) => {
   switch(action.type) {
