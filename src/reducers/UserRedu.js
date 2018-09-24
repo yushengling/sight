@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 const initialState = {
   code: 0,
-  message: '',  
+  tips: '',
+  loading: false,
 }
 const userRedu = (state = initialState, action) => {
   switch(action.type) {
@@ -10,6 +11,10 @@ const userRedu = (state = initialState, action) => {
     break;
     case 'CLEARREDU':
       return Object.assign({}, state, initialState);
+    case 'SEND_TIPS':
+      return Object.assign({}, state, action.tipsArray);
+    case 'UPDATE_LOADING':
+      return Object.assign({}, state, action.datas);
     default:
       return state;
   }

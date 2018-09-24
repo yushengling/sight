@@ -25,9 +25,17 @@ const login = (dispatch, values) => {
   });
 }
 
+const tips = (dispatch, tipsArray) => {
+  dispatch({
+    type: 'SEND_TIPS',
+    tipsArray
+  });
+}
+
 export {
   register,
   clear,
   updatePassword,
-  login
+  login,
+  tips
 };

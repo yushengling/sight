@@ -3,11 +3,13 @@ import { message } from 'antd';
 import { fetchRegister, fetchUpdatePassword, fetchLogin } from '../servers/user';
 
 function* registerUser(action) {
+  let datas = {};
+  datas.loading = true;
+  yield put({
+    type: 'UPDATE_LOADING',
+    datas,
+  });
   let data = yield call(fetchRegister, action);
-  if(data.code === 500) {
-    message.error(data.error);
-    return;
-  }
   yield put({
     type: 'REGISTERREDU',
     data,
