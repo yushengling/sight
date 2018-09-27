@@ -10,20 +10,54 @@ class UserForgetPassword extends React.Component {
     super(props);
     this.state = {
       formItems: ['phone|手机号|0', 'code|验证码|0', 'newpassword|密码|0'],
+      isSend: true,
+      m: 60,
+      numbers: ''
     };
     this.phone = '';
     this.password = '';
   }
   static getDerivedStateFromProps(props, state) {
-    const { dispatch, history, userRedu } = props;
+    /*const { dispatch, history, userRedu } = props;
+    const { code } = userRedu;
     let datas = {};
     datas.userRedu = userRedu;
     datas.dispatch = dispatch;
     datas.clear = clear;
     datas.history = history;
     userTips.alertMessage.call(datas);
-    return null;
+    return null;*/
+    const { dispatch, history, userRedu } = props;
+    const { code, numbers } = userRedu;
+    console.log(this);
+    /*if(code === 300) {
+      this.setState(() => ({
+        isSend: false,
+        numbers
+      }));
+      const self = this;
+      this.timerID = setInterval(() => {
+        self.startTimer();
+      }, 1000);
+    }
+    return null;*/
   }
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+  startTimer = () => {
+    let { m } = this.state;
+    if(m === 0) {
+      this.setState(() => ({
+        isSend: false,
+        m: 60
+      }));
+    } else {
+      this.setState(() => ({
+        m: m - 1
+      }));
+    }
+  };
   handleSubmit = (e) => {
     e.preventDefault();
     const { dispatch } = this.props;
@@ -56,7 +90,7 @@ class UserForgetPassword extends React.Component {
   renderFormItem() {
     const { form: { getFieldDecorator } } = this.props;
     let formItemsArray = [];
-    const { formItems } = this.state;
+    const { formItems, isSend, m } = this.state;
     formItemsArray = formItems.map((list, id) => {
       let validateStatus, hasFeedback;
       if(parseInt(list.split('|')[2]) === 1) {
@@ -67,8 +101,10 @@ class UserForgetPassword extends React.Component {
         validateStatus = 'error';
       }
       let suffix = '';
-      if(id == 1) {
+      if(id === 1 && isSend) {
         suffix = <span className="user-code" onClick={this.getCodeHandler.bind(this)}>获取验证码</span>
+      } else if(id === 1 && !isSend) {
+        suffix = <span className="user-code-m">{m}后可重发</span>
       }
       return (
         <FormItem key={id} hasFeedback validateStatus={validateStatus} >
