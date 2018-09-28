@@ -31,6 +31,10 @@ class UserRegister extends React.Component {
       userTips.alertMessage.call(datas);
     }
   }
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    clear(dispatch);
+  }
   handleSubmit = (e) => {
     e.preventDefault();
     const { dispatch } = this.props;
@@ -74,10 +78,10 @@ class UserRegister extends React.Component {
         }
         if(phonePattern.test(value)) {
           formItems[0] = formItems[0].replace(/[0-9]/, 1);
-          this.phone = value;
         } else {
           formItems[0] = formItems[0].replace(/[0-9]/, 2);
         }
+        this.phone = value;
       break;
       case 1:
         const namePattern = /^\d/;
@@ -88,10 +92,10 @@ class UserRegister extends React.Component {
         }
         if(!(namePattern.test(value))) {
           formItems[1] = formItems[1].replace(/[0-9]/, 1);
-          this.userName = value;
         } else {
           formItems[1] = formItems[1].replace(/[0-9]/, 2);
         }
+        this.userName = value;
       break;
       case 2:
         if(!value) {
@@ -141,7 +145,7 @@ class UserRegister extends React.Component {
           注册即表示你同意接受我们的<a target="_blank" href="javascript:void(0)">条款</a> 、 <a target="_blank" href="javascript:void(0)">数据使用政策</a>
         </p>
         {
-          code === 200 ? <p className="register-text-tips" style={{ color: '#52c419' }}>{tips}</p> : <p className="register-text-tips">{tips}</p>
+          code === 200 ? <p className="register-text-tips" style={{ color: '#1ac51b' }}>{tips}</p> : <p className="register-text-tips">{tips}</p>
         }
       </Form>
     );

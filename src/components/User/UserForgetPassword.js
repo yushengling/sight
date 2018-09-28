@@ -41,6 +41,8 @@ class UserForgetPassword extends React.Component {
     }
   }
   componentWillUnmount() {
+    const { dispatch } = this.props;
+    clear(dispatch);
     clearInterval(this.timerID);
   }
   startTimer = () => {
@@ -96,12 +98,10 @@ class UserForgetPassword extends React.Component {
     let formItemsArray = [];
     const { formItems, isSend, m } = this.state;
     formItemsArray = formItems.map((list, id) => {
-      let validateStatus, hasFeedback;
+      let validateStatus;
       if(parseInt(list.split('|')[2]) === 1) {
-        hasFeedback = true;
         validateStatus = 'success';
       } else if(parseInt(list.split('|')[2]) === 2) {
-        hasFeedback = true;
         validateStatus = 'error';
       }
       let suffix = '';
@@ -131,13 +131,23 @@ class UserForgetPassword extends React.Component {
         }
         if(phonePattern.test(value)) {
           formItems[0] = formItems[0].replace(/[0-9]/, 1);
-          this.phone = value;
         } else {
           formItems[0] = formItems[0].replace(/[0-9]/, 2);
         }
+        this.phone = value;
       break;
       case 1:
         this.code = value;
+      break;
+      case 2:
+        case 2:
+        if(!value) {
+          this.password = value;
+          formItems[2] = formItems[2].replace(/[0-9]/, 2);
+          break; 
+        }
+        formItems[2] = formItems[2].replace(/[0-9]/, 1);
+        this.password = value;
       break;
     }
     this.setState(() => ({
@@ -153,7 +163,7 @@ class UserForgetPassword extends React.Component {
           <Button loading={loading} type="primary" htmlType="submit" className="login-form-button user-change">修改</Button>
         </FormItem>
         {
-          code === 200 ? <p className="forget-text-tips" style={{ color: '#52c419' }}>{tips}</p> : <p className="forget-text-tips">{tips}</p>
+          code === 200 ? <p className="forget-text-tips" style={{ color: '#1ac51b' }}>{tips}</p> : <p className="forget-text-tips">{tips}</p>
         }
       </Form>
     );

@@ -9,3 +9,12 @@
 .login-form-button {
   width: 100%;
 }
+
+.login-text-tips {
+  font-size: 14px;
+  font-weight: 400;
+  color: red;
+  text-align: center;
+  padding: 20px 20px;
+  margin-bottom: 0px;
+}

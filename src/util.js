@@ -11,7 +11,7 @@ const userTips = {
     } else if(code === 200) {
       setTimeout(() => {
         this.history.push('/');
-      }, 1000);
+      }, 500);
       this.clear(this.dispatch);
     }
   }

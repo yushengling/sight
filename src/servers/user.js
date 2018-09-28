@@ -21,9 +21,9 @@ export function fetchUpdatePassword(params) {
 }
 
 export function fetchLogin(params) {
-  const { userName, password, confirm } = params.values;
+  const { account, password } = params.values;
   return request({
-    url: `login?userName=${userName}&password=${password}&confirm=${confirm}`,
+    url: `login?account=${account}&password=${password}`,
     options: {
       method: 'GET'
     }
