@@ -11,6 +11,12 @@ const clear = (dispatch) => {
   });
 }
 
+const clearCode = (dispatch) => {
+  dispatch({
+    type:'CLEARCODEREDU'
+  });
+}
+
 const updatePassword = (dispatch, values) => {
   dispatch({
     type:'UPDATEPASSWORD_SAGA',
@@ -46,5 +52,6 @@ export {
   updatePassword,
   login,
   tips,
-  getCode
+  getCode,
+  clearCode
 };

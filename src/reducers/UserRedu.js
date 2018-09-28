@@ -5,6 +5,10 @@ const initialState = {
   loading: false,
   numbers: '',
 }
+
+const clearCode = {
+  code: 0
+}
 const userRedu = (state = initialState, action) => {
   switch(action.type) {
     case 'REGISTERREDU':
@@ -12,6 +16,8 @@ const userRedu = (state = initialState, action) => {
     break;
     case 'CLEARREDU':
       return Object.assign({}, state, initialState);
+    case 'CLEARCODEREDU':
+      return Object.assign({}, state, clearCode);
     case 'SEND_TIPS':
       return Object.assign({}, state, action.tipsArray);
     case 'UPDATE_LOADING':

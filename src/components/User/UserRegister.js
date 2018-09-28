@@ -19,15 +19,17 @@ class UserRegister extends React.Component {
     this.userName = '';
     this.password = '';
   }
-  static getDerivedStateFromProps(props, state) {
-    const { userRedu, dispatch, history } = props;
-    let datas = {};
-    datas.userRedu = userRedu;
-    datas.dispatch = dispatch;
-    datas.clear = clear;
-    datas.history = history;
-    userTips.alertMessage.call(datas);
-    return null;
+  componentDidUpdate() {
+    const { userRedu, dispatch, history } = this.props;
+    const { code } = userRedu;
+    if(code === 200) {
+      let datas = {};
+      datas.userRedu = userRedu;
+      datas.dispatch = dispatch;
+      datas.clear = clear;
+      datas.history = history;
+      userTips.alertMessage.call(datas);
+    }
   }
   handleSubmit = (e) => {
     e.preventDefault();

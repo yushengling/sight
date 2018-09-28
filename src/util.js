@@ -1,12 +1,13 @@
 const userTips = {
   userRedu: undefined,
-  clear: undefined,
+  clearCode: undefined,
   history: undefined,
+  clear: undefined,
   dispatch: undefined,
   alertMessage: function() {
     const { code } = this.userRedu;
     if(code === 400) {
-      this.clear(this.dispatch);
+      this.clearCode(this.dispatch);
     } else if(code === 200) {
       setTimeout(() => {
         this.history.push('/');

@@ -17,11 +17,13 @@ function* registerUser(action) {
 }
 
 function* updatePassword(action) {
+  let datas = {};
+  datas.loading = true;
+  yield put({
+    type: 'UPDATE_LOADING',
+    datas,
+  });
   let data = yield call(fetchUpdatePassword, action);
-  if(data.code === 500) {
-    message.error(data.error);
-    return;
-  }
   yield put({
     type: 'REGISTERREDU',
     data,
