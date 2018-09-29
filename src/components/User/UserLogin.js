@@ -94,9 +94,13 @@ class UserLogin extends Component {
           <Input type="password" placeholder="密码" onInput={this.inputHanlder.bind(this, 1)} />
         </FormItem>
         <FormItem>
-          {/*<a>第三方登录</a>*/}
           <a className="login-form-forgot" onClick={forgetPassword}>忘记密码</a>
           <Button loading={loading} type="primary" htmlType="submit" className="login-form-button">登录</Button>
+          <section className="login-form-thirdparty">
+            <span className="wexin-login"></span>&nbsp;&nbsp;
+            <span className="qq-login"></span>&nbsp;&nbsp;
+            <span className="weibo-login"></span>&nbsp;&nbsp;
+          </section>
         </FormItem>
         {
           code === 200 ? <p className="login-text-tips" style={{ color: '#1ac51b' }}>{tips}</p> : <p className="login-text-tips">{tips}</p>

@@ -18,3 +18,40 @@
   padding: 20px 20px;
   margin-bottom: 0px;
 }
+
+.login-form-thirdparty {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.wexin-login {
+  background-image: url(http://img.downfuture.com/images/login.jpeg);
+  background-position: 0 0;
+  background-size: 42px;
+  width: 42px;
+  height: 42px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+
+.qq-login {
+  background-image: url(http://img.downfuture.com/images/login.jpeg);
+  background-position: 0 -84px;
+  background-size: 42px;
+  width: 42px;
+  height: 42px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.weibo-login {
+  background-image: url(http://img.downfuture.com/images/login.jpeg);
+  background-position: 0 -126px;
+  background-size: 42px;
+  width: 42px;
+  height: 42px;
+  display: inline-block;
+  cursor: pointer;
+}
