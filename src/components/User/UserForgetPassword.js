@@ -48,6 +48,10 @@ class UserForgetPassword extends React.Component {
   }
   startTimer = () => {
     let { m } = this.state;
+    if(m === 2) {
+      const { dispatch } = this.props;
+      clear(dispatch);
+    }
     if(m === 1) {
       clearInterval(this.timerID);
       this.setState(() => ({
