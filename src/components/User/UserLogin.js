@@ -88,7 +88,7 @@ class UserLogin extends Component {
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <FormItem hasFeedback validateStatus={validateStatus}>
-          <Input placeholder="账号或手机号或邮箱" onInput={this.inputHanlder.bind(this, 0)} />
+          <Input placeholder="账号或手机号" onInput={this.inputHanlder.bind(this, 0)} />
         </FormItem>
         <FormItem validateStatus={validateStatus2} hasFeedback>
           <Input type="password" placeholder="密码" onInput={this.inputHanlder.bind(this, 1)} />

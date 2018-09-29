@@ -10,9 +10,9 @@ const userTips = {
       this.clearCode(this.dispatch);
     } else if(code === 200) {
       setTimeout(() => {
+        this.clear(this.dispatch);
         this.history.push('/');
       }, 500);
-      this.clear(this.dispatch);
     }
   }
 }

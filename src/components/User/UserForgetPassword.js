@@ -20,15 +20,16 @@ class UserForgetPassword extends React.Component {
   componentDidUpdate() {
     const { dispatch, history, userRedu } = this.props;
     const { code } = userRedu;
+    const { isSend } = this.state;
     if(code === 300) {
-      clearCode(dispatch);
-      this.setState(() => ({
-        isSend: false
-      }));
-      const self = this;
-      this.timerID = setInterval(() => {
-        self.startTimer();
-      }, 1000);
+      if(isSend) {
+        this.setState(() => ({
+          isSend: false
+        }));
+        this.timerID = setInterval(() => {
+          this.startTimer();
+        }, 1000);
+      }
     }
     if(code === 200) {
       let datas = {};
@@ -47,7 +48,7 @@ class UserForgetPassword extends React.Component {
   }
   startTimer = () => {
     let { m } = this.state;
-    if(m === 0) {
+    if(m === 1) {
       clearInterval(this.timerID);
       this.setState(() => ({
         isSend: true,
@@ -72,13 +73,13 @@ class UserForgetPassword extends React.Component {
   }
   getCodeHandler = () => {
     const { dispatch } = this.props;
-    if(this.returnTips()) {
+    if(this.returnPhone()) {
       return;
     }
     getCode(dispatch, 2, this.phone);
   }
-  returnTips = () => {
-    const { dispatch, userRedu: { numbers } } = this.props;
+  returnPhone = () => {
+    const { dispatch } = this.props;
     const phonePattern = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
     let tipsArray = {};
     if(!(phonePattern.test(this.phone)) || !this.phone) {
@@ -86,7 +87,15 @@ class UserForgetPassword extends React.Component {
       tips(dispatch, tipsArray);
       return true;
     }
-    if(this.code != numbers) {
+    return false;
+  }
+  returnTips = () => {
+    let tipsArray = {};
+    const { dispatch, userRedu: { numbers } } = this.props;
+    if(this.returnPhone()) {
+      return true;
+    }
+    if(this.code != numbers || !this.code) {
       tipsArray.tips = '验证码输入不正确';
       tips(dispatch, tipsArray);
       return true;
@@ -94,7 +103,6 @@ class UserForgetPassword extends React.Component {
     return false;
   }
   renderFormItem() {
-    const { form: { getFieldDecorator } } = this.props;
     let formItemsArray = [];
     const { formItems, isSend, m } = this.state;
     formItemsArray = formItems.map((list, id) => {
@@ -108,7 +116,7 @@ class UserForgetPassword extends React.Component {
       if(id === 1 && isSend) {
         suffix = <span className="user-code" onClick={this.getCodeHandler.bind(this)}>获取验证码</span>
       } else if(id === 1 && !isSend) {
-        suffix = <span className="user-code-m">{m}后可重发</span>
+        suffix = <span className="user-code-m">{m}秒后可重发</span>
       }
       return (
         <FormItem key={id} hasFeedback validateStatus={validateStatus} >
@@ -163,7 +171,7 @@ class UserForgetPassword extends React.Component {
           <Button loading={loading} type="primary" htmlType="submit" className="login-form-button user-change">修改</Button>
         </FormItem>
         {
-          code === 200 ? <p className="forget-text-tips" style={{ color: '#1ac51b' }}>{tips}</p> : <p className="forget-text-tips">{tips}</p>
+          code === 200 || code === 300 ? <p className="forget-text-tips" style={{ color: '#1ac51b' }}>{tips}</p> : <p className="forget-text-tips">{tips}</p>
         }
       </Form>
     );

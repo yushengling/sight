@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 import { Form, Input, Button, message } from 'antd';
 import { register, clear, tips } from './../../actions/UserAction';
 import * as styles from './UserRegister.css';
-import VerificationCode from 'react-verificationcode-s';
 import { userTips } from './../../util.js';
 const FormItem = Form.Item;
-//<VerificationCode getNumbers={this.getNumbers.bind(this)} height="40" width="192" />
 class UserRegister extends React.Component {
   constructor(props) {
     super(props);
@@ -51,7 +49,7 @@ class UserRegister extends React.Component {
       tips(dispatch, tipsArray);
       return;
     }
-    if(!this.password || !this.password) {
+    if(!this.password) {
       tipsArray.tips = '密码输入不正确';
       tips(dispatch, tipsArray);
       return;
@@ -61,9 +59,6 @@ class UserRegister extends React.Component {
     datas.userName = this.userName;
     datas.password = this.password;
     register(dispatch, datas);
-  }
-  getNumbers(value) {
-    this.numbers = value;
   }
   inputHanlder = (id, e) => {
     let value = e.target.value;
@@ -112,7 +107,6 @@ class UserRegister extends React.Component {
     }));
   }
   renderFormItem() {
-    const { getFieldDecorator } = this.props.form;
     let formItemsArray = [];
     const { formItems } = this.state;
     formItemsArray = formItems.map((list, id) => {
