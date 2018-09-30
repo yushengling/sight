@@ -6,7 +6,7 @@ import PostEdit from './../../components/Post/PostEdit';
 import UserLoginModal from './../../components/User/UserLoginModal';
 import { getPost, getPostDatas } from './../../actions/PostAction';
 import InfiniteScroll from 'react-infinite-scroller';
-import * as styles from './index.css';
+import * as styles from './index.less';
 const Option = Select.Option;
 const Options = [
   {

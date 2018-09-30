@@ -4,7 +4,7 @@ import { Button, Modal, message, Spin, Icon } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import { getFirstImages, uploadImages, uploadAvatar, getImages, signOut } from './../../actions/PersonalAction.js';
-import * as styles from './index.css';
+import * as styles from './index.less';
 class Index extends Component {
   constructor(props) {
     super(props);

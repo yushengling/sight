@@ -4,7 +4,7 @@ import { Tabs } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import PasswordChange from './../../components/Setting/PasswordChange.js';
 import ManageAccess from './../../components/Setting/ManageAccess.js';
-import * as styles from './index.css';
+import * as styles from './index.less';
 const TabPane = Tabs.TabPane;
 class Index extends Component {
   constructor(props) {

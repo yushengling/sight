@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Affix } from 'antd';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
-import * as styles from './index.css';
+import * as styles from './index.less';
 class Index extends Component {
   constructor(props) {
     super(props);

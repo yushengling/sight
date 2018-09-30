@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import { Row, Col, Button, Input, Select, message, Modal } from 'antd';
 import { connect } from 'react-redux';
-import * as styles from './PostEdit.css';
+import * as styles from './PostEdit.less';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { createTheme, saveSelectValue, saveinputThemeValue, clearCode, updateEditorValue } from './../../actions/PostAction';

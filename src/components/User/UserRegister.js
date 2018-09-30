@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Button, message } from 'antd';
 import { register, clear, tips } from './../../actions/UserAction';
-import * as styles from './UserRegister.css';
+import * as styles from './UserRegister.less';
 import { userTips } from './../../util.js';
 const FormItem = Form.Item;
 class UserRegister extends React.Component {

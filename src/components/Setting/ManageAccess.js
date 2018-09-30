@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import * as styles from './ManageAccess.css';
+import * as styles from './ManageAccess.less';
 function ManageAccess() {
   return (
     <div className="manage-access-div">

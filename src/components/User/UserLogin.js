@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import { login, clear } from './../../actions/UserAction';
 import { userTips } from './../../util.js'; 
-import * as styles from './UserLogin.css';
+import * as styles from './UserLogin.less';
 const FormItem = Form.Item;
 class UserLogin extends Component {
   constructor(props) {

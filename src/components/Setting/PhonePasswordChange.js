@@ -4,7 +4,7 @@ import { Form, Input, Button } from 'antd';
 import LayoutHead from './../Layout/LayoutHead.js';
 import { passwordChange, clear } from './../../actions/SettingAction';
 import { tips } from './../../util.js';
-import * as styles from './PhonePasswordChange.css';
+import * as styles from './PhonePasswordChange.less';
 const FormItem = Form.Item;
 class PhonePasswordChange extends Component {
   constructor(props) {

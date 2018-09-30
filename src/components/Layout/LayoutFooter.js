@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import * as styles from './LayoutFooter.css';
+import * as styles from './LayoutFooter.less';
 function LayoutFooter() {
   return (
     <footer className="layoutfooter" >

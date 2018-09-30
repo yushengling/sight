@@ -7,7 +7,7 @@ import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import PropTypes from 'prop-types';
 import { getData, userClick, clear, clearListData } from './../../actions/HomeAction';
-import './index.css';
+import './index.less';
 
 class Index extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import { Card, Icon } from 'antd';
-import './ItemCard.css';
+import './ItemCard.less';
 const { Meta } = Card;
 
 const Icons = ['like', 'heart', 'share-alt'];

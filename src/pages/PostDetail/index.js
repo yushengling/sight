@@ -2,7 +2,7 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import LayoutHead from './../../components/Layout/LayoutHead';
 import { getPostDetail } from './../../actions/PostDetailAction';
-import * as styles from './index.css';
+import * as styles from './index.less';
 class Index extends Component {
   constructor(props) {
     super(props);

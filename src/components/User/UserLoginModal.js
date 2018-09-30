@@ -1,5 +1,5 @@
 import React,{ Component } from 'react';
-import * as styles from './UserLoginModal.css';
+import * as styles from './UserLoginModal.less';
 import { Modal } from 'antd';
 import UserLogin from './../../pages/User/index';
 const UserLoginModal = (props) => {

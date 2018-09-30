@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Form, Input, Button, message } from 'antd';
 import { updatePassword, clear, tips, getCode, clearCode } from './../../actions/UserAction';
 import { userTips } from './../../util.js'; 
-import * as styles from './UserForgetPassword.css';
+import * as styles from './UserForgetPassword.less';
 const FormItem = Form.Item;
 class UserForgetPassword extends React.Component {
   constructor(props) {

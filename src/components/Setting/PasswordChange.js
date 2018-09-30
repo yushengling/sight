@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Form, Input, Button } from 'antd';
 import { passwordChange, clear } from './../../actions/SettingAction';
 import { tips } from './../../util.js';
-import * as styles from './PasswordChange.css';
+import * as styles from './PasswordChange.less';
 const FormItem = Form.Item;
 class PasswordChange extends React.Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React,{ PureComponent } from 'react';
 import { Layout, Row, Col, Icon, Affix, Input } from 'antd';
 import { connect } from 'react-redux';
-import * as styles from './LayoutHead.css';
+import * as styles from './LayoutHead.less';
 import { getAvatar } from './../../actions/LayoutHeadAction.js';
 const { Header } = Layout;
 const Search = Input.Search;
