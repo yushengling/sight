@@ -48,8 +48,8 @@ class UserForgetPassword extends React.Component {
   }
   startTimer = () => {
     let { m } = this.state;
+    const { dispatch } = this.props;
     if(m === 2) {
-      const { dispatch } = this.props;
       clear(dispatch);
     }
     if(m === 1) {
@@ -87,6 +87,7 @@ class UserForgetPassword extends React.Component {
     const phonePattern = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
     let tipsArray = {};
     if(!(phonePattern.test(this.phone)) || !this.phone) {
+      tipsArray.code = 500;
       tipsArray.tips = '手机号输入不正确';
       tips(dispatch, tipsArray);
       return true;
@@ -100,6 +101,7 @@ class UserForgetPassword extends React.Component {
       return true;
     }
     if(this.code != numbers || !this.code) {
+      tipsArray.code = 500;
       tipsArray.tips = '验证码输入不正确';
       tips(dispatch, tipsArray);
       return true;

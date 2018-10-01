@@ -40,16 +40,19 @@ class UserRegister extends React.Component {
     const namePattern = /^\d/;
     let tipsArray = {};
     if(!(phonePattern.test(this.phone)) || !this.phone) {
+      tipsArray.code = 500;
       tipsArray.tips = '手机号输入不正确';
       tips(dispatch, tipsArray);
       return;
     }
     if(namePattern.test(this.userName) || !this.userName) {
+      tipsArray.code = 500;
       tipsArray.tips = '用户名输入不正确';
       tips(dispatch, tipsArray);
       return;
     }
     if(!this.password) {
+      tipsArray.code = 500;
       tipsArray.tips = '密码输入不正确';
       tips(dispatch, tipsArray);
       return;

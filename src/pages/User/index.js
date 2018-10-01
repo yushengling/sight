@@ -53,7 +53,7 @@ class Index extends Component {
       <div className="content">
         <div className="user-div" style={{ height: height, width: width }}>
           <div className="logo-div">
-            <img alt="src" src="//img.downfuture.com/favicon.png" className="login-logo" />
+            <img alt="src" src="//img.downfuture.com/images/favicon.png" className="login-logo" />
           </div>
           {this.renderContent()}
           <div className="footerButton">{ isLogin === 1 ? '没有账号' : '已有账号' }？<a onClick={this.goRegister}>{ isLogin === 1 ? '注册' : '登录' }</a>
