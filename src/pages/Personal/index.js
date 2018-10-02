@@ -67,22 +67,15 @@ class Index extends Component {
     }
   };
   renderList(listData) {
-    let images = [];
-    console.log(listData);
-    /*return listData.map((list, key) => {
-      if(key % 2 === 0) {
-        let imagesBak = [].concat(images);
-        images = [];
-        return (
-          <div key={key}>
-            {imagesBak[0]}
-            {imagesBak[1]}
-            {imagesBak[2]}
-          </div>
-        );
-      }
-      images.push(<img key={key} className="personal-main-list-img" src={list.src} onClick={this.view.bind(this, key)} />);
-    });*/
+    return listData.map((list, key) => {
+      return (
+        <div key={key} className="personal-main-list-images">
+          {list['0'] && <img decoding="auto" className="personal-main-list-img" src={list['0']} onClick={this.view.bind(this, key)} /> }
+          {list['1'] && <img decoding="auto" className="personal-main-list-img" src={list['1']} onClick={this.view.bind(this, key)} /> }
+          { list['2'] && <img decoding="auto" className="personal-main-list-img" src={list['2']} onClick={this.view.bind(this, key)} /> }
+        </div>
+      );
+    });
   }
   view(id) {
     id -= 1;
@@ -190,9 +183,7 @@ class Index extends Component {
                   useWindow={true}
                   threshold={10}
                 >
-                  <div className="personal-main-list-images">
-                    {this.renderList(listData)}
-                  </div>
+                  {this.renderList(listData)}
                   { loading && <Spin className="public-spin"/> }
                 </InfiniteScroll>
               ) : <h1 className="personal-main-list-clear">您暂时没有图片</h1>
@@ -205,13 +196,13 @@ class Index extends Component {
             footer={null}
             confirmLoading={false}
           >
-            <div className="personal-main-setting-modal-content" onClick={this.setting.bind(this)}>
+            <div className="personal-main-setting-modal-content" onClick={this.setting.bind(this)} >
               更改密码
             </div>
-            <div className="personal-main-setting-modal-content" onClick={this.signOutHandler.bind(this)}>
+            <div className="personal-main-setting-modal-content" onClick={this.signOutHandler.bind(this)} >
               登出
             </div>
-            <div className="personal-main-setting-modal-cancel" onClick={this.settingBtn.bind(this)}>
+            <div className="personal-main-setting-modal-cancel" onClick={this.settingBtn.bind(this)} >
               取消
             </div>
           </Modal>
@@ -223,10 +214,10 @@ class Index extends Component {
             confirmLoading={false}
           >
             <img className="personal-main-images-modal-view" src={src} />
-            <div className="personal-main-images-modal-view-right" onClick={this.viewClick.bind(this, true)}>
+            <div className="personal-main-images-modal-view-right" onClick={this.viewClick.bind(this, true)} >
               <Icon className="personal-icon" type="right" />
             </div>
-            <div className="personal-main-images-modal-view-left" onClick={this.viewClick.bind(this, false)}>
+            <div className="personal-main-images-modal-view-left" onClick={this.viewClick.bind(this, false)} >
               <Icon className="personal-icon" type="left" />
             </div>
             <div className="personal-main-images-modal-view-close" onClick={this.close.bind(this)}>
