@@ -14,27 +14,6 @@ function* fetchFirstImagesFun(action) {
   });
 }
 
-function* fetchUploadImagesFun(action) {
-  let data = yield call(fetchUploadImages, action);
-  if(data.code === 500) {
-    message.error(data.error);
-    return;
-  }
-  if(data.code === 200) {
-    message.success('上传成功');
-    let images = yield call(fetchImages, action);
-    data.listData = images.listData;
-    data.total = images.total;
-    data.count = images.count;
-    yield put({
-      type: 'PERSONALREDU',
-      data,
-    });
-  } else {
-    message.error('上传失败');
-  }
-}
-
 function* fetchUploadAvatarFun(action) {
   const data = yield call(fetchUploadAvatar, action);
   if(data.code === 500) {
@@ -77,7 +56,6 @@ function* fetchSignOutFun(action) {
 
 function* personalSaga() {
   yield takeLatest('GETFIRSTIMAGES_SAGA', fetchFirstImagesFun);
-  yield takeLatest('UPLOADIMAGES_SAGA', fetchUploadImagesFun);
   yield takeLatest('UPLOADAVATAR_SAGA', fetchUploadAvatarFun);
   yield takeLatest('GETIMAGES_SAGA', fetchImagesFun);
   yield takeLatest('SIGNOUT_SAGA', fetchSignOutFun);

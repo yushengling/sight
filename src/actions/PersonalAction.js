@@ -5,14 +5,6 @@ const getFirstImages = (dispatch, count) => {
   });
 }
 
-const uploadImages = (dispatch, formData, count) => {
-  dispatch({
-    type: 'UPLOADIMAGES_SAGA',
-    formData,
-    count
-  });
-}
-
 const uploadAvatar = (dispatch, formData) => {
   dispatch({
     type: 'UPLOADAVATAR_SAGA',
@@ -35,7 +27,6 @@ const signOut = (dispatch, history) => {
 }
 export {
   getFirstImages,
-  uploadImages,
   uploadAvatar,
   getImages,
   signOut

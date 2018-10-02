@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button, Modal, message, Spin, Icon } from 'antd';
 import InfiniteScroll from 'react-infinite-scroller';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
-import { getFirstImages, uploadImages, uploadAvatar, getImages, signOut } from './../../actions/PersonalAction.js';
+import { getFirstImages, uploadAvatar, getImages, signOut } from './../../actions/PersonalAction.js';
 import * as styles from './index.less';
 class Index extends Component {
   constructor(props) {
@@ -49,19 +49,6 @@ class Index extends Component {
     }
     return formData;
   }
-  uploadImages(e) {
-    let files = this.refs.images.files;
-    let num = files.length;
-    const { dispatch, personalRedu } = this.props;
-    const { count } = personalRedu;
-    if(num > 3) {
-      message.error('请上传少于3张图片');
-      return;
-    }
-    const formData = this.getFormData(files, num);
-    uploadImages(dispatch, formData, count);
-    e.target.value = '';
-  }
   handleInfiniteOnLoad = (page) => {
     const { dispatch, personalRedu } = this.props;
     const { count, total } = personalRedu;
@@ -80,13 +67,22 @@ class Index extends Component {
     }
   };
   renderList(listData) {
-    let listArray = [];
-    let count = 0;
-    for(let i in listData) {
-      let list = listData[i];
-      listArray.push(<img key={count++} className="all-image" src={list} onClick={this.view.bind(this, count++)} />);
-    }
-    return listArray;
+    let images = [];
+    console.log(listData);
+    /*return listData.map((list, key) => {
+      if(key % 2 === 0) {
+        let imagesBak = [].concat(images);
+        images = [];
+        return (
+          <div key={key}>
+            {imagesBak[0]}
+            {imagesBak[1]}
+            {imagesBak[2]}
+          </div>
+        );
+      }
+      images.push(<img key={key} className="personal-main-list-img" src={list.src} onClick={this.view.bind(this, key)} />);
+    });*/
   }
   view(id) {
     id -= 1;
@@ -158,97 +154,83 @@ class Index extends Component {
       <div className="personal">
         <LayoutHead key={headId} history={history} />
         <main className="personal-main">
-          <header className="personal-header">
-            <section className="personal-left">
-              <input
-                id="upload-file"
-                className="personal-avatar-input"
-                accept="image/*"
-                type="file"
-                ref="avatar"
-                hidden="hidden"
-                onChange={this.uploadAvatar.bind(this)}
-              />
-              <label className="personal-label" htmlFor="upload-file" >
-                <img className="user-image" src={avatar} />
-              </label>
-            </section>
-            <section className="personal-right">
-              <div className="personal-one">
-                <h1 className="personal-name">{userName}</h1>
-                <Button className="personal-setting" onClick={this.settingBtn.bind(this)} >设置</Button>
-              </div>
-              <section className="personal-two">
+          <header className="personal-main-header">
+            <section className="personal-main-header-left">
+              <div className="personal-main-header-left-avatar">
                 <input
-                  id="upload-images-file"
-                  className="personal-images-input"
+                  id="upload-file"
+                  className="personal-avatar-input"
                   accept="image/*"
-                  multiple
-                  size={3}
-                  ref="images"
                   type="file"
+                  ref="avatar"
                   hidden="hidden"
-                  onChange={this.uploadImages.bind(this)}
+                  onChange={this.uploadAvatar.bind(this)}
                 />
-                <label className="personal-upload" htmlFor="upload-images-file">上传图片</label>
-              </section>
+                <label className="personal-avatar-label" htmlFor="upload-file" >
+                  <img className="avatar-image" src={avatar} />
+                </label>
+              </div>
+            </section>
+            <section className="personal-main-header-right">
+              <h1 className="personal-main-header-right-account">{userName}</h1>
+              <Button className="personal-main-header-right-setting" onClick={this.settingBtn.bind(this)} >设置</Button>
+              <h1 className="personal-main-header-right-name">啦啦啦啦啦啦</h1>
             </section>
           </header>
-          <div className="personal-content">
-            图片
+          <div className="personal-main-content">
           </div>
-          <section className="personal-section">
+          <section className="personal-main-list">
             {
-              listData[0] ? <InfiniteScroll
-              initialLoad={false}
-              pageStart={0}
-              loadMore={this.handleInfiniteOnLoad}
-              hasMore={!loading && hasMore}
-              useWindow={true}
-              threshold={10}
-            >
-              <div className="personal-content-div">
-                {this.renderList(listData)}
-              </div>
-              { loading && <Spin style={{ marginTop: 10, display: 'flex', justifyContent: 'center', alignItems: 'center' }} /> }
-            </InfiniteScroll> : <h1 className="personal-clear">您暂时没有图片</h1>
+              listData[0] ? (
+                <InfiniteScroll
+                  initialLoad={false}
+                  pageStart={0}
+                  loadMore={this.handleInfiniteOnLoad}
+                  hasMore={!loading && hasMore}
+                  useWindow={true}
+                  threshold={10}
+                >
+                  <div className="personal-main-list-images">
+                    {this.renderList(listData)}
+                  </div>
+                  { loading && <Spin className="public-spin"/> }
+                </InfiniteScroll>
+              ) : <h1 className="personal-main-list-clear">您暂时没有图片</h1>
             }
           </section>
           <Modal
             visible={visible}
-            className="personal-modal"
+            className="personal-main-setting-modal"
             closable={false}
             footer={null}
             confirmLoading={false}
           >
-            <div className="personal-modal-content" onClick={this.setting.bind(this)}>
+            <div className="personal-main-setting-modal-content" onClick={this.setting.bind(this)}>
               更改密码
             </div>
-            <div className="personal-modal-content" onClick={this.signOutHandler.bind(this)}>
+            <div className="personal-main-setting-modal-content" onClick={this.signOutHandler.bind(this)}>
               登出
             </div>
-            <div className="personal-modal-cancel" onClick={this.settingBtn.bind(this)}>
+            <div className="personal-main-setting-modal-cancel" onClick={this.settingBtn.bind(this)}>
               取消
             </div>
           </Modal>
           <Modal
             visible={viewVisible}
-            className="personal-modal"
+            className="personal-main-images-modal"
             closable={false}
             footer={null}
             confirmLoading={false}
           >
-            <div>
-              <img className="personal-viewimg" src={src} />
-              <div className="personal-right-div" onClick={this.viewClick.bind(this, true)}>
-                <Icon className="personal-icon" type="right" />
-              </div>
-              <div className="personal-left-div" onClick={this.viewClick.bind(this, false)}>
-                <Icon className="personal-icon" type="left" />
-              </div>
-              <div className="personal-close-div" onClick={this.close.bind(this)}>
-                <Icon type="close" style={{ fontSize: 24, color: '#fff' }} />
-              </div>
+            <img className="personal-main-images-modal-view" src={src} />
+            <div className="personal-main-images-modal-view-right" onClick={this.viewClick.bind(this, true)}>
+              <Icon className="personal-icon" type="right" />
+            </div>
+            <div className="personal-main-images-modal-view-left" onClick={this.viewClick.bind(this, false)}>
+              <Icon className="personal-icon" type="left" />
+            </div>
+            <div className="personal-main-images-modal-view-close" onClick={this.close.bind(this)}>
+              <Icon className="personal-icon" type="close" />
             </div>
           </Modal>
         </main>

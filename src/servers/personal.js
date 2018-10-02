@@ -1,16 +1,5 @@
 import { request } from '../request';
 
-export function fetchUploadImages(params) {
-  return request({
-    url: 'uploadImages',
-    options: {
-      method: 'PUT',
-      body: params.formData,
-      sign: true
-    }
-  });
-}
-
 export function fetchUploadAvatar(params) {
   return request({
     url: 'uploadAvatar',

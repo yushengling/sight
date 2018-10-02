@@ -1,9 +1,8 @@
 import React,{ PureComponent } from 'react';
-import { Layout, Row, Col, Icon, Affix, Input } from 'antd';
+import { Row, Col, Icon, Affix, Input } from 'antd';
 import { connect } from 'react-redux';
 import * as styles from './LayoutHead.less';
 import { getAvatar } from './../../actions/LayoutHeadAction.js';
-const { Header } = Layout;
 const Search = Input.Search;
 class LayoutHead extends PureComponent {
   constructor(props) {
@@ -21,7 +20,7 @@ class LayoutHead extends PureComponent {
     const { layoutHeadRedu: { userName, avatar }, history, onload } = this.props;
     return (
       <Affix>
-        <Header className="header">
+        <nav className="header">
           <div className="header-div">
             <Row className="row header-div-row">
               <Col span={8}>
@@ -46,7 +45,7 @@ class LayoutHead extends PureComponent {
               </Col>
             </Row>
           </div>
-        </Header>
+        </nav>
       </Affix>
     );
   }
