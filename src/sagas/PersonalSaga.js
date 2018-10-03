@@ -16,12 +16,17 @@ function* fetchFirstImagesFun(action) {
 
 function* fetchUploadAvatarFun(action) {
   const data = yield call(fetchUploadAvatar, action);
+  yield put({
+    type: 'CHANGE_SPIN'
+  });
   if(data.code === 500) {
     message.error(data.error);
     return;
   }
+  return;
   message.success('上传成功');
   data.headId = '1';
+  data.isShowSpin = false;
   yield put({
     type: 'PERSONALREDU',
     data,

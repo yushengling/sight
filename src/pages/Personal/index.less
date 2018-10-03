@@ -20,7 +20,8 @@
           height: 152px;
           margin-left: auto;
           margin-right: auto;
-          .personal-avatar-input {
+          position: relative;
+          .personal-main-header-left-avatar-input {
             .AVATAR_HEIGHT_WIDTH();
             cursor: pointer;
             position: absolute;
@@ -28,13 +29,13 @@
             opacity: 0;
             font-size: 0px;
           }
-          .personal-avatar-label {
+          .personal-main-header-left-avatar-label {
             .AVATAR_HEIGHT_WIDTH();
             cursor: pointer;
             border-radius: 100%;
             position: relative;
             border: 0px solid transparent;
-            .avatar-image {
+            .personal-main-header-left-avatar-label-image {
               .AVATAR_HEIGHT_WIDTH();
               position: absolute;
               left: 0;
@@ -43,6 +44,12 @@
               display: block;
               overflow: hidden;
             }
+          }
+          .personal-main-header-left-avatar-spin {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
           }
         }
       }
@@ -175,7 +182,7 @@
   right: -24px;
 }
 
-.personal-avatar-input:hover {
+.personal-main-header-left-avatar-input:hover {
   text-decoration: none;
 }
 
@@ -213,15 +220,15 @@
     padding-top: 80px;
   }
 
-  .personal .personal-main .personal-main-header .personal-main-header-left .personal-main-header-left-avatar .personal-avatar-label .avatar-image {
+  .personal .personal-main .personal-main-header .personal-main-header-left .personal-main-header-left-avatar .personal-main-header-left-avatar-label .personal-main-header-left-avatar-label-image {
     .AVATAR_PHONE_HEIGHT_WIDTH();
   }
 
-  .personal .personal-main .personal-main-header .personal-main-header-left .personal-main-header-left-avatar .personal-avatar-label {
+  .personal .personal-main .personal-main-header .personal-main-header-left .personal-main-header-left-avatar .personal-main-header-left-avatar-label {
     .AVATAR_PHONE_HEIGHT_WIDTH();
   }
 
-  .personal .personal-main .personal-main-header .personal-main-header-left .personal-main-header-left-avatar .personal-avatar-input {
+  .personal .personal-main .personal-main-header .personal-main-header-left .personal-main-header-left-avatar .personal-main-header-left-avatar-input {
     .AVATAR_PHONE_HEIGHT_WIDTH();
   }
 

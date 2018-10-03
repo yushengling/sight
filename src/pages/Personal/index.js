@@ -5,6 +5,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import { getFirstImages, uploadAvatar, getImages, signOut } from './../../actions/PersonalAction.js';
 import * as styles from './index.less';
+const antIcon = <Icon type="loading" style={{ fontSize: 24 }} Spin />;
 class Index extends Component {
   constructor(props) {
     super(props);
@@ -141,7 +142,8 @@ class Index extends Component {
     }
   }
   render() {
-    const { history, personalRedu: { listData, avatar, userName, headId } } = this.props;
+    const { history, personalRedu: { listData, avatar, userName, headId, isShowSpin } } = this.props;
+    console.log(isShowSpin);
     const { visible, loading, hasMore, viewVisible, src } = this.state;
     return (
       <div className="personal">
@@ -152,16 +154,19 @@ class Index extends Component {
               <div className="personal-main-header-left-avatar">
                 <input
                   id="upload-file"
-                  className="personal-avatar-input"
+                  className="personal-main-header-left-avatar-input"
                   accept="image/jpeg,image/png"
                   type="file"
                   ref="avatar"
                   hidden="hidden"
                   onChange={this.uploadAvatar.bind(this)}
                 />
-                <label className="personal-avatar-label" htmlFor="upload-file" >
-                  <img className="avatar-image" src={avatar} />
+                <label className="personal-main-header-left-avatar-label" htmlFor="upload-file" >
+                  <img className="personal-main-header-left-avatar-label-image personal-main-header-left-avatar-label-image" src={avatar} />
                 </label>
+                {
+                  isShowSpin ? <Spin className="personal-main-header-left-avatar-spin" indicator={antIcon} /> : ""
+                }
               </div>
             </section>
             <section className="personal-main-header-right">
