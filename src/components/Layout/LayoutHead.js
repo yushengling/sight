@@ -19,34 +19,30 @@ class LayoutHead extends PureComponent {
   render() {
     const { layoutHeadRedu: { userName, avatar }, history, onload } = this.props;
     return (
-      <Affix>
-        <nav className="header">
-          <div className="header-div">
-            <Row className="row header-div-row">
-              <Col span={8}>
-                <div className="logo" onClick={() => {
-                  if(location.pathname === '/') {
-                    onload();
-                  } else {
-                    history.push('/');
-                  }
-                }} />
-              </Col>
-              <Col span={8} className="head-search-col">
-                <Search placeholder="搜索" onSearch={this.searchText.bind(this)} className="header-input" />
-              </Col>
-              <Col span={8} className="header-row-col">
-                <span className="header-row-col-compass">
-                  <Icon type="compass" className="icon" onClick={() => history.push('/post')} />
-                </span>
-                <span className="header-row-col-user">
-                  { userName ? <img src={avatar} className="images" onClick={() => history.push('/personal')} /> : <Icon type="user" className="icon" onClick={() => history.push('/user') } /> }
-                </span>
-              </Col>
-            </Row>
-          </div>
-        </nav>
-      </Affix>
+      <nav className="header-nav">
+        <Row className="row header-nav-row">
+          <Col span={8}>
+            <div className="header-logo" onClick={() => {
+              if(location.pathname === '/') {
+                onload();
+              } else {
+                history.push('/');
+              }
+            }} />
+          </Col>
+          <Col span={8} className="header-nav-row-search-col">
+            <Search placeholder="搜索" onSearch={this.searchText.bind(this)} className="header-nav-row-search-col-input" />
+          </Col>
+          <Col span={8} className="header-nav-row-icon-col">
+            <span className="header-nav-row-icon-col-compass">
+              <Icon type="compass" className="icon" onClick={() => history.push('/post')} />
+            </span>
+            <span className="header-nav-row-icon-col-user">
+              { userName ? <Icon type="user" className="icon" onClick={() => history.push('/personal') } /> : <Icon type="user" className="icon" onClick={() => history.push('/user') } /> }
+            </span>
+          </Col>
+        </Row>
+      </nav>
     );
   }
 }

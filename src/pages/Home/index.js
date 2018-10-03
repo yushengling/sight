@@ -82,43 +82,41 @@ class Index extends Component {
           isRender && <Spin size="large" />
         }
         <main className="home-main">
-          <section className="home-body-section">
+          <section className="home-main-section">
             <InfiniteScroll
               {...datas}
             >
-              <div className="home-body-left-card-div">
+              <div className="home-main-section-left">
                 {this.renderList(listData)}
               </div>
               { loading && <Spin className="loading-spin" /> }
             </InfiniteScroll>
-            <section className="home-body-right-card-div">
-              <div className="right-card-div-avatar">
-                <img className="right-card-div-img" alt="src" src="https://scontent-hkg3-1.cdninstagram.com/vp/dcd03f20a1b867635910cdd8f755ced8/5C3F0B04/t51.2885-19/s150x150/32178164_2124523824446183_6597680605494771712_n.jpg" />
-                <p className="right-card-div-name">
+            <section className="home-main-section-right">
+              <div className="home-main-section-right-avatar">
+                <img className="home-main-section-right-avatar-img" alt="src" src="https://scontent-hkg3-1.cdninstagram.com/vp/dcd03f20a1b867635910cdd8f755ced8/5C3F0B04/t51.2885-19/s150x150/32178164_2124523824446183_6597680605494771712_n.jpg" />
+                <p className="home-main-section-right-avatar-name">
                   test
                 </p>
               </div>
-              <div>
-                <ul className="right-card-list">
-                  <li>
-                    <span>帖子</span>
-                    <span>0</span>
-                  </li>
-                  <li>
-                    <span>收藏</span>
-                    <span>0</span>
-                  </li>
-                  <li>
-                    <span>关注</span>
-                    <span>0</span>
-                  </li>
-                  <li>
-                    <span>粉丝</span>
-                    <span>0</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="right-card-footer">
+              <ul className="home-main-section-right-list">
+                <li>
+                  <span>帖子</span>
+                  <span>0</span>
+                </li>
+                <li>
+                  <span>收藏</span>
+                  <span>0</span>
+                </li>
+                <li>
+                  <span>关注</span>
+                  <span>0</span>
+                </li>
+                <li>
+                  <span>粉丝</span>
+                  <span>0</span>
+                </li>
+              </ul>
+              <div className="home-main-section-right-footer">
                 © 2018 视线
               </div>
             </section>
