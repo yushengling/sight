@@ -10,7 +10,7 @@ class UserRegister extends React.Component {
     super(props);
   
     this.state = {
-      formItems: ['phone|手机号|0', 'userName|用户名|0', 'password|密码|0'],
+      formItems: ['text|手机号|0', 'text|用户名|0', 'password|密码|0'],
     };
     this.numbers = [];
     this.phone = 0;

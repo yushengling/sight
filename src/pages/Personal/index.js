@@ -153,7 +153,7 @@ class Index extends Component {
                 <input
                   id="upload-file"
                   className="personal-avatar-input"
-                  accept="image/*"
+                  accept="image/jpeg,image/png"
                   type="file"
                   ref="avatar"
                   hidden="hidden"

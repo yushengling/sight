@@ -9,7 +9,7 @@ class UserForgetPassword extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formItems: ['phone|手机号|0', 'code|验证码|0', 'password|密码|0'],
+      formItems: ['text|手机号|0', 'text|验证码|0', 'password|密码|0'],
       isSend: true,
       m: 60,
     };
