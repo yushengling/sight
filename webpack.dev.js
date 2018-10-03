@@ -13,6 +13,9 @@ module.exports = {
     hashDigestLength: 7,
     path: path.resolve(__dirname, 'build')
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.css', '.less']
+  },
   module: {
     rules: [
       {

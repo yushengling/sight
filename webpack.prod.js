@@ -16,7 +16,7 @@ module.exports = {
     publicPath: './'
   },
   resolve: {
-    extensions: ['.js', '.jsx', 'css']
+    extensions: ['.js', '.jsx', '.css', '.less']
   },
   module: {
     rules: [
@@ -59,24 +59,6 @@ module.exports = {
         ]
       }
     ]
-  },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /node_modules/,
-          chunks: 'initial',
-          name: 'common/vendor',    
-          priority: 10
-        },
-        utils: {
-          test: /\.js$/,
-          chunks: 'initial',
-          name: 'common/utils',
-          minSize: 0
-        }
-      }
-    }
   },
   plugins: [
     new CleanWebpackPlugin(['build']),
