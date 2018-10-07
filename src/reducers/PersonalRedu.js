@@ -3,9 +3,8 @@ const initialState = {
   total: 0,
   count: 0,
   code: 0,
-  avatar: '//downfuture.com/user.png',
+  avatar: '//img.downfuture.com/images/user.png-avatar',
   userName: false,
-  headId: '0',
   isShowSpin: false,
 };
 

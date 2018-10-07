@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import { getFirstImages, uploadAvatar, getImages, signOut } from './../../actions/PersonalAction.js';
 import * as styles from './index.less';
-const antIcon = <Icon type="loading" style={{ fontSize: 24 }} Spin />;
+const antIcon = <Icon type="loading" style={{ fontSize: 24 }} />;
 class Index extends Component {
   constructor(props) {
     super(props);
@@ -142,12 +142,11 @@ class Index extends Component {
     }
   }
   render() {
-    const { history, personalRedu: { listData, avatar, userName, headId, isShowSpin } } = this.props;
-    console.log(isShowSpin);
+    const { history, personalRedu: { listData, avatar, userName, isShowSpin } } = this.props;
     const { visible, loading, hasMore, viewVisible, src } = this.state;
     return (
       <div className="personal">
-        <LayoutHead key={headId} history={history} />
+        <LayoutHead history={history} />
         <main className="personal-main">
           <header className="personal-main-header">
             <section className="personal-main-header-left">
@@ -165,7 +164,7 @@ class Index extends Component {
                   <img className="personal-main-header-left-avatar-label-image personal-main-header-left-avatar-label-image" src={avatar} />
                 </label>
                 {
-                  isShowSpin ? <Spin className="personal-main-header-left-avatar-spin" indicator={antIcon} /> : ""
+                  isShowSpin ? <Spin className="personal-main-header-left-avatar-spin" indicator={antIcon} /> : null
                 }
               </div>
             </section>
