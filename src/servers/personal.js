@@ -6,7 +6,6 @@ export function fetchUploadAvatar(params) {
     options: {
       method: 'PUT',
       body: params.formData,
-      sign: true
     }
   });
 }

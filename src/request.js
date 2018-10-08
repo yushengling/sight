@@ -30,11 +30,6 @@ function request({ url, options, callback }) {
     .then((data) => {
       return data;
     }).catch((err) => {
-      message.config({
-        top: 24,
-        duration: 1,
-        maxCount: 3,
-      });
       message.error('发送fetch失败' + JSON.stringify(err) + ',方法名：' + url);
     });
 }

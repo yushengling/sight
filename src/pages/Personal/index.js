@@ -34,11 +34,12 @@ class Index extends Component {
       }));
     }
   }
-  uploadAvatar(e) {
+  uploadAvatar(avatar, e) {
     let files = this.refs.avatar.files;
     let num = files.length;
     const { dispatch } = this.props;
-    const formData = this.getFormData(files, num);
+    let formData = this.getFormData(files, num);
+    formData.avatar = avatar;
     uploadAvatar(dispatch, formData);
     e.target.value = '';
   }
@@ -158,7 +159,7 @@ class Index extends Component {
                   type="file"
                   ref="avatar"
                   hidden="hidden"
-                  onChange={this.uploadAvatar.bind(this)}
+                  onChange={this.uploadAvatar.bind(this, avatar)}
                 />
                 <label className="personal-main-header-left-avatar-label" htmlFor="upload-file" >
                   <img className="personal-main-header-left-avatar-label-image personal-main-header-left-avatar-label-image" src={avatar} />
