@@ -34,7 +34,7 @@ class Index extends Component {
       }));
     }
   }
-  uploadAvatar(avatar, e) {
+  uploadAvatar(e) {
     let files = this.refs.avatar.files;
     let num = files.length;
     const { dispatch } = this.props;
@@ -158,7 +158,7 @@ class Index extends Component {
                   type="file"
                   ref="avatar"
                   hidden="hidden"
-                  onChange={this.uploadAvatar.bind(this, avatar)}
+                  onChange={this.uploadAvatar.bind(this)}
                 />
                 <label className="personal-main-header-left-avatar-label" htmlFor="upload-file" >
                   <img className="personal-main-header-left-avatar-label-image personal-main-header-left-avatar-label-image" src={avatar} />
