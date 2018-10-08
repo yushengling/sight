@@ -39,7 +39,6 @@ class Index extends Component {
     let num = files.length;
     const { dispatch } = this.props;
     let formData = this.getFormData(files, num);
-    formData.avatar = avatar;
     uploadAvatar(dispatch, formData);
     e.target.value = '';
   }
