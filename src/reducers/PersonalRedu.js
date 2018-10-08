@@ -11,6 +11,10 @@ const initialState = {
 const CHANGE_SPIN = {
   isShowSpin: true,
 };
+
+const CANCEL_SPIN = {
+  isShowSpin: false,
+};
 const userRedu = (state = initialState, action) => {
   switch(action.type) {
     case 'PERSONALREDU':
@@ -20,6 +24,8 @@ const userRedu = (state = initialState, action) => {
       return Object.assign({}, state, action.data);
     case 'CHANGE_SPIN':
       return Object.assign({}, state, CHANGE_SPIN);
+    case 'CANCEL_SPIN':
+      return Object.assign({}, state, CANCEL_SPIN);
     default:
       return state;
   }

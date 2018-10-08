@@ -20,6 +20,9 @@ function* fetchUploadAvatarFun(action) {
   });
   const data = yield call(fetchUploadAvatar, action);
   if(data.code === 500) {
+    yield put({
+      type: 'CANCEL_SPIN'
+    });
     message.error(data.error);
     return;
   }
