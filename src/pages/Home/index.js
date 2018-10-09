@@ -16,12 +16,14 @@ class Index extends Component {
       loading: false,
       hasMore: true,
     };
+    this.isSetState = true;
   }
   componentWillReceiveProps(nextProps) {
     message.config({
       top: 24,
       duration: 2,
       maxCount: 3,
+      styles: { },
     });
     const { dispatch } = this.props;
     const { code, message } = nextProps.homeRedu;
@@ -33,7 +35,49 @@ class Index extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     getData(dispatch, 10);
+    this.handleScroll();
+    window.addEventListener('resize', this.onWindowResize)
   }
+  onWindowResize = () => {
+    let sectionRight = this.refs.sectionRight;
+    let sectionMain = this.refs.sectionMain;
+    this.left = 0;
+    console.log(sectionRight.offsetLeft, sectionMain.offsetLeft);
+    this.left = sectionRight.offsetLeft + sectionMain.offsetLeft;
+    this.setState({
+      styles: {
+        position: 'fixed',
+        left: this.left,
+      }
+    });
+  }
+  handleScroll = () => {
+    document.onscroll = () => {
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      let sectionRight = this.refs.sectionRight;
+      let sectionMain = this.refs.sectionMain;
+      if(scrollTop > 0) {
+        if(this.isSetState) {
+          this.isSetState = false;
+          this.left = sectionRight.offsetLeft + sectionMain.offsetLeft;
+          this.setState({
+            styles: {
+              position: 'fixed',
+              left: this.left
+            }
+          });
+        }
+      } else {
+        this.isSetState = true;
+        this.setState({
+          styles: {
+            position: 'absolute',
+          }
+        });
+      }
+    }
+  }
+
   handleInfiniteOnLoad = (page) => {
     const { dispatch, homeRedu: { count, total } } = this.props;
     if(total[0]['count(*)'] > count) {
@@ -71,7 +115,7 @@ class Index extends Component {
     }, 500);
   }
   render() {
-    const { loading, hasMore } = this.state;
+    const { loading, hasMore, styles } = this.state;
     const { history, homeRedu: { listData, isRender } } = this.props;
     let datas = {};
     ({ datas: datas.initialLoad = false, datas: datas.pageStart = 0, datas: datas.loadMore = this.handleInfiniteOnLoad, datas: datas.hasMore = !loading && hasMore, datas: datas.useWindow = true, datas: datas.threshold = 10 } = {});
@@ -82,7 +126,7 @@ class Index extends Component {
           isRender && <Spin size="large" />
         }
         <main className="home-main">
-          <section className="home-main-section">
+          <section ref="sectionMain" className="home-main-section">
             <InfiniteScroll
               {...datas}
             >
@@ -91,7 +135,7 @@ class Index extends Component {
               </div>
               { loading && <Spin className="loading-spin" /> }
             </InfiniteScroll>
-            <section className="home-main-section-right">
+            <section ref="sectionRight" className="home-main-section-right" style={styles}>
               <div className="home-main-section-right-avatar">
                 <img className="home-main-section-right-avatar-img" alt="src" src="https://scontent-hkg3-1.cdninstagram.com/vp/dcd03f20a1b867635910cdd8f755ced8/5C3F0B04/t51.2885-19/s150x150/32178164_2124523824446183_6597680605494771712_n.jpg" />
                 <p className="home-main-section-right-avatar-name">
