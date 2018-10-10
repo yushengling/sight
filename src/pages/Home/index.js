@@ -23,7 +23,6 @@ class Index extends Component {
       top: 24,
       duration: 2,
       maxCount: 3,
-      styles: { },
     });
     const { dispatch } = this.props;
     const { code, message } = nextProps.homeRedu;
@@ -36,20 +35,19 @@ class Index extends Component {
     const { dispatch } = this.props;
     getData(dispatch, 10);
     this.handleScroll();
-    window.addEventListener('resize', this.onWindowResize)
+    this.onBodyResize();
   }
-  onWindowResize = () => {
-    let sectionRight = this.refs.sectionRight;
-    let sectionMain = this.refs.sectionMain;
-    this.left = 0;
-    console.log(sectionRight.offsetLeft, sectionMain.offsetLeft);
-    this.left = sectionRight.offsetLeft + sectionMain.offsetLeft;
-    this.setState({
-      styles: {
-        position: 'fixed',
-        left: this.left,
-      }
-    });
+  onBodyResize = () => {
+    document.body.onresize = () => {
+      let sectionMain = this.refs.sectionMain;
+      let sectionRight = sectionMain.offsetLeft + 600 + 81;
+      this.setState({
+        styles: {
+          position: 'fixed',
+          left: sectionRight,
+        }
+      });
+    }
   }
   handleScroll = () => {
     document.onscroll = () => {
