@@ -33,18 +33,18 @@ class Index extends Component {
   }
   componentDidMount() {
     const { dispatch } = this.props;
-    getData(dispatch, 10);
+    getData(dispatch, 7);
     this.handleScroll();
     this.onBodyResize();
   }
   onBodyResize = () => {
     document.body.onresize = () => {
       let sectionMain = this.refs.sectionMain;
-      let sectionRight = sectionMain.offsetLeft + 600 + 81;
+      let left = sectionMain.offsetLeft + 600 + 81;
       this.setState({
         styles: {
           position: 'fixed',
-          left: sectionRight,
+          left,
         }
       });
     }
@@ -52,16 +52,15 @@ class Index extends Component {
   handleScroll = () => {
     document.onscroll = () => {
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      let sectionRight = this.refs.sectionRight;
       let sectionMain = this.refs.sectionMain;
       if(scrollTop > 0) {
         if(this.isSetState) {
           this.isSetState = false;
-          this.left = sectionRight.offsetLeft + sectionMain.offsetLeft;
+          let left = sectionMain.offsetLeft + 600 + 81;
           this.setState({
             styles: {
               position: 'fixed',
-              left: this.left
+              left
             }
           });
         }
@@ -83,13 +82,13 @@ class Index extends Component {
         loading: true,
       }));
       setTimeout(() => {
-        getData(dispatch, count + 10);
-      }, 200);
+        getData(dispatch, count + 7);
+      }, 700);
       setTimeout(() => {
         this.setState(() => ({
           loading: false,
         }));
-      }, 200);
+      }, 700);
     }
   };
   renderList(listData) {
@@ -131,7 +130,7 @@ class Index extends Component {
               <div className="home-main-section-left">
                 {this.renderList(listData)}
               </div>
-              { loading && <Spin className="loading-spin" /> }
+              { loading && <Spin className="public-spin" /> }
             </InfiniteScroll>
             <section ref="sectionRight" className="home-main-section-right" style={styles}>
               <div className="home-main-section-right-avatar">
