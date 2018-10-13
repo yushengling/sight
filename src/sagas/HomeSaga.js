@@ -11,7 +11,7 @@ function* fetchDataFun(action) {
   datas.isRender = false;
   yield put({
     type: "GETDATA",
-    homeData: datas
+    datas
   });
 }
 

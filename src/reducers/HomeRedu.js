@@ -21,7 +21,7 @@ const clearListData = {
 const homeRedu = (state = initialState, action) => {
   switch(action.type) {
     case 'GETDATA':
-      return Object.assign({}, state, action.homeData);
+      return Object.assign({}, state, action.datas);
     break;
     case 'CLEARREDU':
       return Object.assign({}, state, changeState);

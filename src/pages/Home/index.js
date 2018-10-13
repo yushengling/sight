@@ -1,12 +1,12 @@
 import React,{ Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import { connect } from 'react-redux';
-import { Spin, message, BackTop } from 'antd';
+import { Spin, message, BackTop, Skeleton, SkeletonAvatarProps } from 'antd';
 import ItemCard from './../../components/ItemCard/ItemCard.js';
 import LayoutHead from './../../components/Layout/LayoutHead.js';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import PropTypes from 'prop-types';
-import { getData, userClick, clear, clearListData } from './../../actions/HomeAction';
+import { getData, userClick, clearListData } from './../../actions/HomeAction';
 import './index.less';
 
 class Index extends Component {
@@ -15,27 +15,65 @@ class Index extends Component {
     this.state = {
       loading: false,
       hasMore: true,
+      renderImages: false,
     };
     this.isSetState = true;
-  }
-  componentWillReceiveProps(nextProps) {
-    message.config({
-      top: 24,
-      duration: 2,
-      maxCount: 3,
-    });
-    const { dispatch } = this.props;
-    const { code, message } = nextProps.homeRedu;
-    if(code === 400) {
-      message.warning(message, 2);
-      clear(dispatch, nextProps.homeRedu);
-    }
+    this.images = [];
   }
   componentDidMount() {
     const { dispatch } = this.props;
     getData(dispatch, 7);
     this.handleScroll();
     this.onBodyResize();
+  }
+  componentDidUpdate() {
+    const { history, homeRedu: { listData } } = this.props;
+    const { renderImages } = this.state;
+    setTimeout(() => {
+      if(listData.length && !(renderImages)) {
+        this.setState({
+          renderImages: true,
+        });
+      }
+      /*if(listData.length > 0 && !(renderImages)) {
+        for(let i = 0, len = listData.length; i < len; i++) {
+          this.onloadImaegs(listData[i], i).then((index) => {
+            if(index === listData.length - 1) {
+              this.setState({
+                renderImages: true,
+                listDataLength: listData.length
+              });
+            }
+          });
+        }
+      } else {
+        if(listDataLength === listData.length) {
+          return;
+        }
+        this.images = listData;
+        this.setState({
+          renderImages: true,
+          listDataLength: listData.length
+        });
+      }*/
+    }, 500);
+  }
+
+  async onloadImaegs({ src, like, avatar, name }, index) {
+    const self = this;
+    return new Promise((resolve, reject) => {
+      var img = new Image();
+      img.src = src;
+      img.onload = function (e) {
+        resolve(index);
+        self.images[index] = {
+          src,
+          like,
+          avatar,
+          name
+        };
+      };
+    });
   }
   onBodyResize = () => {
     document.body.onresize = () => {
@@ -77,7 +115,7 @@ class Index extends Component {
 
   handleInfiniteOnLoad = (page) => {
     const { dispatch, homeRedu: { count, total } } = this.props;
-    if(total[0]['count(*)'] > count) {
+    if(total > count) {
       this.setState(() => ({
         loading: true,
       }));
@@ -92,13 +130,12 @@ class Index extends Component {
     }
   };
   renderList(listData) {
-    const listArray = listData.map((list,index) => {
-      const { id } = list;
+    const listArray = listData.map((list, index) => {
       return (
         <ItemCard
           list={list}
           key={"card" + index}
-          index={index}
+          renderImages={this.renderImages}
         />
       );
     });
@@ -112,7 +149,7 @@ class Index extends Component {
     }, 500);
   }
   render() {
-    const { loading, hasMore, styles } = this.state;
+    const { loading, hasMore, styles, renderImages } = this.state;
     const { history, homeRedu: { listData, isRender } } = this.props;
     let datas = {};
     ({ datas: datas.initialLoad = false, datas: datas.pageStart = 0, datas: datas.loadMore = this.handleInfiniteOnLoad, datas: datas.hasMore = !loading && hasMore, datas: datas.useWindow = true, datas: datas.threshold = 10 } = {});
@@ -124,17 +161,25 @@ class Index extends Component {
         }
         <main className="home-main">
           <section ref="sectionMain" className="home-main-section">
-            <InfiniteScroll
-              {...datas}
-            >
-              <div className="home-main-section-left">
-                {this.renderList(listData)}
-              </div>
-              { loading && <Spin className="public-spin" /> }
-            </InfiniteScroll>
+            {
+              renderImages ? <InfiniteScroll
+                {...datas}
+              >
+                <div className="home-main-section-left">
+                  {this.renderList(listData)}
+                </div>
+                { loading && <Spin className="public-spin" /> }
+              </InfiniteScroll> : <article className="home-main-section-card">
+                    <header className="home-main-section-card-header">
+                      <span className="home-main-section-card-header-avatar" />
+                      <span className="home-main-section-card-header-name" />
+                    </header>
+                    <div className="home-main-section-card-img"/>
+                  </article>
+            }
             <section ref="sectionRight" className="home-main-section-right" style={styles}>
               <div className="home-main-section-right-avatar">
-                <img className="home-main-section-right-avatar-img" alt="src" src="https://scontent-hkg3-1.cdninstagram.com/vp/dcd03f20a1b867635910cdd8f755ced8/5C3F0B04/t51.2885-19/s150x150/32178164_2124523824446183_6597680605494771712_n.jpg" />
+                <img className="home-main-section-right-avatar-img" alt="src" src="https://scontent-hkg3-1.cdninstagram.com/vp/7573d70108d3be137eca5f230a0228d7/5C52B15C/t51.2885-19/s150x150/42330121_783744922017534_4855213103652012032_n.jpg" />
                 <p className="home-main-section-right-avatar-name">
                   test
                 </p>
@@ -162,6 +207,18 @@ class Index extends Component {
               </div>
             </section>
           </section>
+          {
+            /*listData.map((list,index) => {
+              const { id } = list;
+              return (
+                <img
+                  src="https://img.downfuture.com/images/4qigLk8TygbuJW1GFwellx3y.jpeg"
+                  key={index}
+                  onLoad={this.lazyOnload(this)}
+                />
+              )
+            })*/
+          }
         </main>
         <BackTop />
       </section>
