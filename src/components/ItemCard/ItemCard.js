@@ -6,6 +6,7 @@ const Icons = ['like', 'heart', 'share-alt'];
 
 function ItemCard(props) {
   const { list, renderImages } = props;
+  console.log(1);
   return (
     <article className="card">
       <header className="card-header">

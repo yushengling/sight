@@ -179,7 +179,7 @@ class Index extends Component {
             }
             <section ref="sectionRight" className="home-main-section-right" style={styles}>
               <div className="home-main-section-right-avatar">
-                <img className="home-main-section-right-avatar-img" alt="src" src="https://scontent-hkg3-1.cdninstagram.com/vp/7573d70108d3be137eca5f230a0228d7/5C52B15C/t51.2885-19/s150x150/42330121_783744922017534_4855213103652012032_n.jpg" />
+                <img className="home-main-section-right-avatar-img" alt="src" src="https://img.downfuture.com/images/4qigLk8TygbuJW1GFwellx3y.jpeg-avatar2" />
                 <p className="home-main-section-right-avatar-name">
                   test
                 </p>

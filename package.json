@@ -4,7 +4,7 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
-    "antd": "^3.4.0",
+    "antd": "^3.10.1",
     "babel": "^5.8.38",
     "babel-polyfill": "^6.26.0",
     "cross-fetch": "^2.2.1",
@@ -16,8 +16,8 @@
     "prop-types": "^15.6.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-hot-loader": "^4.3.3",
-    "react-infinite-scroller": "^1.1.4",
+    "react-hot-loader": "^4.3.11",
+    "react-infinite-scroller": "^1.2.2",
     "react-quill": "^1.3.1",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
@@ -25,7 +25,7 @@
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "^1.1.5",
     "redux": "^3.7.2",
-    "redux-saga": "^0.16.0",
+    "redux-saga": "^0.16.2",
     "style-loader": "^0.20.3",
     "webpack": "^4.19.1",
     "whatwg-fetch": "^2.0.4"
@@ -50,7 +50,7 @@
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
-    "mini-css-extract-plugin": "^0.4.0",
+    "mini-css-extract-plugin": "^0.4.4",
     "uglifyjs-webpack-plugin": "^1.3.0",
     "webpack-cli": "^2.1.5",
     "webpack-dev-server": "^3.1.4"
