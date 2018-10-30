@@ -12,6 +12,7 @@ class PasswordChange extends React.Component {
     this.state = {};
   }
   componentWillReceiveProps(nextProps) {
+    console.log(1);
     const { settingRedu } = nextProps;
     const { dispatch, history } = this.props;
     let datas = {};
