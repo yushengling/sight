@@ -2,11 +2,9 @@ import React,{ Component } from 'react';
 import { Card, Icon, Skeleton } from 'antd';
 import './ItemCard.less';
 const { Meta } = Card;
-const Icons = ['like', 'heart', 'share-alt'];
 
 function ItemCard(props) {
-  const { list, renderImages } = props;
-  console.log(1);
+  const { list, renderImages, onEvnet } = props;
   return (
     <article className="card">
       <header className="card-header">
@@ -18,15 +16,15 @@ function ItemCard(props) {
       <img className="card-img" alt="src" src={list.src} />
       <section className="card-body">
         <section className="card-body-section">
-          {
-            Icons.map((icon, index) => {
-              return (
-                <span key={index}>
-                  <Icon className={'card-body-section-' + icon} type={icon} theme="outlined" />
-                </span>
-              )
-            })
-          }
+          <span onClick={() => onEvnet('like')}>
+            <Icon className={'card-body-section-like'} type="like" theme="outlined" />
+          </span>
+          <span onClick={() => onEvnet('heart')}>
+            <Icon className={'card-body-section-heart'} type="heart" theme="outlined" />
+          </span>
+          <span onClick={() => onEvnet('share')}>
+            <Icon className={'card-body-section-share-alt'} type="share-alt" theme="outlined" />
+          </span>
         </section>
         <section className="card-body-total">
           {list.like}次赞
