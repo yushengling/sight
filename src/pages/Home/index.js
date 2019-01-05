@@ -20,12 +20,14 @@ class Index extends Component {
     this.isSetState = true;
     this.images = [];
   }
+
   componentDidMount() {
     const { dispatch } = this.props;
     getData(dispatch, 7);
     this.handleScroll();
     this.onBodyResize();
   }
+
   componentDidUpdate() {
     const { history, homeRedu: { listData } } = this.props;
     const { renderImages } = this.state;
@@ -35,28 +37,12 @@ class Index extends Component {
           renderImages: true,
         });
       }
-      /*if(listData.length > 0 && !(renderImages)) {
-        for(let i = 0, len = listData.length; i < len; i++) {
-          this.onloadImaegs(listData[i], i).then((index) => {
-            if(index === listData.length - 1) {
-              this.setState({
-                renderImages: true,
-                listDataLength: listData.length
-              });
-            }
-          });
-        }
-      } else {
-        if(listDataLength === listData.length) {
-          return;
-        }
-        this.images = listData;
-        this.setState({
-          renderImages: true,
-          listDataLength: listData.length
-        });
-      }*/
     }, 500);
+  }
+
+  componentWillUnmount() {
+    document.body.onresize = null;
+    document.onscroll = null;
   }
 
   async onloadImaegs({ src, like, avatar, name }, index) {
@@ -75,6 +61,7 @@ class Index extends Component {
       };
     });
   }
+
   onBodyResize = () => {
     document.body.onresize = () => {
       let sectionMain = this.refs.sectionMain;
@@ -87,6 +74,7 @@ class Index extends Component {
       });
     }
   }
+
   handleScroll = () => {
     document.onscroll = () => {
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -129,6 +117,7 @@ class Index extends Component {
       }, 700);
     }
   };
+
   renderList(listData) {
     const listArray = listData.map((list, index) => {
       return (
@@ -141,6 +130,7 @@ class Index extends Component {
     });
     return listArray;
   }
+
   onload = () => {
     const { dispatch } = this.props;
     clearListData(dispatch);
@@ -148,6 +138,7 @@ class Index extends Component {
       getData(dispatch, 16);
     }, 500);
   }
+
   render() {
     const { loading, hasMore, styles, renderImages } = this.state;
     const { history, homeRedu: { listData, isRender } } = this.props;
@@ -207,18 +198,6 @@ class Index extends Component {
               </div>
             </section>
           </section>
-          {
-            /*listData.map((list,index) => {
-              const { id } = list;
-              return (
-                <img
-                  src="https://img.downfuture.com/images/4qigLk8TygbuJW1GFwellx3y.jpeg"
-                  key={index}
-                  onLoad={this.lazyOnload(this)}
-                />
-              )
-            })*/
-          }
         </main>
         <BackTop />
       </section>
