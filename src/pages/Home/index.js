@@ -40,6 +40,11 @@ class Index extends Component {
     }, 500);
   }
 
+  static getDerivedStateFromProps(props, state) {
+    console.log(props, state, this);
+    return null;
+  }
+
   componentWillUnmount() {
     document.body.onresize = null;
     document.onscroll = null;
