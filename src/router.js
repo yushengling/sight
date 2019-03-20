@@ -7,6 +7,7 @@ import Setting from './pages/Setting/index';
 import PhonePasswordChange from './components/Setting/PhonePasswordChange';
 import Post from './pages/Post/index';
 import PostDetail from './pages/PostDetail/index';
+import Modal from './pages/Modal/index';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const routes = [
   {
@@ -14,33 +15,9 @@ const routes = [
     component: Home
   },
   {
-    path: "/user",
-    component: User
+    path: "/modal",
+    component: Modal
   },
-  {
-    path: "/detail",
-    component: Detail
-  },
-  {
-    path: "/personal",
-    component: Personal
-  },
-  {
-    path: "/setting",
-    component: Setting
-  },
-  {
-    path: "/passwordchange",
-    component: PhonePasswordChange
-  },
-  {
-    path: "/post",
-    component: Post
-  },
-  {
-    path: "/postDetail",
-    component: PostDetail
-  }
 ]
 
 const RouteWithSubRoutes = route => (
