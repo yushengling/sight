@@ -1,5 +1,4 @@
 import React,{ Component } from 'react';
-import { Row, Col } from 'antd';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import ItemCard from './../../components/ItemCard/ItemCard.js';
 import { getData } from './../../actions/HomeAction';
@@ -10,13 +9,22 @@ class Index extends Component {
     super(props);
     this.state = {}
   }
-
   render() {
     return (
       <section className="home">
         <div className="home-warrper">
-          <ItemCard />
-          <ItemCard />
+          <ItemCard
+            title="Modal"
+            small="弹窗"
+            href="/modal"
+            history={this.props.history}
+          />
+          <ItemCard
+            title="VerificationCode"
+            small="图形验证码"
+            href="/verificationCode"
+            history={this.props.history}
+          />
         </div>
         <LayoutFooter />
       </section>

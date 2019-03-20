@@ -1,13 +1,7 @@
 import React from 'react';
 import Home from './pages/Home/index';
-import User from './pages/User/index';
-import Detail from './pages/Detail/index';
-import Personal from './pages/Personal/index';
-import Setting from './pages/Setting/index';
-import PhonePasswordChange from './components/Setting/PhonePasswordChange';
-import Post from './pages/Post/index';
-import PostDetail from './pages/PostDetail/index';
 import Modal from './pages/Modal/index';
+import VerificationCode from './pages/VerificationCode/index';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const routes = [
   {
@@ -18,6 +12,10 @@ const routes = [
     path: "/modal",
     component: Modal
   },
+  {
+    path: "/verificationCode",
+    component: VerificationCode
+  }
 ]
 
 const RouteWithSubRoutes = route => (
