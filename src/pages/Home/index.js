@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import ItemCard from './../../components/ItemCard/ItemCard.js';
-import Preview from './../Preview/index.js';
+import Preview from './..//Preview/index.js';
 import { getData } from './../../actions/HomeAction';
 import './index.less';
 
@@ -26,8 +26,16 @@ class Index extends Component {
             href="/verificationCode"
             history={this.props.history}
           />
+          <ItemCard
+            title="Preview"
+            small="图片预览"
+            href="/preview"
+            history={this.props.history}
+          />
         </div>
-        <Preview url="https://img.downfuture.com/13026877921/9y-PLogxmyJudmV23z9HgbPX.jpeg" />
+        <Preview
+          url="https://img.downfuture.com/13026877921/9y-PLogxmyJudmV23z9HgbPX.jpeg"
+        />
         <LayoutFooter />
       </section>
     );

@@ -2,6 +2,7 @@ import React from 'react';
 import Home from './pages/Home/index';
 import Modal from './pages/Modal/index';
 import VerificationCode from './pages/VerificationCode/index';
+import Preview from './pages/Preview/index';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const routes = [
   {
@@ -15,6 +16,10 @@ const routes = [
   {
     path: "/verificationCode",
     component: VerificationCode
+  },
+  {
+    path: "/preview",
+    component: Preview
   }
 ]
 
