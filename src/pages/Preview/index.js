@@ -33,11 +33,13 @@ class Index extends Component {
             <a target="_blank" href="https://github.com/xuya227939/corki-ui/tree/master/src/components/Preview">How to use</a>
           </fieldset>
         </div>
-        <Preview
-          url="https://img.downfuture.com/13026877921/9y-PLogxmyJudmV23z9HgbPX.jpeg"
-          isShowPreView={isShowPreView}
-          onClose={this.onClose}
-        />
+        {
+          isShowPreView && 
+          <Preview
+            url="https://img.downfuture.com/13026877921/9y-PLogxmyJudmV23z9HgbPX.jpeg"
+            onClose={this.onClose}
+          />
+        }
       </div>
     );
   }
