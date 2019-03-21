@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
 import ItemCard from './../../components/ItemCard/ItemCard.js';
+import Preview from './../Preview/index.js';
 import { getData } from './../../actions/HomeAction';
 import './index.less';
 
@@ -26,6 +27,7 @@ class Index extends Component {
             history={this.props.history}
           />
         </div>
+        <Preview url="https://img.downfuture.com/13026877921/9y-PLogxmyJudmV23z9HgbPX.jpeg" />
         <LayoutFooter />
       </section>
     );
