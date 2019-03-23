@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import LayoutFooter from './../../components/Layout/LayoutFooter.js';
+import LayoutHead from './../../components/Layout/LayoutHead.js';
 import ItemCard from './../../components/ItemCard/ItemCard.js';
 import { getData } from './../../actions/HomeAction';
 import './index.less';
@@ -9,10 +10,16 @@ class Index extends Component {
     super(props);
     this.state = {}
   }
+
   render() {
     return (
-      <section className="home">
+      <section>
+        <LayoutHead />
         <div className="home-warrper">
+          <div className="home-title">
+            <h2>corki-ui</h2>
+            <p>以下是目前开源的组件</p>
+          </div>
           <ItemCard
             title="Modal"
             small="弹窗"

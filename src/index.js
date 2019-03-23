@@ -22,9 +22,7 @@ sagaMiddleware.run(rootSagas);
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div style={{ height: '100%' }}>
-        {routeConfig}
-      </div>
+      {routeConfig}
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
