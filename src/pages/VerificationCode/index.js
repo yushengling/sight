@@ -13,13 +13,15 @@ class Index extends Component {
 
   render() {
     return (
-      <div className="modal-wrapper">
-        <div className="modal-content"> 
+      <div className="verificationCode-wrapper">
+        <div className="verificationCode-content"> 
           <h1>图形验证码</h1>
           <fieldset>
             <legend>图形验证码</legend>
-            <VerificationCode getNumbers={this.getNumbers} />
-            <a target="_blank" href="https://github.com/xuya227939/corki-ui/tree/master/src/components/VerificationCode">How to use</a>
+            <div className="verificationCode-code">
+              <VerificationCode getNumbers={this.getNumbers} />
+              <a className="verificationCode-link" target="_blank" href="https://github.com/xuya227939/corki-ui/tree/master/src/components/VerificationCode">How to use</a>
+            </div>
           </fieldset>
         </div>
       </div>
