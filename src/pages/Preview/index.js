@@ -24,12 +24,12 @@ class Index extends Component {
   render() {
     const { isShowPreView } = this.state;
     return (
-      <div className="previewh-warrper">
-        <div className="previewh-content"> 
+      <div className="preview-wrapper">
+        <div className="preview-content"> 
           <h1>图片预览</h1>
           <fieldset>
             <legend>可缩小、放大、拖拽。</legend>
-            <button className="previewh-btn" onClick={this.showPreview}>preview</button>
+            <button className="preview-btn" onClick={this.showPreview}>preview</button>
             <a target="_blank" href="https://github.com/xuya227939/corki-ui/tree/master/src/components/Preview">How to use</a>
           </fieldset>
         </div>

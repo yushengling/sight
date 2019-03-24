@@ -3,6 +3,7 @@ import Home from './pages/Home/index';
 import Modal from './pages/Modal/index';
 import VerificationCode from './pages/VerificationCode/index';
 import Preview from './pages/Preview/index';
+import Button from './pages/Button/index';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
   {
     path: "/preview",
     component: Preview
+  },
+  {
+    path: "/button",
+    component: Button
   }
 ]
 

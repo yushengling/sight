@@ -30,8 +30,8 @@ class Index extends Component {
   render() {
     const { visible } = this.state;
     return (
-      <div className="modal-warrper">
-        <div className="mmodal-content"> 
+      <div className="modal-wrapper">
+        <div className="modal-content"> 
           <h1>Modal对话框</h1>
           <fieldset>
             <legend>模态对话框</legend>

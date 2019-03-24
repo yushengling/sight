@@ -15,7 +15,7 @@ class Index extends Component {
     return (
       <section>
         <LayoutHead />
-        <div className="home-warrper">
+        <div className="home-wrapper">
           <div className="home-title">
             <h2>corki-ui</h2>
             <p>以下是目前开源的组件</p>
@@ -36,6 +36,12 @@ class Index extends Component {
             title="Preview"
             small="图片预览"
             href="/preview"
+            history={this.props.history}
+          />
+          <ItemCard
+            title="Button"
+            small="按钮"
+            href="/button"
             history={this.props.history}
           />
         </div>
