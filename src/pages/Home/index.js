@@ -44,6 +44,12 @@ class Index extends Component {
             href="/button"
             history={this.props.history}
           />
+          <ItemCard
+            title="Input"
+            small="输入框"
+            href="/Input"
+            history={this.props.history}
+          />
         </div>
         <LayoutFooter />
       </section>

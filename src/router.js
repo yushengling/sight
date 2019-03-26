@@ -4,6 +4,7 @@ import Modal from './pages/Modal/index';
 import VerificationCode from './pages/VerificationCode/index';
 import Preview from './pages/Preview/index';
 import Button from './pages/Button/index';
+import Input from './pages/Input/index';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const routes = [
   {
@@ -25,6 +26,10 @@ const routes = [
   {
     path: "/button",
     component: Button
+  },
+  {
+    path: "/input",
+    component: Input
   }
 ]
 
