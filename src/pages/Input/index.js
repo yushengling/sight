@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
-// import { Button } from 'corki-ui';
+import { Input } from 'corki-ui';
 import './index.less';
-class Input extends Component {
+class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -9,14 +9,23 @@ class Input extends Component {
 
     render() {
         return (
-            <input
-                autocomplete="on"
-                autofocus="true"
-                checked="true"
-                disabled="true"
-            />
+            <div className="btn-warrper">
+                <div className="btn-content"> 
+                    <h1>输入框</h1>
+                    <fieldset>
+                        <div>输入框，基础使用</div>
+                        <div className="input-div">
+                            <Input
+                                className="input"
+                                placeholder="Basics Input"
+                            />
+                            <a target="_blank" href="https://github.com/xuya227939/corki-ui/tree/master/src/components/Input">How to use</a>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
         );
     }
 }
 
-export default Input;
+export default Index;
