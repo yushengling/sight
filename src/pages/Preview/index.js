@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Preview } from 'corki-ui';
 import './index.less';
+
 class Index extends Component {
     constructor(props) {
         super(props);

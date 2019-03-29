@@ -1,24 +1,24 @@
 const getData = (dispatch, count) => {
-  dispatch({
-    type:'GETDATA_SAGA',
-    count
-  });
-}
+    dispatch({
+        type: 'GETDATA_SAGA',
+        count,
+    });
+};
 
 const clear = (dispatch) => {
-  dispatch({
-    type: 'CLEARREDU'
-  });
-}
+    dispatch({
+        type: 'CLEARREDU',
+    });
+};
 
 const clearListData = (dispatch) => {
-  dispatch({
-    type: 'CLEARLISTDATAREDU'
-  })
-}
+    dispatch({
+        type: 'CLEARLISTDATAREDU',
+    });
+};
 
 export {
-  getData,
-  clear,
-  clearListData
+    getData,
+    clear,
+    clearListData,
 };

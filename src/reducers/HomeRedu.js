@@ -1,38 +1,26 @@
-import { combineReducers } from 'redux';
+import {
+    combineReducers,
+} from 'redux';
+
 const initialState = {
-  count: 0,
-  listData: [],
-  total: 0,
-  code: 0,
-  message: '',
-  isRender: false
-};
-
-const changeState = {
-  code: 0,
-  message: ''
-};
-
-const clearListData = {
-  listData: [],
-  isRender: true
+    count: 0,
+    listData: [],
+    total: 0,
+    code: 0,
+    message: '',
+    isRender: false,
 };
 
 const homeRedu = (state = initialState, action) => {
-  switch(action.type) {
+    switch (action.type) {
     case 'GETDATA':
-      return Object.assign({}, state, action.datas);
-    break;
-    case 'CLEARREDU':
-      return Object.assign({}, state, changeState);
-    case 'CLEARLISTDATAREDU':
-      return Object.assign({}, state, clearListData);
+        return Object.assign({}, state, action.datas);
     default:
-      return state;
-  }
-}
+        return state;
+    }
+};
 /*const reducers = combineReducers({
   homeRedu
 });
-export default reducers;*/
+export default reducers; */
 export default homeRedu;
