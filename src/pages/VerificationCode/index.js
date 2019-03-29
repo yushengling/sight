@@ -1,10 +1,13 @@
+/* eslint-disable react/jsx-no-target-blank */
+// eslint-disable-next-line jsx-a11y/label-has-associated-control
 import React, { Component } from 'react';
 import { VerificationCode } from 'corki-ui';
 import './index.less';
+
 class Index extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {};
     }
 
     getNumbers = (num) => {
