@@ -11,6 +11,8 @@
     "corki-ui": "^1.2.2",
     "cross-fetch": "^2.2.1",
     "css-loader": "^0.28.11",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
     "file-loader": "^1.1.11",
     "history": "^4.7.2",
     "moment": "^2.21.0",
@@ -36,11 +38,13 @@
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "watch": "webpack --watch --config webpack.dev.js",
-    "script-name": "babel-node script.js"
+    "script-name": "babel-node script.js",
+    "lint": "eslint src test"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^7.1.5",
     "babel-plugin-import": "^1.9.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -49,6 +53,8 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
+    "eslint": "^5.15.3",
+    "eslint-plugin-react": "^7.12.4",
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
