@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import LayoutFooter from './../../components/Layout/LayoutFooter.js';
-import LayoutHead from './../../components/Layout/LayoutHead.js';
-import ItemCard from './../../components/ItemCard/ItemCard.js';
-import { getData } from './../../actions/HomeAction';
+import LayoutFooter from '../../components/Layout/LayoutFooter.js';
+import LayoutHead from '../../components/Layout/LayoutHead.js';
+import ItemCard from '../../components/ItemCard/ItemCard.js';
 import './index.less';
 
 class Index extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {}
+		this.state = {};
 	}
 
 	render() {

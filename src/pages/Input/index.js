@@ -1,16 +1,17 @@
-import React,{ Component } from 'react';
+import React, { Component } from 'react';
 import { Input } from 'corki-ui';
 import './index.less';
+
 class Index extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {};
     }
 
     render() {
         return (
             <div className="btn-warrper">
-                <div className="btn-content"> 
+                <div className="btn-content">
                     <h1>输入框</h1>
                     <fieldset>
                         <div>输入框，基础使用</div>

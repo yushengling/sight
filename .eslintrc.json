@@ -1,8 +1,10 @@
 {
     "extends":"eslint-config-airbnb",
-    "ecmaFeatures":{
-        "jsx": true,
-        "modules": true
+    "parserOptions": {
+        "ecmaFeatures":{
+            "jsx": true,
+            "modules": true
+        }
     },
     "env":{
         "browser": true,
@@ -16,16 +18,14 @@
         "react/jsx-uses-react": 2,
         "react/jsx-uses-vars": 2,
         "react/react-in-jsx-scope": 2,
+        "no-tabs": 0,
         "indent": ["error", 4],
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "object-curly-newline": ["error", {
-            "ObjectExpression": "always",
-            "ObjectPattern": { "multiline": false },
-            "ImportDeclaration": "never",
-            "ExportDeclaration": { "multiline": true, "minProperties": 3 }
-        }]
+        "import/extensions": ["js", "jsx"],
+        "react/jsx-no-target-blank": [0],
+        "react/button-has-type": [0]
     },
     "plugins":[
         "react"
