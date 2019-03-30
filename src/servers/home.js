@@ -3,12 +3,12 @@ import {
 } from '../request';
 
 export function fetchData( params ) {
-    return request( {
+    return request({
         url: `home?count=${params.count}`,
         options: {
             method: 'GET'
         }
-    } );
+    });
 }
 
 export function fetchIsLogin( params ) {
@@ -17,5 +17,5 @@ export function fetchIsLogin( params ) {
         options: {
             method: 'GET'
         }
-    } );
+    });
 }

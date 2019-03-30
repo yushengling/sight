@@ -8,14 +8,31 @@ import routeConfig from './router';
 import homeRedu from './reducers/HomeRedu';
 
 const history = createBrowserHistory();
-// const sagaMiddleware = createSagaMiddleware();
+
+function middleware({ getState, dispatch }) {
+    return (next) => (action) => {
+        console.log(action)
+        next(action);
+        return new Promise((resolve, reject) => {
+            action.type = action.type + 'success';
+            action.data = {'a': '123'};
+            next(action);
+        });
+    };
+}
+
 const store = createStore(
     combineReducers({
         homeRedu,
         router: routerReducer,
     }),
-    // applyMiddleware(sagaMiddleware),
+    applyMiddleware(middleware),
 );
+
+store.dispatch({
+    type: 'ADD_TODO',
+    data: {},
+});
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
