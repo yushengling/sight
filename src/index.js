@@ -1,4 +1,6 @@
 import React from 'react';
+import isPromise from 'is-promise';
+import { isFSA } from 'flux-standard-action';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
@@ -8,16 +10,18 @@ import routeConfig from './router';
 import homeRedu from './reducers/HomeRedu';
 
 const history = createBrowserHistory();
-
-function middleware({ getState, dispatch }) {
-    return (next) => (action) => {
-        console.log(action)
-        next(action);
-        return new Promise((resolve, reject) => {
-            action.type = action.type + 'success';
-            action.data = {'a': '123'};
-            next(action);
-        });
+function middleware({ dispatch }) {
+    return next => action => {
+        if (!isFSA(action)) {
+            return next(action);
+        }
+        if(isPromise(action.payload)) {
+            dispatch({ ...action, payload: '', isLoading: true });
+            return action.payload
+                .then(result => dispatch({ ...action, payload: result, isLoading: false }))
+                .catch(error => dispatch({ ...action, payload: error, error: true, isLoading: false }));
+        }
+        return next(action);
     };
 }
 
@@ -29,10 +33,6 @@ const store = createStore(
     applyMiddleware(middleware),
 );
 
-store.dispatch({
-    type: 'ADD_TODO',
-    data: {},
-});
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>

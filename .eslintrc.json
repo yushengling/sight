@@ -25,7 +25,27 @@
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "import/extensions": ["js", "jsx"],
         "react/jsx-no-target-blank": [0],
-        "react/button-has-type": [0]
+        "react/button-has-type": [0],
+        "arrow-spacing": 1,
+        "no-var": 1,
+        "semi": 1,
+        "no-trailing-spaces": 1,
+        "eol-last": 0,
+        "camelcase": 1,
+        "arrow-parens": 0,
+        "consistent-return": 0,
+        "keyword-spacing": 0,
+        "react/prop-types": 0,
+        "arrow-body-style": 0,
+        "comma-dangle": 0,
+        "object-shorthand": 0,
+        "operator-assignment": 0,
+        "prefer-template": 0,
+        "no-param-reassign": 0,
+        "object-curly-newline": 0,
+        "max-len": 0,
+        "import/prefer-default-export": 0,
+        "prefer-destructuring": 0
     },
     "plugins":[
         "react"

@@ -1,59 +1,71 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import LayoutFooter from '../../components/Layout/LayoutFooter.js';
 import LayoutHead from '../../components/Layout/LayoutHead.js';
 import ItemCard from '../../components/ItemCard/ItemCard.js';
+import * as action from '../../actions/HomeAction';
 import './index.less';
 
+const mapStateToProps = state => {
+    return state;
+};
 class Index extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
+    constructor(props) {
+        super(props);
+        this.state = {
+            listData: []
+        };
+    }
 
-	render() {
-		return (
-			<section>
-				<LayoutHead />
-				<div className="home-wrapper">
-					<div className="home-title">
-						<h2>corki-ui</h2>
-						<p>以下是目前开源的组件</p>
-					</div>
-					<ItemCard
-						title="Modal"
-						small="弹窗"
-						href="/modal"
-						history={this.props.history}
-					/>
-					<ItemCard
-						title="VerificationCode"
-						small="图形验证码"
-						href="/verificationCode"
-						history={this.props.history}
-					/>
-					<ItemCard
-						title="Preview"
-						small="图片预览"
-						href="/preview"
-						history={this.props.history}
-					/>
-					<ItemCard
-						title="Button"
-						small="按钮"
-						href="/button"
-						history={this.props.history}
-					/>
-					<ItemCard
-						title="Input"
-						small="输入框"
-						href="/Input"
-						history={this.props.history}
-					/>
-				</div>
-				<LayoutFooter />
-			</section>
-		);
-	}
+    componentDidMount() {
+        const { dispatch } = this.props;
+        action.getCard(dispatch);
+    }
+
+    static getDerivedStateFromProps(nextProps) {
+        const { homeRedu } = nextProps;
+        let listData = [];
+        if(homeRedu.card.type) {
+            if(!homeRedu.card.isLoading) {
+                if(homeRedu.card.payload.code === 200) {
+                    listData = homeRedu.card.payload.listData;
+                }
+            }
+        }
+        return {
+            listData
+        };
+    }
+
+    render() {
+        const { history } = this.props;
+        const { listData } = this.state;
+        return (
+            <section>
+                <LayoutHead />
+                <div className="home-wrapper">
+                    <div className="home-title">
+                        <h2>corki-ui</h2>
+                        <p>以下是目前开源的组件</p>
+                    </div>
+                    {
+                        listData.map(item => {
+                            return (
+                                <ItemCard
+                                    key={item.id}
+                                    title={item.title}
+                                    small={item.small}
+                                    href={item.href}
+                                    history={history}
+                                />
+                            );
+                        })
+                    }
+                </div>
+                <LayoutFooter />
+            </section>
+        );
+    }
 }
 
-export default Index;
+export default connect(mapStateToProps)(Index);

@@ -2,18 +2,9 @@ import {
     request
 } from '../request';
 
-export function fetchData( params ) {
+export function getCard() {
     return request({
-        url: `home?count=${params.count}`,
-        options: {
-            method: 'GET'
-        }
-    });
-}
-
-export function fetchIsLogin( params ) {
-    return request( {
-        url: 'isLogin',
+        url: 'getCard',
         options: {
             method: 'GET'
         }

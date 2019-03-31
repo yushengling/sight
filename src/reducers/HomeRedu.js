@@ -3,24 +3,20 @@ import {
 } from 'redux';
 
 const initialState = {
-    count: 0,
+    card: {},
 };
 
 const homeRedu = (state = initialState, action) => {
     switch (action.type) {
-        case 'GETDATA':
-            return Object.assign({}, state, action.datas);
-        case 'ADD_TODO':
-            console.log(456, action);
-            return state;
-        case 'ADD_TODOsuccess':
-            console.log(123, action);
-            return state;
+        case 'GET_CARD':
+            return Object.assign({}, state, {
+                card: action
+            });
         default:
             return state;
     }
 };
-/*const reducers = combineReducers({
+/* const reducers = combineReducers({
   homeRedu
 });
 export default reducers; */

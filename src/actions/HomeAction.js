@@ -1,24 +1,14 @@
-const getData = (dispatch, count) => {
-    dispatch({
-        type: 'GETDATA_SAGA',
-        count,
-    });
-};
+import * as homeApi from '../servers/home.js';
 
-const clear = (dispatch) => {
-    dispatch({
-        type: 'CLEARREDU',
-    });
-};
+const GET_CARD = 'GET_CARD';
 
-const clearListData = (dispatch) => {
+const getCard = (dispatch) => {
     dispatch({
-        type: 'CLEARLISTDATAREDU',
+        type: GET_CARD,
+        payload: homeApi.getCard()
     });
 };
 
 export {
-    getData,
-    clear,
-    clearListData,
+    getCard,
 };
