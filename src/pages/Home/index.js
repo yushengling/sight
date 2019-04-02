@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Row } from 'antd';
 import { connect } from 'react-redux';
 import LayoutFooter from '../../components/Layout/LayoutFooter.js';
 import LayoutHead from '../../components/Layout/LayoutHead.js';
@@ -41,26 +42,28 @@ class Index extends Component {
         const { history } = this.props;
         const { listData } = this.state;
         return (
-            <section>
+            <section className="home-section">
                 <LayoutHead />
                 <div className="home-wrapper">
                     <div className="home-title">
                         <h2>corki-ui</h2>
                         <p>以下是目前开源的组件</p>
                     </div>
-                    {
-                        listData.map(item => {
-                            return (
-                                <ItemCard
-                                    key={item.id}
-                                    title={item.title}
-                                    small={item.small}
-                                    href={item.href}
-                                    history={history}
-                                />
-                            );
-                        })
-                    }
+                    <Row className="home-card">
+                        {
+                            listData.map(item => {
+                                return (
+                                    <ItemCard
+                                        key={item.id}
+                                        title={item.title}
+                                        small={item.small}
+                                        href={item.href}
+                                        history={history}
+                                    />
+                                );
+                            })
+                        }
+                    </Row>
                 </div>
                 <LayoutFooter />
             </section>
